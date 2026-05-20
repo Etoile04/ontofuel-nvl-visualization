@@ -16,6 +16,14 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { InteractiveNvlWrapper } from '@neo4j-nvl/react';
 import type { MouseEventCallbacks } from '@neo4j-nvl/react/lib/interactive-nvl-wrapper/types';
 import type { Node, Relationship } from '../types/nvl';
+import {
+  exportToJSON,
+  exportNodesToCSV,
+  exportRelationshipsToCSV,
+  exportToGraphML,
+  exportToMarkdown,
+  type ExportOptions
+} from '../utils/exportUtils';
 import './OntologyNVLViewer.css';
 
 // ✅ Task 4: 类型守卫
@@ -75,6 +83,9 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
   const [layout, setLayout] = useState(initialLayout);
   const [selectedNode, setSelectedNode] = useState<NodeDetails | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showExportMenu, setShowExportMenu] = useState(false);
+  const [exportScope, setExportScope] = useState<'all' | 'filtered' | 'selected'>('all');
+  const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set());
 
   // 加载数据
   useEffect(() => {
@@ -318,14 +329,151 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
           <option value="circular">Circular</option>
         </select>
 
-        {/* 导出按钮 */}
-        <button
-          onClick={handleExport}
-          className="export-button"
-          aria-label="Export visualization data as JSON"
-        >
-          Export JSON
-        </button>
+        {/* 导出菜单 */}
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setShowExportMenu(!showExportMenu)}
+            className="export-button"
+            aria-label="Export menu"
+            aria-expanded={showExportMenu}
+          >
+            📥 Export {showExportMenu ? '▲' : '▼'}
+          </button>
+          
+          {showExportMenu && (
+            <div className="export-menu" role="menu">
+              <div className="export-menu-header">
+                <strong>Export Options</strong>
+              </div>
+              
+              <div className="export-scope-options">
+                <label>
+                  <input
+                    type="radio"
+                    name="exportScope"
+                    value="all"
+                    checked={exportScope === 'all'}
+                    onChange={(e) => setExportScope(e.target.value as 'all')}
+                  />
+                  All nodes ({nodes.length})
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="exportScope"
+                    value="filtered"
+                    checked={exportScope === 'filtered'}
+                    onChange={(e) => setExportScope(e.target.value as 'filtered')}
+                    disabled={searchTerm === ''}
+                  />
+                  Filtered ({filteredNodes.length})
+                </label>
+              </div>
+              
+              <div className="export-divider" />
+              
+              <button
+                onClick={() => {
+                  const options: ExportOptions = {
+                    scope: exportScope,
+                    includeRelationships: true,
+                    selectedNodeIds
+                  };
+                  exportToJSON(
+                    exportScope === 'filtered' ? filteredNodes : nodes,
+                    relationships,
+                    options
+                  );
+                  setShowExportMenu(false);
+                }}
+                className="export-menu-item"
+                role="menuitem"
+              >
+                📄 Export as JSON
+              </button>
+              
+              <button
+                onClick={() => {
+                  const options: ExportOptions = {
+                    scope: exportScope,
+                    includeRelationships: false,
+                    selectedNodeIds
+                  };
+                  exportNodesToCSV(
+                    exportScope === 'filtered' ? filteredNodes : nodes,
+                    relationships,
+                    options
+                  );
+                  setShowExportMenu(false);
+                }}
+                className="export-menu-item"
+                role="menuitem"
+              >
+                📊 Export Nodes as CSV
+              </button>
+              
+              <button
+                onClick={() => {
+                  const options: ExportOptions = {
+                    scope: exportScope,
+                    includeRelationships: true,
+                    selectedNodeIds
+                  };
+                  exportRelationshipsToCSV(
+                    exportScope === 'filtered' ? filteredNodes : nodes,
+                    relationships,
+                    options
+                  );
+                  setShowExportMenu(false);
+                }}
+                className="export-menu-item"
+                role="menuitem"
+              >
+                🔗 Export Relationships as CSV
+              </button>
+              
+              <button
+                onClick={() => {
+                  const options: ExportOptions = {
+                    scope: exportScope,
+                    includeRelationships: true,
+                    selectedNodeIds
+                  };
+                  exportToGraphML(
+                    exportScope === 'filtered' ? filteredNodes : nodes,
+                    relationships,
+                    options
+                  );
+                  setShowExportMenu(false);
+                }}
+                className="export-menu-item"
+                role="menuitem"
+              >
+                🗺️ Export as GraphML
+              </button>
+              
+              <button
+                onClick={() => {
+                  const options: ExportOptions = {
+                    scope: exportScope,
+                    includeRelationships: true,
+                    selectedNodeIds
+                  };
+                  exportToMarkdown(
+                    exportScope === 'filtered' ? filteredNodes : nodes,
+                    relationships,
+                    options
+                  );
+                  setShowExportMenu(false);
+                }}
+                className="export-menu-item"
+                role="menuitem"
+              >
+                📝 Export as Markdown Report
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* 主内容区 */}

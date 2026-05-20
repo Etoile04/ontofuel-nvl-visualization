@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVL 导出功能测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #4A90E2;
+            margin-top: 0;
+        }
+        .test-result {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        button {
+            background: #4A90E2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #357ABD;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            flex: 1;
+            background: #4A90E2;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 NVL 可视化导出功能测试</h1>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="nodeCount">0</div>
+            <div class="stat-label">节点</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="relCount">0</div>
+            <div class="stat-label">关系</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="classCount">0</div>
+            <div class="stat-label">类</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="individualCount">0</div>
+            <div class="stat-label">个体</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>1. 加载数据</h2>
+        <button onclick="loadData()">加载数据</button>
+        <div id="loadResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. 测试导出功能</h2>
+        <button onclick="testJSON()">测试 JSON 导出</button>
+        <button onclick="testCSVNodes()">测试节点 CSV 导出</button>
+        <button onclick="testCSVRelationships()">测试关系 CSV 导出</button>
+        <button onclick="testGraphML()">测试 GraphML 导出</button>
+        <button onclick="testMarkdown()">测试 Markdown 导出</button>
+        <div id="exportResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. 实际导出</h2>
+        <button onclick="exportJSON()">📥 导出 JSON</button>
+        <button onclick="exportCSVNodes()">📊 导出节点 CSV</button>
+        <button onclick="exportCSVRelationships()">🔗 导出关系 CSV</button>
+        <button onclick="exportGraphML()">🗺️ 导出 GraphML</button>
+        <button onclick="exportMarkdown()">📝 导出 Markdown</button>
+    </div>
+
+    <div class="test-section">
+        <h2>4. 导出预览</h2>
+        <pre id="preview"></pre>
+    </div>
+
+    <script>
+        let nodes = [];
+        let relationships = [];
+
+        async function loadData() {
+            const resultDiv = document.getElementById('loadResult');
+            resultDiv.innerHTML = '<div class="test-result">⏳ 加载中...</div>';
+
+            try {
+                const response = await fetch('/data/nvl_ontology_data.json');
+                const data = await response.json();
+                
+                nodes = data.nodes || [];
+                relationships = data.relationships || [];
+
+                // 更新统计
+                document.getElementById('nodeCount').textContent = nodes.length;
+                document.getElementById('relCount').textContent = relationships.length;
+                document.getElementById('classCount').textContent = 
+                    nodes.filter(n => n.type === 'class').length;
+                document.getElementById('individualCount').textContent = 
+                    nodes.filter(n => n.type === 'individual').length;
+
+                resultDiv.innerHTML = '<div class="test-result success">✅ 数据加载成功</div>';
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 加载失败: ${error.message}</div>`;
+            }
+        }
+
+        function testJSON() {
+            const resultDiv = document.getElementById('exportResults');
+            try {
+                const json = JSON.stringify({ nodes: nodes.slice(0, 3), relationships: relationships.slice(0, 3) }, null, 2);
+                document.getElementById('preview').textContent = json;
+                resultDiv.innerHTML = '<div class="test-result success">✅ JSON 导出测试通过</div>';
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败: ${error.message}</div>`;
+            }
+        }
+
+        function testCSVNodes() {
+            const resultDiv = document.getElementById('exportResults');
+            try {
+                const csv = nodes.slice(0, 3).map(n => `${n.id},${n.name},${n.type}`).join('\n');
+                document.getElementById('preview').textContent = 'id,name,type\n' + csv;
+                resultDiv.innerHTML = '<div class="test-result success">✅ 节点 CSV 导出测试通过</div>';
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败: ${error.message}</div>`;
+            }
+        }
+
+        function testCSVRelationships() {
+            const resultDiv = document.getElementById('exportResults');
+            try {
+                const csv = relationships.slice(0, 3).map(r => `${r.from},${r.to},${r.type}`).join('\n');
+                document.getElementById('preview').textContent = 'from,to,type\n' + csv;
+                resultDiv.innerHTML = '<div class="test-result success">✅ 关系 CSV 导出测试通过</div>';
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败: ${error.message}</div>`;
+            }
+        }
+
+        function testGraphML() {
+            const resultDiv = document.getElementById('exportResults');
+            try {
+                const graphml = `<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+  <graph id="G" edgedefault="undirected">
+    ${nodes.slice(0, 3).map(n => `<node id="${n.id}"><data key="name">${n.name}</data></node>`).join('\n    ')}
+  </graph>
+</graphml>`;
+                document.getElementById('preview').textContent = graphml;
+                resultDiv.innerHTML = '<div class="test-result success">✅ GraphML 导出测试通过</div>';
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败: ${error.message}</div>`;
+            }
+        }
+
+        function testMarkdown() {
+            const resultDiv = document.getElementById('exportResults');
+            try {
+                const md = `# 本体可视化报告
+
+**节点总数**: ${nodes.length}
+**关系总数**: ${relationships.length}
+
+## 节点示例
+
+${nodes.slice(0, 3).map(n => `### ${n.name}\n\n类型: ${n.type}\n`).join('\n')}`;
+                document.getElementById('preview').textContent = md;
+                resultDiv.innerHTML = '<div class="test-result success">✅ Markdown 导出测试通过</div>';
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败: ${error.message}</div>`;
+            }
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function exportJSON() {
+            const json = JSON.stringify({ nodes, relationships }, null, 2);
+            downloadFile(json, 'ontology_all.json', 'application/json');
+        }
+
+        function exportCSVNodes() {
+            const headers = 'id,name,type,comment,uri';
+            const rows = nodes.map(n => 
+                `${n.id},${n.name},${n.type},"${(n.comment || '').replace(/"/g, '""')}",${n.uri || ''}`
+            );
+            downloadFile([headers, ...rows].join('\n'), 'ontology_nodes.csv', 'text/csv');
+        }
+
+        function exportCSVRelationships() {
+            const headers = 'id,from,to,type';
+            const rows = relationships.map(r => 
+                `${r.id || ''},${r.from},${r.to},${r.type}`
+            );
+            downloadFile([headers, ...rows].join('\n'), 'ontology_relationships.csv', 'text/csv');
+        }
+
+        function exportGraphML() {
+            const graphml = `<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+  <key id="name" for="node" attr.name="name" attr.type="string"/>
+  <key id="type" for="node" attr.name="type" attr.type="string"/>
+  <graph id="G" edgedefault="undirected">
+    ${nodes.map(n => `<node id="${n.id}">
+      <data key="name">${n.name || n.id}</data>
+      <data key="type">${n.type || ''}</data>
+    </node>`).join('\n    ')}
+    ${relationships.map((r, i) => `<edge id="${r.id || 'e' + i}" source="${r.from}" target="${r.to}">
+      <data key="type">${r.type || ''}</data>
+    </edge>`).join('\n    ')}
+  </graph>
+</graphml>`;
+            downloadFile(graphml, 'ontology.graphml', 'application/xml');
+        }
+
+        function exportMarkdown() {
+            const classCount = nodes.filter(n => n.type === 'class').length;
+            const individualCount = nodes.filter(n => n.type === 'individual').length;
+            
+            const md = `# 本体可视化报告
+
+**导出时间**: ${new Date().toLocaleString('zh-CN')}
+**节点总数**: ${nodes.length}
+**关系总数**: ${relationships.length}
+
+## 统计信息
+
+- 类 (Classes): ${classCount}
+- 个体 (Individuals): ${individualCount}
+
+## 节点列表
+
+### 类 (Classes)
+
+${nodes.filter(n => n.type === 'class').slice(0, 10).map(n => `#### ${n.name}\n\n${n.comment || ''}\n\n**URI**: ${n.uri || ''}\n\n---\n\n`).join('')}
+
+### 个体 (Individuals)
+
+${nodes.filter(n => n.type === 'individual').slice(0, 20).map(n => `#### ${n.name}\n\n类型: ${n.class || n.type}\n\n---\n\n`).join('')}
+`;
+            downloadFile(md, 'ontology_report.md', 'text/markdown');
+        }
+
+        // 页面加载时自动加载数据
+        window.onload = loadData;
+    </script>
+</body>
+</html>

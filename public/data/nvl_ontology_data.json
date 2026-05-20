@@ -456,7 +456,7 @@
       "name": "Alloy",
       "label": "{name}",
       "comment": "A metallic substance composed of two or more elements.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#Alloy",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1286,7 +1286,7 @@
       "name": "GasBubbleSuperlattice",
       "label": "{name}",
       "comment": "A periodic arrangement of gas bubbles within a material.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#GasBubbleSuperlattice",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1296,7 +1296,7 @@
       "name": "UMoAlloy",
       "label": "{name}",
       "comment": "铀钼合金",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#UMoAlloy",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1306,7 +1306,7 @@
       "name": "GrainBoundary",
       "label": "{name}",
       "comment": "The interface between two grains in a polycrystalline material.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#GrainBoundary",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1316,7 +1316,7 @@
       "name": "PhaseFieldModel",
       "label": "{name}",
       "comment": "相场模型",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#PhaseFieldModel",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1326,7 +1326,7 @@
       "name": "DenudedZone",
       "label": "{name}",
       "comment": "贫化区",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#DenudedZone",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1336,7 +1336,7 @@
       "name": "Phase",
       "label": "{name}",
       "comment": "A physically distinct and homogeneous portion of a system.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#Phase",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1346,7 +1346,7 @@
       "name": "InterstitialAtom",
       "label": "{name}",
       "comment": "An atom that occupies an interstitial site in a crystal lattice.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#InterstitialAtom",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1356,7 +1356,7 @@
       "name": "Vacancy",
       "label": "{name}",
       "comment": "A point defect in a crystal lattice where an atom is missing.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#Vacancy",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1366,7 +1366,7 @@
       "name": "Diffusion",
       "label": "{name}",
       "comment": "The net movement of atoms from a region of high concentration to a region of low concentration.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#Diffusion",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1376,7 +1376,7 @@
       "name": "ShadowEffect",
       "label": "{name}",
       "comment": "The blocking of the migration path of interstitial atoms by existing bubbles.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#ShadowEffect",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1386,7 +1386,17 @@
       "name": "Irradiation",
       "label": "{name}",
       "comment": "The process of exposing a material to radiation.",
-      "uri": "",
+      "uri": "http://example.org/materials/ontology#Irradiation",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "class_Entity",
+      "type": "class",
+      "name": "Entity",
+      "label": "{name}",
+      "comment": "Top-level entity class representing all entities in the ontology",
+      "uri": "http://trustgraph.org/Entity",
       "color": "#4A90E2",
       "size": 30
     },
@@ -1797,6 +1807,16 @@
       }
     },
     {
+      "id": "class_Defect",
+      "type": "class",
+      "name": "Defect",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "ind_Defect_Interstitial_001",
       "type": "individual",
       "name": "Defect_Interstitial_001",
@@ -1923,6 +1943,16 @@
         "pages": "8",
         "text_excerpt": "For a neutron incident on a hydrogen atom"
       }
+    },
+    {
+      "id": "class_MaterialProperty",
+      "type": "class",
+      "name": "MaterialProperty",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
     },
     {
       "id": "ind_MaterialProperty_Gamma_nU_001",
@@ -3327,6 +3357,16 @@
         "pages": null,
         "text_excerpt": "Ni3Si precipitates at the surface, grain boundaries and dislocation loops"
       }
+    },
+    {
+      "id": "class_PhaseTransformation",
+      "type": "class",
+      "name": "PhaseTransformation",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
     },
     {
       "id": "ind_RIS_Ni3Al_Precipitation",
@@ -19354,6 +19394,16 @@
       "prop_composition": "{\"Co\": 20.0, \"Cr\": 20.0, \"Fe\": 20.0, \"Mn\": 20.0, \"Ni\": 20.0}"
     },
     {
+      "id": "class_owl:NamedIndividual",
+      "type": "class",
+      "name": "owl:NamedIndividual",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "ind_CoCrFeMnNi_equiatomic_Co_Diff_1373K",
       "type": "individual",
       "name": "CoCrFeMnNi_equiatomic_Co_Diff_1373K",
@@ -20876,6 +20926,16 @@
       "prop_rdfs:comment": "A uranium-molybdenum alloy variant containing approximately 7 weight percent molybdenum."
     },
     {
+      "id": "class_UraniumMolybdenumAlloy",
+      "type": "class",
+      "name": "UraniumMolybdenumAlloy",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "ind_MetastablePhase",
       "type": "individual",
       "name": "MetastablePhase",
@@ -20893,6 +20953,16 @@
       "prop_rdfs:comment": "A crystalline phase that is not the equilibrium phase under given conditions but persists for extended periods."
     },
     {
+      "id": "class_CrystallinePhase",
+      "type": "class",
+      "name": "CrystallinePhase",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "ind_U7MoComposition",
       "type": "individual",
       "name": "U7MoComposition",
@@ -20908,6 +20978,16 @@
         }
       ],
       "prop_rdfs:comment": "Material composition for U-7Mo alloy with 7 weight percent molybdenum."
+    },
+    {
+      "id": "class_MaterialComposition",
+      "type": "class",
+      "name": "MaterialComposition",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
     },
     {
       "id": "ind_BodyCenteredCubicStructure",
@@ -20942,6 +21022,16 @@
         }
       ],
       "prop_rdfs:comment": "A temperature condition above normal operating temperatures."
+    },
+    {
+      "id": "class_TemperatureCondition",
+      "type": "class",
+      "name": "TemperatureCondition",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
     },
     {
       "id": "ind_U10MoComposition",
@@ -21010,6 +21100,16 @@
         }
       ],
       "prop_rdfs:comment": "Application of nuclear materials in research reactors."
+    },
+    {
+      "id": "class_ApplicationContext",
+      "type": "class",
+      "name": "ApplicationContext",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
     },
     {
       "id": "ind_CoCrFeMnNi_DiffusionCoefficient_Cu_001",
@@ -21498,6 +21598,16 @@
       }
     },
     {
+      "id": "class_IrradiationCondition",
+      "type": "class",
+      "name": "IrradiationCondition",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "ind_UMoAlloy",
       "type": "individual",
       "name": "UMoAlloy",
@@ -21816,6 +21926,16 @@
       "prop_simulationMethod": "Molecular Dynamics"
     },
     {
+      "id": "class_AlloySystem",
+      "type": "class",
+      "name": "AlloySystem",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "ind_App_USHPRR_fuel",
       "type": "individual",
       "name": "App_USHPRR_fuel",
@@ -21874,6 +21994,1113 @@
       ],
       "prop_mechanism": "Atomic mixing during ballistic stopping of fission fragments",
       "prop_species": "U, Mo, Xe"
+    },
+    {
+      "id": "class_DiffusionProcess",
+      "type": "class",
+      "name": "DiffusionProcess",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "ind_UMo_U_DiffusionCoefficient",
+      "type": "individual",
+      "name": "UMo_U_DiffusionCoefficient",
+      "label": "{name}",
+      "class": "DiffusionCoefficient",
+      "uri": "http://ontofuel.org/individuals/UMo_U_DiffusionCoefficient",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_name": "U-Mo 合金中铀的扩散系数",
+      "prop_properties": {
+        "species": "U",
+        "material": "U-Mo alloy",
+        "temperature_range": "500-800°C",
+        "activation_energy": "2.5-3.0 eV",
+        "comment": "Molecular dynamics simulations show radiation-driven diffusion of U in gamma-U-Mo",
+        "source": "Beeler et al. 2020, 2021"
+      },
+      "prop_comment": "Molecular dynamics simulations show radiation-driven diffusion of U in gamma-U-Mo",
+      "prop_source": "Beeler et al. 2020, 2021",
+      "prop_createdAt": "2026-03-20T18:41:46.429796",
+      "prop_class": "DiffusionCoefficient",
+      "prop_hasSource": "Beeler et al. 2020, 2021"
+    },
+    {
+      "id": "ind_UMo_Mo_DiffusionCoefficient",
+      "type": "individual",
+      "name": "UMo_Mo_DiffusionCoefficient",
+      "label": "{name}",
+      "class": "DiffusionCoefficient",
+      "uri": "http://ontofuel.org/individuals/UMo_Mo_DiffusionCoefficient",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_name": "U-Mo 合金中钼的扩散系数",
+      "prop_properties": {
+        "species": "Mo",
+        "material": "U-Mo alloy",
+        "temperature_range": "500-800°C",
+        "activation_energy": "2.5-3.0 eV",
+        "comment": "Similar diffusivity to U in U-Mo alloys",
+        "source": "Beeler et al. 2020"
+      },
+      "prop_comment": "Similar diffusivity to U in U-Mo alloys",
+      "prop_source": "Beeler et al. 2020",
+      "prop_createdAt": "2026-03-20T18:41:46.429804",
+      "prop_class": "DiffusionCoefficient",
+      "prop_hasSource": "Beeler et al. 2020"
+    },
+    {
+      "id": "ind_UMo_Xe_DiffusionCoefficient",
+      "type": "individual",
+      "name": "UMo_Xe_DiffusionCoefficient",
+      "label": "{name}",
+      "class": "DiffusionCoefficient",
+      "uri": "http://ontofuel.org/individuals/UMo_Xe_DiffusionCoefficient",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_name": "U-Mo 合金中氙的扩散系数",
+      "prop_properties": {
+        "species": "Xe",
+        "material": "U-Mo alloy",
+        "temperature_range": "500-800°C",
+        "comment": "Fission gas diffusion coefficient for fuel performance modeling",
+        "source": "Beeler et al. 2020"
+      },
+      "prop_comment": "Fission gas diffusion coefficient for fuel performance modeling",
+      "prop_source": "Beeler et al. 2020",
+      "prop_createdAt": "2026-03-20T18:41:46.429806",
+      "prop_class": "DiffusionCoefficient",
+      "prop_hasSource": "Beeler et al. 2020"
+    },
+    {
+      "id": "ind_UMo_GB_DiffusionCoefficient",
+      "type": "individual",
+      "name": "UMo_GB_DiffusionCoefficient",
+      "label": "{name}",
+      "class": "DiffusionCoefficient",
+      "uri": "http://ontofuel.org/individuals/UMo_GB_DiffusionCoefficient",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_name": "U-Mo 合金晶界扩散系数",
+      "prop_properties": {
+        "diffusion_type": "grain boundary",
+        "material": "U-Mo alloy",
+        "enhancement_factor": "10^2 to 10^7",
+        "comment": "Grain boundary diffusion is 10^2 to 10^7 times faster than bulk diffusion",
+        "source": "ScienceDirect 2024"
+      },
+      "prop_comment": "Grain boundary diffusion is 10^2 to 10^7 times faster than bulk diffusion",
+      "prop_source": "ScienceDirect 2024",
+      "prop_createdAt": "2026-03-20T18:41:46.429808",
+      "prop_class": "DiffusionCoefficient",
+      "prop_hasSource": "ScienceDirect 2024"
+    },
+    {
+      "id": "ind_U10Zr_U_DiffusionCoefficient",
+      "type": "individual",
+      "name": "U10Zr_U_DiffusionCoefficient",
+      "label": "{name}",
+      "class": "DiffusionCoefficient",
+      "uri": "http://ontofuel.org/individuals/U10Zr_U_DiffusionCoefficient",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_name": "U-10Zr 合金中铀的扩散系数",
+      "prop_properties": {
+        "species": "U",
+        "material": "U-10Zr alloy",
+        "comment": "Self-diffusion of uranium in U-10Zr fuel alloy",
+        "source": "ANL-09/31 U-Mo Fuels Handbook"
+      },
+      "prop_comment": "Self-diffusion of uranium in U-10Zr fuel alloy",
+      "prop_source": "ANL-09/31 U-Mo Fuels Handbook",
+      "prop_createdAt": "2026-03-20T18:41:46.429809",
+      "prop_class": "DiffusionCoefficient",
+      "prop_hasSource": "ANL-09/31 U-Mo Fuels Handbook"
+    },
+    {
+      "id": "ind_UMo_Al_InterdiffusionCoefficient",
+      "type": "individual",
+      "name": "UMo_Al_InterdiffusionCoefficient",
+      "label": "{name}",
+      "class": "DiffusionCoefficient",
+      "uri": "http://ontofuel.org/individuals/UMo_Al_InterdiffusionCoefficient",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_name": "U-Mo/Al 界面互扩散系数",
+      "prop_properties": {
+        "diffusion_type": "interdiffusion",
+        "interface": "U-Mo/Al-6061",
+        "temperature_range": "500-600°C",
+        "comment": "Interaction layer formation at U-Mo fuel / Al cladding interface",
+        "source": "OSTI 2013"
+      },
+      "prop_comment": "Interaction layer formation at U-Mo fuel / Al cladding interface",
+      "prop_source": "OSTI 2013",
+      "prop_createdAt": "2026-03-20T18:41:46.429811",
+      "prop_class": "DiffusionCoefficient",
+      "prop_hasSource": "OSTI 2013"
+    },
+    {
+      "id": "ind_CoCrFeMnNi_ThermalConductivity",
+      "type": "individual",
+      "name": "CoCrFeMnNi_ThermalConductivity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#CoCrFeMnNi_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalConductivity",
+      "prop_rdfs:label": [
+        {
+          "value": "CoCrFeMnNi Cantor合金热导率",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "Cantor合金（等原子比CrMnFeCoNi）的热导率，典型面心立方高熵合金",
+      "prop_comment": "Cantor合金（等原子比CrMnFeCoNi）的热导率，典型面心立方高熵合金",
+      "prop_prop_material": "CoCrFeMnNi",
+      "prop_prop_alloyType": "HighEntropyAlloy",
+      "prop_prop_temperature_range": "300-1000K",
+      "prop_prop_value_range": "10-20 W/(m·K)",
+      "prop_prop_temperature_coefficient": "正温度系数",
+      "prop_prop_crystal_structure": "FCC",
+      "prop_prop_source": "Nature Scientific Reports 2025",
+      "prop_hasSource": "Nature Scientific Reports 2025"
+    },
+    {
+      "id": "ind_CoCrFeMnNi_HeatCapacity",
+      "type": "individual",
+      "name": "CoCrFeMnNi_HeatCapacity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#CoCrFeMnNi_HeatCapacity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "HeatCapacity",
+      "prop_rdfs:label": [
+        {
+          "value": "CoCrFeMnNi Cantor合金热容",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "Cantor合金的电子热容和晶格热容，用于激光脉冲响应建模",
+      "prop_comment": "Cantor合金的电子热容和晶格热容，用于激光脉冲响应建模",
+      "prop_prop_material": "CoCrFeMnNi",
+      "prop_prop_alloyType": "HighEntropyAlloy",
+      "prop_prop_electronic_heat_capacity": "与温度相关",
+      "prop_prop_lattice_heat_capacity": "Debye模型",
+      "prop_prop_temperature_range": "300-5000K",
+      "prop_prop_source": "Nature Scientific Reports 2025",
+      "prop_hasSource": "Nature Scientific Reports 2025"
+    },
+    {
+      "id": "ind_AlCoCrFeNi_ThermalConductivity",
+      "type": "individual",
+      "name": "AlCoCrFeNi_ThermalConductivity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#AlCoCrFeNi_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalConductivity",
+      "prop_rdfs:label": [
+        {
+          "value": "AlCoCrFeNi高熵合金热导率",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "FCC相稳定的AlCoCrFeNi高熵合金的热导率，通过原子模拟计算",
+      "prop_comment": "FCC相稳定的AlCoCrFeNi高熵合金的热导率，通过原子模拟计算",
+      "prop_prop_material": "AlCoCrFeNi",
+      "prop_prop_alloyType": "HighEntropyAlloy",
+      "prop_prop_temperature_range": "300-1500K",
+      "prop_prop_crystal_structure": "FCC",
+      "prop_prop_simulation_method": "Molecular Dynamics",
+      "prop_prop_source": "Journal of Thermal Analysis and Calorimetry 2025",
+      "prop_hasSource": "Journal of Thermal Analysis and Calorimetry 2025"
+    },
+    {
+      "id": "ind_Refractory_HEA_ThermalConductivity",
+      "type": "individual",
+      "name": "Refractory_HEA_ThermalConductivity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#Refractory_HEA_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalConductivity",
+      "prop_rdfs:label": [
+        {
+          "value": "难熔高熵合金热导率",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "难熔高熵合金（如NbMoTaW, VNbMoTaW）的热导率，具有高熔点和高温稳定性",
+      "prop_comment": "难熔高熵合金（如NbMoTaW, VNbMoTaW）的热导率，具有高熔点和高温稳定性",
+      "prop_prop_material": "Refractory High Entropy Alloys",
+      "prop_prop_alloyType": "HighEntropyAlloy",
+      "prop_prop_typical_systems": "NbMoTaW, VNbMoTaW, HfNbTaTiZr",
+      "prop_prop_value_range": "5-15 W/(m·K) at room temperature",
+      "prop_prop_temperature_coefficient": "随温度升高而增加",
+      "prop_prop_source": "Acta Materialia 2024",
+      "prop_hasSource": "Acta Materialia 2024"
+    },
+    {
+      "id": "ind_U_HEA_ThermalConductivity",
+      "type": "individual",
+      "name": "U_HEA_ThermalConductivity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U_HEA_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalConductivity",
+      "prop_rdfs:label": [
+        {
+          "value": "含铀高熵合金热导率",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Nb-Zr-Mo-Ti等含铀高熵合金体系的热导率",
+      "prop_comment": "U-Nb-Zr-Mo-Ti等含铀高熵合金体系的热导率",
+      "prop_prop_material": "U-Nb-Zr-Mo-Ti system",
+      "prop_prop_alloyType": "UraniumHighEntropyAlloy",
+      "prop_prop_typical_systems": "UNb0.5Zr0.5Mo0.5, UNb0.5Zr0.5Ti0.2Mo0.2",
+      "prop_prop_value_range": "8-15 W/(m·K) estimated",
+      "prop_prop_crystal_structure": "BCC",
+      "prop_prop_source": "Xu et al. 2024 - First-principles calculations",
+      "prop_hasSource": "Xu et al. 2024 - First-principles calculations"
+    },
+    {
+      "id": "ind_U_HEA_HeatCapacity",
+      "type": "individual",
+      "name": "U_HEA_HeatCapacity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U_HEA_HeatCapacity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "HeatCapacity",
+      "prop_rdfs:label": [
+        {
+          "value": "含铀高熵合金热容",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U基高熵合金的热容，用于燃料性能预测",
+      "prop_comment": "U基高熵合金的热容，用于燃料性能预测",
+      "prop_prop_material": "U-based HEA",
+      "prop_prop_alloyType": "UraniumHighEntropyAlloy",
+      "prop_prop_estimation_method": "Rule of mixtures",
+      "prop_prop_temperature_range": "300-1000K",
+      "prop_prop_note": "缺乏实验数据，基于理论估计",
+      "prop_prop_source": "OntoFuel estimation",
+      "prop_hasSource": "OntoFuel estimation"
+    },
+    {
+      "id": "ind_U_HEA_ThermalExpansion",
+      "type": "individual",
+      "name": "U_HEA_ThermalExpansion",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U_HEA_ThermalExpansion",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalExpansion",
+      "prop_rdfs:label": [
+        {
+          "value": "含铀高熵合金热膨胀系数",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U基高熵合金的热膨胀系数，影响燃料-包壳相互作用",
+      "prop_comment": "U基高熵合金的热膨胀系数，影响燃料-包壳相互作用",
+      "prop_prop_material": "U-based HEA",
+      "prop_prop_alloyType": "UraniumHighEntropyAlloy",
+      "prop_prop_coefficient_range": "10-15 × 10⁻⁶ K⁻¹",
+      "prop_prop_temperature_range": "300-800°C",
+      "prop_prop_comparison": "低于纯铀（~20 × 10⁻⁶ K⁻¹）",
+      "prop_prop_source": "Xu et al. 2024",
+      "prop_hasSource": "Xu et al. 2024"
+    },
+    {
+      "id": "ind_UMo_ThermalConductivity",
+      "type": "individual",
+      "name": "UMo_ThermalConductivity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalConductivity",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo合金热导率",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Mo核燃料合金的热导率，重要的燃料性能参数",
+      "prop_comment": "U-Mo核燃料合金的热导率，重要的燃料性能参数",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_composition_range": "U-7Mo to U-10Mo",
+      "prop_prop_value_range": "8-12 W/(m·K) at 25°C",
+      "prop_prop_temperature_coefficient": "随温度升高而降低",
+      "prop_prop_source": "ANL-09/31 U-Mo Fuels Handbook",
+      "prop_hasSource": "ANL-09/31 U-Mo Fuels Handbook"
+    },
+    {
+      "id": "ind_U10Zr_ThermalConductivity",
+      "type": "individual",
+      "name": "U10Zr_ThermalConductivity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U10Zr_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "ThermalConductivity",
+      "prop_rdfs:label": [
+        {
+          "value": "U-10Zr合金热导率",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-10Zr金属燃料的热导率",
+      "prop_comment": "U-10Zr金属燃料的热导率",
+      "prop_prop_material": "U-10Zr alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_value_at_25C": "~10 W/(m·K)",
+      "prop_prop_temperature_coefficient": "负温度系数",
+      "prop_prop_source": "ANL-09/31 U-Mo Fuels Handbook",
+      "prop_hasSource": "ANL-09/31 U-Mo Fuels Handbook"
+    },
+    {
+      "id": "ind_UMo_HeatCapacity",
+      "type": "individual",
+      "name": "UMo_HeatCapacity",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_HeatCapacity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "HeatCapacity",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo合金热容",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Mo合金的比热容",
+      "prop_comment": "U-Mo合金的比热容",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_value_range": "150-200 J/(kg·K)",
+      "prop_prop_temperature_range": "25-600°C",
+      "prop_prop_source": "ANL-09/31 U-Mo Fuels Handbook",
+      "prop_hasSource": "ANL-09/31 U-Mo Fuels Handbook"
+    },
+    {
+      "id": "ind_UMo_FuelSwelling",
+      "type": "individual",
+      "name": "UMo_FuelSwelling",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_FuelSwelling",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "Swelling",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo燃料肿胀",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Mo合金燃料在中子辐照下的肿胀行为，由裂变气体气泡形成和生长导致",
+      "prop_comment": "U-Mo合金燃料在中子辐照下的肿胀行为，由裂变气体气泡形成和生长导致",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_mechanism": "裂变气体气泡形成和聚集",
+      "prop_prop_temperature_range": "250-500°C",
+      "prop_prop_swelling_rate": "与温度和燃耗相关",
+      "prop_prop_critical_temperature": ">500°C时肿胀加剧",
+      "prop_prop_gas_species": "Xe, Kr",
+      "prop_prop_source": "ScienceDirect 2025",
+      "prop_hasSource": "ScienceDirect 2025"
+    },
+    {
+      "id": "ind_UMo_XeBubbleFormation",
+      "type": "individual",
+      "name": "UMo_XeBubbleFormation",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_XeBubbleFormation",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "IrradiationEffect",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo氙气泡形成",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "裂变产物Xe在U-Mo燃料中形成气泡，导致肿胀和热导率下降",
+      "prop_comment": "裂变产物Xe在U-Mo燃料中形成气泡，导致肿胀和热导率下降",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_gas_type": "Xenon (Xe)",
+      "prop_prop_bubble_formation": "裂变气体不溶于燃料基体",
+      "prop_prop_bubble_growth": "气泡聚集和合并",
+      "prop_prop_re_solution_mechanism": "辐照诱导气泡分解",
+      "prop_prop_impact": "燃料肿胀, 热导率降低, 机械性能退化",
+      "prop_prop_source": "arXiv 2603.12491",
+      "prop_hasSource": "arXiv 2603.12491"
+    },
+    {
+      "id": "ind_UMo_GasBubbleSuperlattice",
+      "type": "individual",
+      "name": "UMo_GasBubbleSuperlattice",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_GasBubbleSuperlattice",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "IrradiationEffect",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo气泡超点阵",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "在中低温辐照下，纳米气泡在U-Mo燃料中形成超点阵结构",
+      "prop_comment": "在中低温辐照下，纳米气泡在U-Mo燃料中形成超点阵结构",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_structure_type": "超点阵（Superlattice）",
+      "prop_prop_temperature_range": "低温辐照",
+      "prop_prop_bubble_size": "纳米级",
+      "prop_prop_ordering": "周期性排列",
+      "prop_prop_impact": "影响肿胀速率和气体释放",
+      "prop_prop_source": "OntoFuel knowledge base",
+      "prop_hasSource": "OntoFuel knowledge base"
+    },
+    {
+      "id": "ind_UMo_FissionGasRelease",
+      "type": "individual",
+      "name": "UMo_FissionGasRelease",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_FissionGasRelease",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "IrradiationEffect",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo裂变气体释放",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "裂变气体从U-Mo燃料基体中释放到燃料-包壳间隙",
+      "prop_comment": "裂变气体从U-Mo燃料基体中释放到燃料-包壳间隙",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_gas_species": "Xe, Kr",
+      "prop_prop_release_mechanism": "气泡互连和气体隧道形成",
+      "prop_prop_temperature_dependent": "随温度升高而增加",
+      "prop_prop_threshold_temperature": "250°C以下无明显释放",
+      "prop_prop_impact": "增加燃料-包壳间隙热阻",
+      "prop_prop_source": "ScienceDirect 2025",
+      "prop_hasSource": "ScienceDirect 2025"
+    },
+    {
+      "id": "ind_U10Mo_IrradiationSwelling",
+      "type": "individual",
+      "name": "U10Mo_IrradiationSwelling",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U10Mo_IrradiationSwelling",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "Swelling",
+      "prop_rdfs:label": [
+        {
+          "value": "U-10Mo辐照肿胀",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-10Mo合金在不同温度下的辐照肿胀行为",
+      "prop_comment": "U-10Mo合金在不同温度下的辐照肿胀行为",
+      "prop_prop_material": "U-10Mo",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_composition": "U-10 wt% Mo",
+      "prop_prop_temperature_range": "250-500°C",
+      "prop_prop_swelling_behavior": "温度依赖性",
+      "prop_prop_low_temp_behavior": "250°C：无明显裂变气体释放",
+      "prop_prop_high_temp_behavior": "500°C：肿胀加剧",
+      "prop_prop_source": "ScienceDirect 2025",
+      "prop_hasSource": "ScienceDirect 2025"
+    },
+    {
+      "id": "ind_U17Mo_IrradiationSwelling",
+      "type": "individual",
+      "name": "U17Mo_IrradiationSwelling",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U17Mo_IrradiationSwelling",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "Swelling",
+      "prop_rdfs:label": [
+        {
+          "value": "U-17Mo辐照肿胀",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-17Mo合金的辐照肿胀行为，更高Mo含量提高肿胀抗性",
+      "prop_comment": "U-17Mo合金的辐照肿胀行为，更高Mo含量提高肿胀抗性",
+      "prop_prop_material": "U-17Mo",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_composition": "U-17 wt% Mo",
+      "prop_prop_swelling_resistance": "优于U-10Mo",
+      "prop_prop_temperature_range": "250-500°C",
+      "prop_prop_gas_release": "无明显裂变气体释放",
+      "prop_prop_source": "ScienceDirect 2025",
+      "prop_hasSource": "ScienceDirect 2025"
+    },
+    {
+      "id": "ind_UMo_PointDefect",
+      "type": "individual",
+      "name": "UMo_PointDefect",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_PointDefect",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "IrradiationEffect",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo点缺陷",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Mo合金在辐照下产生的点缺陷（空位、间隙原子）及其扩散",
+      "prop_comment": "U-Mo合金在辐照下产生的点缺陷（空位、间隙原子）及其扩散",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_defect_types": "空位（Vacancy）, 间隙原子（Interstitial）",
+      "prop_prop_formation_mechanism": "中子辐照级联碰撞",
+      "prop_prop_diffusion": "温度依赖扩散",
+      "prop_prop_impact": "影响肿胀, 影响气体迁移, 影响显微组织演化",
+      "prop_prop_study_method": "第一性原理计算（DFT）",
+      "prop_prop_source": "MDPI Metals 2025",
+      "prop_hasSource": "MDPI Metals 2025"
+    },
+    {
+      "id": "ind_UMo_GrainBoundarySegregation",
+      "type": "individual",
+      "name": "UMo_GrainBoundarySegregation",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_GrainBoundarySegregation",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "IrradiationEffect",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo晶界偏析",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "辐照诱导的元素和缺陷在晶界处的偏析",
+      "prop_comment": "辐照诱导的元素和缺陷在晶界处的偏析",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_phenomenon": "晶界偏析",
+      "prop_prop_segregating_species": "裂变气体, 空位, 间隙原子",
+      "prop_prop_impact": "气泡形核, 气体释放, 晶界弱化",
+      "prop_prop_temperature_dependent": "是",
+      "prop_prop_source": "arXiv 2511.20352",
+      "prop_hasSource": "arXiv 2511.20352"
+    },
+    {
+      "id": "ind_UZr_FuelSwelling",
+      "type": "individual",
+      "name": "UZr_FuelSwelling",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UZr_FuelSwelling",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "Swelling",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Zr燃料肿胀",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Zr金属燃料的辐照肿胀行为",
+      "prop_comment": "U-Zr金属燃料的辐照肿胀行为",
+      "prop_prop_material": "U-Zr alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_typical_composition": "U-10Zr",
+      "prop_prop_swelling_mechanism": "裂变气体气泡和燃料-包壳相互作用",
+      "prop_prop_temperature_range": "500-700°C",
+      "prop_prop_comparison": "肿胀行为不同于U-Mo",
+      "prop_prop_source": "ANL-09/31 U-Mo Fuels Handbook",
+      "prop_hasSource": "ANL-09/31 U-Mo Fuels Handbook"
+    },
+    {
+      "id": "ind_HEA_IrradiationResistance",
+      "type": "individual",
+      "name": "HEA_IrradiationResistance",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#HEA_IrradiationResistance",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "IrradiationEffect",
+      "prop_rdfs:label": [
+        {
+          "value": "高熵合金辐照抗性",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "高熵合金在辐照环境下表现出优异的抗辐照性能",
+      "prop_comment": "高熵合金在辐照环境下表现出优异的抗辐照性能",
+      "prop_prop_material": "High Entropy Alloys",
+      "prop_prop_alloyType": "HighEntropyAlloy",
+      "prop_prop_representative_systems": "CoCrFeMnNi, 难熔高熵合金",
+      "prop_prop_radiation_resistance": "优于传统合金",
+      "prop_prop_mechanism": "高熵效应、迟滞扩散",
+      "prop_prop_defect_evolution": "缺陷团簇尺寸更小",
+      "prop_prop_applications": "核反应堆结构材料",
+      "prop_prop_source": "Advanced Engineering Materials 2025",
+      "prop_hasSource": "Advanced Engineering Materials 2025"
+    },
+    {
+      "id": "ind_U_HEA_PotentialSwelling",
+      "type": "individual",
+      "name": "U_HEA_PotentialSwelling",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#U_HEA_PotentialSwelling",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "Swelling",
+      "prop_rdfs:label": [
+        {
+          "value": "含铀高熵合金潜在肿胀",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "含铀高熵合金的预期肿胀行为（缺乏实验数据）",
+      "prop_comment": "含铀高熵合金的预期肿胀行为（缺乏实验数据）",
+      "prop_prop_material": "U-based HEA",
+      "prop_prop_alloyType": "UraniumHighEntropyAlloy",
+      "prop_prop_prediction": "预期优于传统U合金",
+      "prop_prop_mechanism": "高熵效应抑制气泡生长",
+      "prop_prop_note": "需要实验验证",
+      "prop_prop_source": "OntoFuel estimation",
+      "prop_hasSource": "OntoFuel estimation"
+    },
+    {
+      "id": "ind_UMo_DefectDiffusion",
+      "type": "individual",
+      "name": "UMo_DefectDiffusion",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UMo_DefectDiffusion",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "DiffusionProcess",
+      "prop_rdfs:label": [
+        {
+          "value": "U-Mo缺陷扩散",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Mo合金中点缺陷和裂变气体的扩散行为",
+      "prop_comment": "U-Mo合金中点缺陷和裂变气体的扩散行为",
+      "prop_prop_material": "U-Mo alloy",
+      "prop_prop_alloyType": "NuclearFuel",
+      "prop_prop_diffusing_species": "空位, 间隙原子, Xe, Kr",
+      "prop_prop_temperature_dependent": "是",
+      "prop_prop_activation_energy": "2.5-3.5 eV",
+      "prop_prop_impact": "影响肿胀和气体释放动力学",
+      "prop_prop_study_method": "第一性原理和分子动力学",
+      "prop_prop_source": "MDPI Metals 2025",
+      "prop_hasSource": "MDPI Metals 2025"
+    },
+    {
+      "id": "ind_CoCrFeMnNi_CantorAlloy",
+      "type": "individual",
+      "name": "CoCrFeMnNi_CantorAlloy",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#CoCrFeMnNi_CantorAlloy",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "HighEntropyAlloy",
+      "prop_rdfs:label": [
+        {
+          "value": "CoCrFeMnNi Cantor合金",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "等原子比CoCrFeMnNi高熵合金，典型面心立方（FCC）结构，又称Cantor合金",
+      "prop_comment": "等原子比CoCrFeMnNi高熵合金，典型面心立方（FCC）结构，又称Cantor合金",
+      "prop_prop_composition": "Co:Cr:Fe:Mn:Ni = 1:1:1:1:1 (at.%)",
+      "prop_prop_crystal_structure": "FCC (Face-Centered Cubic)",
+      "prop_prop_density": "8.0 g/cm³",
+      "prop_prop_melting_point": "~1300°C",
+      "prop_prop_configurational_entropy": "1.61R",
+      "prop_prop_phase_stability": "单相FCC，高熵稳定",
+      "prop_prop_mechanical_properties": "高延展性，优异断裂韧性",
+      "prop_prop_radiation_resistance": "优于传统合金",
+      "prop_prop_applications": "核反应堆结构材料, 极端环境材料",
+      "prop_prop_source": "Nature Scientific Reports 2025",
+      "prop_hasSource": "Nature Scientific Reports 2025"
+    },
+    {
+      "id": "ind_UNb05Zr05Mo05_UHEA",
+      "type": "individual",
+      "name": "UNb05Zr05Mo05_UHEA",
+      "label": "{name}",
+      "class": "owl:NamedIndividual",
+      "uri": "http://example.org/materials/ontology#UNb05Zr05Mo05_UHEA",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_class": "UraniumHighEntropyAlloy",
+      "prop_rdfs:label": [
+        {
+          "value": "UNb0.5Zr0.5Mo0.5含铀高熵合金",
+          "lang": ""
+        }
+      ],
+      "prop_rdfs:comment": "U-Nb-Zr-Mo系含铀高熵合金，体心立方（BCC）结构，核燃料候选材料",
+      "prop_comment": "U-Nb-Zr-Mo系含铀高熵合金，体心立方（BCC）结构，核燃料候选材料",
+      "prop_prop_composition": "U:Nb:Zr:Mo = 1:0.5:0.5:0.5 (at.%)",
+      "prop_prop_crystal_structure": "BCC (Body-Centered Cubic)",
+      "prop_prop_uranium_content": "~44 at.%",
+      "prop_prop_density": "~12-13 g/cm³ (estimated)",
+      "prop_prop_phase_stability": "单相BCC，高熵稳定",
+      "prop_prop_mechanical_properties": "高强度，硬度 >300 HB",
+      "prop_prop_thermal_conductivity": "8-15 W/(m·K) estimated",
+      "prop_prop_swelling_resistance": "预期优于传统U合金",
+      "prop_prop_applications": "核燃料, 反应堆材料",
+      "prop_prop_design_method": "第一性原理计算",
+      "prop_prop_source": "Xu et al. 2024",
+      "prop_hasSource": "Xu et al. 2024"
+    },
+    {
+      "id": "ind_UNbTiVZr_HEA_Superconductor",
+      "type": "individual",
+      "name": "UNbTiVZr_HEA_Superconductor",
+      "label": "{name}",
+      "class": "UraniumHighEntropyAlloy",
+      "uri": "http://example.org/materials/hea#UNbTiVZr_HEA_Superconductor",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "UNbTiVZr High-Entropy Alloy Superconductor",
+      "prop_comment": "Equimolar type-A high-entropy alloy superconductor containing uranium",
+      "prop_composition": "U:Nb:Ti:V:Zr = 1:1:1:1:1",
+      "prop_crystalStructure": "BCC",
+      "prop_criticalTemperature": 2.0,
+      "prop_criticalTemperatureUnit": "K",
+      "prop_superconductorType": "Type II",
+      "prop_dataSource": "Nowak et al. 2025, Acta Materialia",
+      "prop_doi": "10.1016/j.actamat.2025.121519",
+      "prop_extractionDate": "2026-03-22T09:26:12.897825"
+    },
+    {
+      "id": "ind_UNbMoHfTa_HEA",
+      "type": "individual",
+      "name": "UNbMoHfTa_HEA",
+      "label": "{name}",
+      "class": "UraniumHighEntropyAlloy",
+      "uri": "http://example.org/materials/hea#UNbMoHfTa_HEA",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "UNbMoHfTa High-Entropy Alloy",
+      "prop_comment": "High-entropy alloy with tunable Ta content for property optimization",
+      "prop_composition": "U-Nb-Mo-Hf-Ta system",
+      "prop_crystalStructure": "BCC",
+      "prop_studyMethod": "First-principles calculations",
+      "prop_dataSource": "Lin et al. 2025",
+      "prop_extractionDate": "2026-03-22T09:26:12.897830"
+    },
+    {
+      "id": "ind_UMoNbTa_HEA_Mechanical",
+      "type": "individual",
+      "name": "UMoNbTa_HEA_Mechanical",
+      "label": "{name}",
+      "class": "UraniumHighEntropyAlloy",
+      "uri": "http://example.org/materials/hea#UMoNbTa_HEA_Mechanical",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "UMoNbTa High-Entropy Alloy",
+      "prop_comment": "Uranium-containing high-entropy alloy with excellent mechanical properties",
+      "prop_composition": "U-Mo-Nb-Ta",
+      "prop_ultimateTensileStrength": 1147,
+      "prop_strengthUnit": "MPa",
+      "prop_dataSource": "Shi et al. 2021",
+      "prop_extractionDate": "2026-03-22T09:26:12.897831"
+    },
+    {
+      "id": "ind_DepletedU_HEA_Strategic",
+      "type": "individual",
+      "name": "DepletedU_HEA_Strategic",
+      "label": "{name}",
+      "class": "UraniumHighEntropyAlloy",
+      "uri": "http://example.org/materials/hea#DepletedU_HEA_Strategic",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "Depleted Uranium High-Entropy Alloy",
+      "prop_comment": "Strategic design route to find depleted uranium high-entropy alloy with great strength",
+      "prop_ultimateTensileStrength": 1452,
+      "prop_strengthUnit": "MPa",
+      "prop_designMethod": "Strategic design route",
+      "prop_dataSource": "Zhang et al. 2022",
+      "prop_extractionDate": "2026-03-22T09:26:12.897832"
+    },
+    {
+      "id": "ind_U10Zr_ThermalProperties_Review",
+      "type": "individual",
+      "name": "U10Zr_ThermalProperties_Review",
+      "label": "{name}",
+      "class": "ThermalProperties",
+      "uri": "http://example.org/materials/thermal#U10Zr_ThermalProperties_Review",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "U-10Zr Alloys Thermal Properties",
+      "prop_comment": "Comprehensive review of experimentally known properties of U-10Zr alloys",
+      "prop_material": "U-10Zr",
+      "prop_properties": [
+        "thermal_conductivity",
+        "heat_capacity",
+        "thermal_expansion"
+      ],
+      "prop_dataSource": "Janney & Hayes 2018, INL/EXT-18-41468",
+      "prop_dataQuality": "Critical review",
+      "prop_extractionDate": "2026-03-22T09:27:00.348142"
+    },
+    {
+      "id": "class_ThermalProperties",
+      "type": "class",
+      "name": "ThermalProperties",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "ind_UMo_Irradiated_ThermalProperties",
+      "type": "individual",
+      "name": "UMo_Irradiated_ThermalProperties",
+      "label": "{name}",
+      "class": "ThermalProperties",
+      "uri": "http://example.org/materials/thermal#UMo_Irradiated_ThermalProperties",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "Irradiated U-Mo Alloys Thermal Properties",
+      "prop_comment": "Thermal properties of U-Mo alloys irradiated under high fission rate",
+      "prop_material": "U-Mo",
+      "prop_properties": [
+        "thermal_conductivity",
+        "heat_capacity"
+      ],
+      "prop_condition": "Post-irradiation",
+      "prop_dataSource": "Thermal properties paper",
+      "prop_extractionDate": "2026-03-22T09:27:00.348147"
+    },
+    {
+      "id": "ind_UO2_HighTemp_ThermalConductivity",
+      "type": "individual",
+      "name": "UO2_HighTemp_ThermalConductivity",
+      "label": "{name}",
+      "class": "ThermalConductivity",
+      "uri": "http://example.org/materials/thermal#UO2_HighTemp_ThermalConductivity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "UO2 Thermal Conductivity up to 2900 K",
+      "prop_comment": "Thermal conductivity of uranium dioxide up to 2900 K from simulational study",
+      "prop_material": "UO2",
+      "prop_temperatureRange": "Up to 2900 K",
+      "prop_dataSource": "Simulation study",
+      "prop_extractionDate": "2026-03-22T09:27:00.348148"
+    },
+    {
+      "id": "ind_UZrNb_HeatCapacity",
+      "type": "individual",
+      "name": "UZrNb_HeatCapacity",
+      "label": "{name}",
+      "class": "HeatCapacity",
+      "uri": "http://example.org/materials/thermal#UZrNb_HeatCapacity",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "U-Zr-Nb Alloys Molar Heat Capacity",
+      "prop_comment": "Molar heat capacity of uranium-rich U-Zr-Nb alloys",
+      "prop_material": "U-Zr-Nb",
+      "prop_propertyType": "molar_heat_capacity",
+      "prop_dataSource": "Kaity et al. 2020",
+      "prop_extractionDate": "2026-03-22T09:27:00.348149"
+    },
+    {
+      "id": "ind_U7Mo_Irradiation_Microstructure",
+      "type": "individual",
+      "name": "U7Mo_Irradiation_Microstructure",
+      "label": "{name}",
+      "class": "IrradiationEffect",
+      "uri": "http://example.org/materials/irradiation#U7Mo_Irradiation_Microstructure",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "U-7Mo Dispersion Fuel Irradiation Response",
+      "prop_comment": "Microstructural response of the fuel phase in U-7Mo dispersion fuel irradiated at different powers",
+      "prop_material": "U-7Mo",
+      "prop_effectType": "microstructural_response",
+      "prop_irradiationCondition": "Different power levels",
+      "prop_dataSource": "Smith et al. 2020",
+      "prop_extractionDate": "2026-03-22T09:27:00.348232"
+    },
+    {
+      "id": "ind_UMo_Irradiation_Damage",
+      "type": "individual",
+      "name": "UMo_Irradiation_Damage",
+      "label": "{name}",
+      "class": "IrradiationEffect",
+      "uri": "http://example.org/materials/irradiation#UMo_Irradiation_Damage",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "U-Mo Fuel Irradiation Damage",
+      "prop_comment": "Microstructural characterization of as-fabricated and irradiated U-Mo fuel using SEM/EBSD",
+      "prop_material": "U-Mo",
+      "prop_effectType": "microstructural_characterization",
+      "prop_characterizationMethod": "SEM/EBSD",
+      "prop_dataSource": "Jadernas et al. 2018",
+      "prop_extractionDate": "2026-03-22T09:27:00.348234"
+    },
+    {
+      "id": "ind_UMo_Irradiation_MD_Simulation",
+      "type": "individual",
+      "name": "UMo_Irradiation_MD_Simulation",
+      "label": "{name}",
+      "class": "IrradiationSimulation",
+      "uri": "http://example.org/materials/irradiation#UMo_Irradiation_MD_Simulation",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "U-Mo Atomic Simulations under Irradiation",
+      "prop_comment": "Atomic simulations of U-Mo under irradiation using new angular dependent potential",
+      "prop_material": "U-Mo",
+      "prop_simulationMethod": "Molecular dynamics",
+      "prop_potentialType": "Angular dependent potential",
+      "prop_effects": [
+        "defect_production",
+        "phase_stability",
+        "swelling"
+      ],
+      "prop_dataSource": "Ouyang et al. 2021",
+      "prop_extractionDate": "2026-03-22T09:27:00.348235"
+    },
+    {
+      "id": "class_IrradiationSimulation",
+      "type": "class",
+      "name": "IrradiationSimulation",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "ind_AlphaU_Irradiation_Review",
+      "type": "individual",
+      "name": "AlphaU_Irradiation_Review",
+      "label": "{name}",
+      "class": "IrradiationEffect",
+      "uri": "http://example.org/materials/irradiation#AlphaU_Irradiation_Review",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "α-Uranium Irradiation Damage Review",
+      "prop_comment": "A review of irradiation damage and effects in α-uranium",
+      "prop_material": "α-Uranium",
+      "prop_effectType": "comprehensive_review",
+      "prop_dataSource": "Review paper 2022",
+      "prop_extractionDate": "2026-03-22T09:27:00.348236"
+    },
+    {
+      "id": "ind_UPuZr_Swelling_Model",
+      "type": "individual",
+      "name": "UPuZr_Swelling_Model",
+      "label": "{name}",
+      "class": "SwellingModel",
+      "uri": "http://example.org/materials/irradiation#UPuZr_Swelling_Model",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_label": "Bison U-Pu-Zr Fuel Swelling Model",
+      "prop_comment": "Lower length scale informed improvements to Bison U-Pu-Zr fuel swelling model",
+      "prop_material": "U-Pu-Zr",
+      "prop_modelType": "Multi-scale swelling model",
+      "prop_simulationTool": "Bison",
+      "prop_dataSource": "Aagesen et al. 2020",
+      "prop_extractionDate": "2026-03-22T09:27:00.348237"
+    },
+    {
+      "id": "class_SwellingModel",
+      "type": "class",
+      "name": "SwellingModel",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "ind_UTiNbTaFeMo_2024",
+      "type": "individual",
+      "name": "UTiNbTaFeMo_2024",
+      "label": "{name}",
+      "class": "UraniumHighEntropyAlloy",
+      "uri": "",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_hasComposition": "UTiNbTaFeMo (equiatomic)",
+      "prop_hasCrystalStructure": "bcc",
+      "prop_hasYoungsModulus": "202.45 GPa (0 K)",
+      "prop_hasShearModulus": "78.27 GPa (0 K)",
+      "prop_hasDensity": "11.66 g/cm³",
+      "prop_hasSpecificModulus": "17.36 GPa·cm³/g",
+      "prop_hasSource": "Xu et al. 2024 - Journal of Materials Science & Technology",
+      "prop_hasConfidence": 0.95
+    },
+    {
+      "id": "ind_UTiNbTaMo_2024",
+      "type": "individual",
+      "name": "UTiNbTaMo_2024",
+      "label": "{name}",
+      "class": "UraniumHighEntropyAlloy",
+      "uri": "",
+      "color": "#7ED321",
+      "size": 20,
+      "prop_hasComposition": "UTiNbTaMo (equiatomic)",
+      "prop_hasCrystalStructure": "bcc",
+      "prop_hasYoungsModulus": "161.55 GPa (0 K)",
+      "prop_hasDensity": "12.5 g/cm³ (estimated)",
+      "prop_hasSource": "Xu et al. 2024 - Journal of Materials Science & Technology",
+      "prop_hasConfidence": 0.95
+    },
+    {
+      "id": "class_Process",
+      "type": "class",
+      "name": "Process",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
     }
   ],
   "relationships": [
@@ -26792,9 +28019,324 @@
       "label": "instance of"
     },
     {
-      "id": "rel_hier_SolidSolution_Entity",
+      "id": "rel_ind_UMo_U_DiffusionCoefficient_type",
+      "from": "ind_UMo_U_DiffusionCoefficient",
+      "to": "class_DiffusionCoefficient",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_Mo_DiffusionCoefficient_type",
+      "from": "ind_UMo_Mo_DiffusionCoefficient",
+      "to": "class_DiffusionCoefficient",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_Xe_DiffusionCoefficient_type",
+      "from": "ind_UMo_Xe_DiffusionCoefficient",
+      "to": "class_DiffusionCoefficient",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_GB_DiffusionCoefficient_type",
+      "from": "ind_UMo_GB_DiffusionCoefficient",
+      "to": "class_DiffusionCoefficient",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U10Zr_U_DiffusionCoefficient_type",
+      "from": "ind_U10Zr_U_DiffusionCoefficient",
+      "to": "class_DiffusionCoefficient",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_Al_InterdiffusionCoefficient_type",
+      "from": "ind_UMo_Al_InterdiffusionCoefficient",
+      "to": "class_DiffusionCoefficient",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_CoCrFeMnNi_ThermalConductivity_type",
+      "from": "ind_CoCrFeMnNi_ThermalConductivity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_CoCrFeMnNi_HeatCapacity_type",
+      "from": "ind_CoCrFeMnNi_HeatCapacity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_AlCoCrFeNi_ThermalConductivity_type",
+      "from": "ind_AlCoCrFeNi_ThermalConductivity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_Refractory_HEA_ThermalConductivity_type",
+      "from": "ind_Refractory_HEA_ThermalConductivity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U_HEA_ThermalConductivity_type",
+      "from": "ind_U_HEA_ThermalConductivity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U_HEA_HeatCapacity_type",
+      "from": "ind_U_HEA_HeatCapacity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U_HEA_ThermalExpansion_type",
+      "from": "ind_U_HEA_ThermalExpansion",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_ThermalConductivity_type",
+      "from": "ind_UMo_ThermalConductivity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U10Zr_ThermalConductivity_type",
+      "from": "ind_U10Zr_ThermalConductivity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_HeatCapacity_type",
+      "from": "ind_UMo_HeatCapacity",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_FuelSwelling_type",
+      "from": "ind_UMo_FuelSwelling",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_XeBubbleFormation_type",
+      "from": "ind_UMo_XeBubbleFormation",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_GasBubbleSuperlattice_type",
+      "from": "ind_UMo_GasBubbleSuperlattice",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_FissionGasRelease_type",
+      "from": "ind_UMo_FissionGasRelease",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U10Mo_IrradiationSwelling_type",
+      "from": "ind_U10Mo_IrradiationSwelling",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U17Mo_IrradiationSwelling_type",
+      "from": "ind_U17Mo_IrradiationSwelling",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_PointDefect_type",
+      "from": "ind_UMo_PointDefect",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_GrainBoundarySegregation_type",
+      "from": "ind_UMo_GrainBoundarySegregation",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UZr_FuelSwelling_type",
+      "from": "ind_UZr_FuelSwelling",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_HEA_IrradiationResistance_type",
+      "from": "ind_HEA_IrradiationResistance",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U_HEA_PotentialSwelling_type",
+      "from": "ind_U_HEA_PotentialSwelling",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_DefectDiffusion_type",
+      "from": "ind_UMo_DefectDiffusion",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_CoCrFeMnNi_CantorAlloy_type",
+      "from": "ind_CoCrFeMnNi_CantorAlloy",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UNb05Zr05Mo05_UHEA_type",
+      "from": "ind_UNb05Zr05Mo05_UHEA",
+      "to": "class_owl:NamedIndividual",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UNbTiVZr_HEA_Superconductor_type",
+      "from": "ind_UNbTiVZr_HEA_Superconductor",
+      "to": "class_UraniumHighEntropyAlloy",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UNbMoHfTa_HEA_type",
+      "from": "ind_UNbMoHfTa_HEA",
+      "to": "class_UraniumHighEntropyAlloy",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMoNbTa_HEA_Mechanical_type",
+      "from": "ind_UMoNbTa_HEA_Mechanical",
+      "to": "class_UraniumHighEntropyAlloy",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_DepletedU_HEA_Strategic_type",
+      "from": "ind_DepletedU_HEA_Strategic",
+      "to": "class_UraniumHighEntropyAlloy",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U10Zr_ThermalProperties_Review_type",
+      "from": "ind_U10Zr_ThermalProperties_Review",
+      "to": "class_ThermalProperties",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_Irradiated_ThermalProperties_type",
+      "from": "ind_UMo_Irradiated_ThermalProperties",
+      "to": "class_ThermalProperties",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UO2_HighTemp_ThermalConductivity_type",
+      "from": "ind_UO2_HighTemp_ThermalConductivity",
+      "to": "class_ThermalConductivity",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UZrNb_HeatCapacity_type",
+      "from": "ind_UZrNb_HeatCapacity",
+      "to": "class_HeatCapacity",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_U7Mo_Irradiation_Microstructure_type",
+      "from": "ind_U7Mo_Irradiation_Microstructure",
+      "to": "class_IrradiationEffect",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_Irradiation_Damage_type",
+      "from": "ind_UMo_Irradiation_Damage",
+      "to": "class_IrradiationEffect",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UMo_Irradiation_MD_Simulation_type",
+      "from": "ind_UMo_Irradiation_MD_Simulation",
+      "to": "class_IrradiationSimulation",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_AlphaU_Irradiation_Review_type",
+      "from": "ind_AlphaU_Irradiation_Review",
+      "to": "class_IrradiationEffect",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UPuZr_Swelling_Model_type",
+      "from": "ind_UPuZr_Swelling_Model",
+      "to": "class_SwellingModel",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UTiNbTaFeMo_2024_type",
+      "from": "ind_UTiNbTaFeMo_2024",
+      "to": "class_UraniumHighEntropyAlloy",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_ind_UTiNbTaMo_2024_type",
+      "from": "ind_UTiNbTaMo_2024",
+      "to": "class_UraniumHighEntropyAlloy",
+      "type": "INSTANCE_OF",
+      "label": "instance of"
+    },
+    {
+      "id": "rel_hier_SolidSolution_Phase",
       "from": "class_SolidSolution",
-      "to": "class_Entity",
+      "to": "class_Phase",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -26806,58 +28348,58 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NeutronIrradiationEffect_Entity",
+      "id": "rel_hier_NeutronIrradiationEffect_IrradiationEffect",
       "from": "class_NeutronIrradiationEffect",
-      "to": "class_Entity",
+      "to": "class_IrradiationEffect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_AusteniticSteel_Metal",
+      "id": "rel_hier_AusteniticSteel_StainlessSteel",
       "from": "class_AusteniticSteel",
-      "to": "class_Metal",
+      "to": "class_StainlessSteel",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CoolantFunction_Entity",
+      "id": "rel_hier_CoolantFunction_NuclearApplication",
       "from": "class_CoolantFunction",
-      "to": "class_Entity",
+      "to": "class_NuclearApplication",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CreepResistance_Entity",
+      "id": "rel_hier_CreepResistance_MechanicalProperty",
       "from": "class_CreepResistance",
-      "to": "class_Entity",
+      "to": "class_MechanicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FastBreederReactor_Entity",
+      "id": "rel_hier_FastBreederReactor_ReactorType",
       "from": "class_FastBreederReactor",
-      "to": "class_Entity",
+      "to": "class_ReactorType",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_GasCoolant_Entity",
+      "id": "rel_hier_GasCoolant_CoolantMaterial",
       "from": "class_GasCoolant",
-      "to": "class_Entity",
+      "to": "class_CoolantMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HexagonalPolytype_Entity",
+      "id": "rel_hier_HexagonalPolytype_Polytype",
       "from": "class_HexagonalPolytype",
-      "to": "class_Entity",
+      "to": "class_Polytype",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_LiquidMetalCoolant_Metal",
+      "id": "rel_hier_LiquidMetalCoolant_LiquidCoolant",
       "from": "class_LiquidMetalCoolant",
-      "to": "class_Metal",
+      "to": "class_LiquidCoolant",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -26869,303 +28411,303 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MoltenSaltCoolant_Entity",
+      "id": "rel_hier_MoltenSaltCoolant_LiquidCoolant",
       "from": "class_MoltenSaltCoolant",
-      "to": "class_Entity",
+      "to": "class_LiquidCoolant",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearFuelCladding_Entity",
+      "id": "rel_hier_NuclearFuelCladding_NuclearApplication",
       "from": "class_NuclearFuelCladding",
-      "to": "class_Entity",
+      "to": "class_NuclearApplication",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_PrimaryCoolant_Entity",
+      "id": "rel_hier_PrimaryCoolant_CoolantMaterial",
       "from": "class_PrimaryCoolant",
-      "to": "class_Entity",
+      "to": "class_CoolantMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ReactorType_Entity",
+      "id": "rel_hier_ReactorType_NuclearApplication",
       "from": "class_ReactorType",
-      "to": "class_Entity",
+      "to": "class_NuclearApplication",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_SiCFiber_CompositeMaterial",
+      "id": "rel_hier_SiCFiber_CeramicMaterial",
       "from": "class_SiCFiber",
-      "to": "class_CompositeMaterial",
+      "to": "class_CeramicMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_SiCMatrix_CompositeMaterial",
+      "id": "rel_hier_SiCMatrix_CeramicMaterial",
       "from": "class_SiCMatrix",
-      "to": "class_CompositeMaterial",
+      "to": "class_CeramicMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_StainlessSteel_Metal",
+      "id": "rel_hier_StainlessSteel_MetalAlloy",
       "from": "class_StainlessSteel",
-      "to": "class_Metal",
+      "to": "class_MetalAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Zircaloy_Entity",
+      "id": "rel_hier_Zircaloy_ZirconiumAlloy",
       "from": "class_Zircaloy",
-      "to": "class_Entity",
+      "to": "class_ZirconiumAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ZirconiumHydride_Entity",
+      "id": "rel_hier_ZirconiumHydride_ChemicalCompound",
       "from": "class_ZirconiumHydride",
-      "to": "class_Entity",
+      "to": "class_ChemicalCompound",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_BubbleCoalescence_Entity",
+      "id": "rel_hier_BubbleCoalescence_FissionGasBehavior",
       "from": "class_BubbleCoalescence",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_BubbleFormation_Entity",
+      "id": "rel_hier_BubbleFormation_FissionGasBehavior",
       "from": "class_BubbleFormation",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Corrosion_Entity",
+      "id": "rel_hier_Corrosion_MaterialPhenomenon",
       "from": "class_Corrosion",
-      "to": "class_Entity",
+      "to": "class_MaterialPhenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Embrittlement_Entity",
+      "id": "rel_hier_Embrittlement_IrradiationEffect",
       "from": "class_Embrittlement",
-      "to": "class_Entity",
+      "to": "class_IrradiationEffect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FractureToughnessReduction_Entity",
+      "id": "rel_hier_FractureToughnessReduction_IrradiationEffect",
       "from": "class_FractureToughnessReduction",
-      "to": "class_Entity",
+      "to": "class_IrradiationEffect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FuelCompatibility_Entity",
+      "id": "rel_hier_FuelCompatibility_Property",
       "from": "class_FuelCompatibility",
-      "to": "class_Entity",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HeliumEmbrittlement_Entity",
+      "id": "rel_hier_HeliumEmbrittlement_Embrittlement",
       "from": "class_HeliumEmbrittlement",
-      "to": "class_Entity",
+      "to": "class_Embrittlement",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HydrogenEmbrittlement_Entity",
+      "id": "rel_hier_HydrogenEmbrittlement_Embrittlement",
       "from": "class_HydrogenEmbrittlement",
-      "to": "class_Entity",
+      "to": "class_Embrittlement",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HydrogenEmbrittlementResistance_Entity",
+      "id": "rel_hier_HydrogenEmbrittlementResistance_MechanicalProperty",
       "from": "class_HydrogenEmbrittlementResistance",
-      "to": "class_Entity",
+      "to": "class_MechanicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HydrothermalCorrosion_Entity",
+      "id": "rel_hier_HydrothermalCorrosion_Corrosion",
       "from": "class_HydrothermalCorrosion",
-      "to": "class_Entity",
+      "to": "class_Corrosion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationEmbrittlement_Entity",
+      "id": "rel_hier_IrradiationEmbrittlement_IrradiationEffect",
       "from": "class_IrradiationEmbrittlement",
-      "to": "class_Entity",
+      "to": "class_IrradiationEffect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationHardening_Entity",
+      "id": "rel_hier_IrradiationHardening_IrradiationEffect",
       "from": "class_IrradiationHardening",
-      "to": "class_Entity",
+      "to": "class_IrradiationEffect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationThermalConductivityDegradation_PhysicalProperty → ThermalProperty",
+      "id": "rel_hier_IrradiationThermalConductivityDegradation_IrradiationEffect",
       "from": "class_IrradiationThermalConductivityDegradation",
-      "to": "class_PhysicalProperty → ThermalProperty",
+      "to": "class_IrradiationEffect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MetallicPrecipitateFormation_Metal",
+      "id": "rel_hier_MetallicPrecipitateFormation_MicrostructureEvolution",
       "from": "class_MetallicPrecipitateFormation",
-      "to": "class_Metal",
+      "to": "class_MicrostructureEvolution",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NanograinFormation_Entity",
+      "id": "rel_hier_NanograinFormation_MicrostructureEvolution",
       "from": "class_NanograinFormation",
-      "to": "class_Entity",
+      "to": "class_MicrostructureEvolution",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NeutronCapture_Entity",
+      "id": "rel_hier_NeutronCapture_NuclearReaction",
       "from": "class_NeutronCapture",
-      "to": "class_Entity",
+      "to": "class_NuclearReaction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NodularCorrosion_Entity",
+      "id": "rel_hier_NodularCorrosion_Corrosion",
       "from": "class_NodularCorrosion",
-      "to": "class_Entity",
+      "to": "class_Corrosion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearReaction_Entity",
+      "id": "rel_hier_NuclearReaction_Phenomenon",
       "from": "class_NuclearReaction",
-      "to": "class_Entity",
+      "to": "class_Phenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Oxidation_Entity",
+      "id": "rel_hier_Oxidation_Corrosion",
       "from": "class_Oxidation",
-      "to": "class_Entity",
+      "to": "class_Corrosion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_RadiationInducedSegregation_Entity",
+      "id": "rel_hier_RadiationInducedSegregation_MicrostructureEvolution",
       "from": "class_RadiationInducedSegregation",
-      "to": "class_Entity",
+      "to": "class_MicrostructureEvolution",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_SteamOxidation_Entity",
+      "id": "rel_hier_SteamOxidation_Oxidation",
       "from": "class_SteamOxidation",
-      "to": "class_Entity",
+      "to": "class_Oxidation",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ThermalConductivityDegradation_PhysicalProperty → ThermalProperty",
+      "id": "rel_hier_ThermalConductivityDegradation_IrradiationThermalConductivityDegradation",
       "from": "class_ThermalConductivityDegradation",
-      "to": "class_PhysicalProperty → ThermalProperty",
+      "to": "class_IrradiationThermalConductivityDegradation",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_VoidSwelling_Entity",
+      "id": "rel_hier_VoidSwelling_Swelling",
       "from": "class_VoidSwelling",
-      "to": "class_Entity",
+      "to": "class_Swelling",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CVI_Entity",
+      "id": "rel_hier_CVI_ProcessingTechnique",
       "from": "class_CVI",
-      "to": "class_Entity",
+      "to": "class_ProcessingTechnique",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_GasLeakage_Entity",
+      "id": "rel_hier_GasLeakage_FissionGasBehavior",
       "from": "class_GasLeakage",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Alloy_Entity",
+      "id": "rel_hier_Alloy_Metal",
       "from": "class_Alloy",
-      "to": "class_Entity",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ChemicalProperty_PhysicalProperty",
-      "from": "class_ChemicalProperty",
-      "to": "class_PhysicalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_CladdingMaterial_Entity",
-      "from": "class_CladdingMaterial",
-      "to": "class_Entity",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_LiquidCoolant_Entity",
-      "from": "class_LiquidCoolant",
-      "to": "class_Entity",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_MOXFuel_Entity",
-      "from": "class_MOXFuel",
-      "to": "class_Entity",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NuclearProperty_Entity",
-      "from": "class_NuclearProperty",
-      "to": "class_Entity",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Polytype_Entity",
-      "from": "class_Polytype",
-      "to": "class_Entity",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ZirconiumAlloy_Metal",
-      "from": "class_ZirconiumAlloy",
       "to": "class_Metal",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Swelling_Entity",
+      "id": "rel_hier_ChemicalProperty_Property",
+      "from": "class_ChemicalProperty",
+      "to": "class_Property",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_CladdingMaterial_NuclearMaterial",
+      "from": "class_CladdingMaterial",
+      "to": "class_NuclearMaterial",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_LiquidCoolant_CoolantMaterial",
+      "from": "class_LiquidCoolant",
+      "to": "class_CoolantMaterial",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_MOXFuel_NuclearFuel",
+      "from": "class_MOXFuel",
+      "to": "class_NuclearFuel",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NuclearProperty_Property",
+      "from": "class_NuclearProperty",
+      "to": "class_Property",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Polytype_CrystalStructure",
+      "from": "class_Polytype",
+      "to": "class_CrystalStructure",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ZirconiumAlloy_MetalAlloy",
+      "from": "class_ZirconiumAlloy",
+      "to": "class_MetalAlloy",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Swelling_IrradiationBehavior",
       "from": "class_Swelling",
-      "to": "class_Entity",
+      "to": "class_IrradiationBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27177,65 +28719,65 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Element_Entity",
+      "id": "rel_hier_Element_Material",
       "from": "class_Element",
-      "to": "class_Entity",
+      "to": "class_Material",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FluorideCompound_Entity",
+      "id": "rel_hier_FluorideCompound_ChemicalCompound",
       "from": "class_FluorideCompound",
-      "to": "class_Entity",
+      "to": "class_ChemicalCompound",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearFuel_Entity",
+      "id": "rel_hier_NuclearFuel_NuclearMaterial",
       "from": "class_NuclearFuel",
-      "to": "class_Entity",
+      "to": "class_NuclearMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ChemicalReaction_PhysicalProperty → ChemicalProperty",
+      "id": "rel_hier_ChemicalReaction_Phenomenon",
       "from": "class_ChemicalReaction",
-      "to": "class_PhysicalProperty → ChemicalProperty",
+      "to": "class_Phenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MicrostructureEvolution_Entity",
+      "id": "rel_hier_MicrostructureEvolution_IrradiationBehavior",
       "from": "class_MicrostructureEvolution",
-      "to": "class_Entity",
+      "to": "class_IrradiationBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_StressCorrosionCracking_Entity",
+      "id": "rel_hier_StressCorrosionCracking_Corrosion",
       "from": "class_StressCorrosionCracking",
-      "to": "class_Entity",
+      "to": "class_Corrosion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationBehavior_Entity",
+      "id": "rel_hier_IrradiationBehavior_MaterialPhenomenon",
       "from": "class_IrradiationBehavior",
-      "to": "class_Entity",
+      "to": "class_MaterialPhenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ChemicalCompound_PhysicalProperty → ChemicalProperty",
+      "id": "rel_hier_ChemicalCompound_Material",
       "from": "class_ChemicalCompound",
-      "to": "class_PhysicalProperty → ChemicalProperty",
+      "to": "class_Material",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearMaterial_Entity",
+      "id": "rel_hier_NuclearMaterial_Material",
       "from": "class_NuclearMaterial",
-      "to": "class_Entity",
+      "to": "class_Material",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27247,37 +28789,37 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ThermochemicalProperty_Entity",
+      "id": "rel_hier_ThermochemicalProperty_Property",
       "from": "class_ThermochemicalProperty",
-      "to": "class_Entity",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MaterialPhenomenon_Entity",
+      "id": "rel_hier_MaterialPhenomenon_Phenomenon",
       "from": "class_MaterialPhenomenon",
-      "to": "class_Entity",
+      "to": "class_Phenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CeramicMaterial_Ceramic",
+      "id": "rel_hier_CeramicMaterial_Material",
       "from": "class_CeramicMaterial",
-      "to": "class_Ceramic",
+      "to": "class_Material",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NeutronActivationProduct_Entity",
+      "id": "rel_hier_NeutronActivationProduct_NuclearReaction",
       "from": "class_NeutronActivationProduct",
-      "to": "class_Entity",
+      "to": "class_NuclearReaction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearApplication_Entity",
+      "id": "rel_hier_NuclearApplication_Application",
       "from": "class_NuclearApplication",
-      "to": "class_Entity",
+      "to": "class_Application",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27289,23 +28831,23 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CrystalStructure_Entity",
+      "id": "rel_hier_CrystalStructure_Property",
       "from": "class_CrystalStructure",
-      "to": "class_Entity",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MechanicalProperty_PhysicalProperty",
+      "id": "rel_hier_MechanicalProperty_Property",
       "from": "class_MechanicalProperty",
-      "to": "class_PhysicalProperty",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FissionGasBehavior_Entity",
+      "id": "rel_hier_FissionGasBehavior_IrradiationBehavior",
       "from": "class_FissionGasBehavior",
-      "to": "class_Entity",
+      "to": "class_IrradiationBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27317,16 +28859,16 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_StructuralMaterial_Entity",
+      "id": "rel_hier_StructuralMaterial_NuclearMaterial",
       "from": "class_StructuralMaterial",
-      "to": "class_Entity",
+      "to": "class_NuclearMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationEffect_Entity",
+      "id": "rel_hier_IrradiationEffect_MaterialPhenomenon",
       "from": "class_IrradiationEffect",
-      "to": "class_Entity",
+      "to": "class_MaterialPhenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27338,16 +28880,16 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MetalAlloy_Metal",
+      "id": "rel_hier_MetalAlloy_Alloy",
       "from": "class_MetalAlloy",
-      "to": "class_Metal",
+      "to": "class_Alloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Component_Entity",
+      "id": "rel_hier_Component_Material",
       "from": "class_Component",
-      "to": "class_Entity",
+      "to": "class_Material",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27359,9 +28901,9 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CoolantMaterial_Entity",
+      "id": "rel_hier_CoolantMaterial_NuclearMaterial",
       "from": "class_CoolantMaterial",
-      "to": "class_Entity",
+      "to": "class_NuclearMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -27373,387 +28915,387 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CavitationalVoidSwelling_Entity",
+      "id": "rel_hier_CavitationalVoidSwelling_Swelling",
       "from": "class_CavitationalVoidSwelling",
-      "to": "class_Entity",
+      "to": "class_Swelling",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_BubbleGrowthSwelling_Entity",
+      "id": "rel_hier_BubbleGrowthSwelling_Swelling",
       "from": "class_BubbleGrowthSwelling",
-      "to": "class_Entity",
+      "to": "class_Swelling",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FissionGasRelease_Entity",
+      "id": "rel_hier_FissionGasRelease_FissionGasBehavior",
       "from": "class_FissionGasRelease",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_RateTheoryModel_Entity",
+      "id": "rel_hier_RateTheoryModel_PhaseFieldModel",
       "from": "class_RateTheoryModel",
-      "to": "class_Entity",
+      "to": "class_PhaseFieldModel",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_DiffusionParameter_Entity",
+      "id": "rel_hier_DiffusionParameter_Diffusion",
       "from": "class_DiffusionParameter",
-      "to": "class_Entity",
+      "to": "class_Diffusion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_VacancyDiffusion_Entity",
+      "id": "rel_hier_VacancyDiffusion_Diffusion",
       "from": "class_VacancyDiffusion",
-      "to": "class_Entity",
+      "to": "class_Diffusion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_InterstitialDiffusion_Entity",
+      "id": "rel_hier_InterstitialDiffusion_Diffusion",
       "from": "class_InterstitialDiffusion",
-      "to": "class_Entity",
+      "to": "class_Diffusion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FissionGasDiffusion_Entity",
+      "id": "rel_hier_FissionGasDiffusion_FissionGasBehavior",
       "from": "class_FissionGasDiffusion",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CavityNucleation_Entity",
+      "id": "rel_hier_CavityNucleation_BubbleFormation",
       "from": "class_CavityNucleation",
-      "to": "class_Entity",
+      "to": "class_BubbleFormation",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_BubbleInterconnection_Entity",
+      "id": "rel_hier_BubbleInterconnection_FissionGasBehavior",
       "from": "class_BubbleInterconnection",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ConstitutiveEquation_Entity",
+      "id": "rel_hier_ConstitutiveEquation_PhaseFieldModel",
       "from": "class_ConstitutiveEquation",
-      "to": "class_Entity",
+      "to": "class_PhaseFieldModel",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_RateEquation_Entity",
+      "id": "rel_hier_RateEquation_ConstitutiveEquation",
       "from": "class_RateEquation",
-      "to": "class_Entity",
+      "to": "class_ConstitutiveEquation",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_DiffusionEquation_Entity",
+      "id": "rel_hier_DiffusionEquation_Diffusion",
       "from": "class_DiffusionEquation",
-      "to": "class_Entity",
+      "to": "class_Diffusion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_LowTemperatureRegime_Entity",
+      "id": "rel_hier_LowTemperatureRegime_IrradiationBehavior",
       "from": "class_LowTemperatureRegime",
-      "to": "class_Entity",
+      "to": "class_IrradiationBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HighTemperatureRegime_Entity",
+      "id": "rel_hier_HighTemperatureRegime_IrradiationBehavior",
       "from": "class_HighTemperatureRegime",
-      "to": "class_Entity",
+      "to": "class_IrradiationBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_BurnupThreshold_Entity",
+      "id": "rel_hier_BurnupThreshold_IrradiationBehavior",
       "from": "class_BurnupThreshold",
-      "to": "class_Entity",
+      "to": "class_IrradiationBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_SwellingMilestone_Entity",
+      "id": "rel_hier_SwellingMilestone_Swelling",
       "from": "class_SwellingMilestone",
-      "to": "class_Entity",
+      "to": "class_Swelling",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FuelCladdingChemicalInteraction_PhysicalProperty → ChemicalProperty",
+      "id": "rel_hier_FuelCladdingChemicalInteraction_MaterialPhenomenon",
       "from": "class_FuelCladdingChemicalInteraction",
-      "to": "class_PhysicalProperty → ChemicalProperty",
+      "to": "class_MaterialPhenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_LanthanideDiffusion_Entity",
+      "id": "rel_hier_LanthanideDiffusion_FuelCladdingChemicalInteraction",
       "from": "class_LanthanideDiffusion",
-      "to": "class_Entity",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_DiffusionBarrier_Entity",
+      "id": "rel_hier_DiffusionBarrier_FuelCladdingChemicalInteraction",
       "from": "class_DiffusionBarrier",
-      "to": "class_Entity",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IntermetallicPhase_Entity",
+      "id": "rel_hier_IntermetallicPhase_FuelCladdingChemicalInteraction",
       "from": "class_IntermetallicPhase",
-      "to": "class_Entity",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CladdingWastage_Entity",
+      "id": "rel_hier_CladdingWastage_FuelCladdingChemicalInteraction",
       "from": "class_CladdingWastage",
-      "to": "class_Entity",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ZrRind_Entity",
+      "id": "rel_hier_ZrRind_DiffusionBarrier",
       "from": "class_ZrRind",
-      "to": "class_Entity",
+      "to": "class_DiffusionBarrier",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FCCIMitigation_Entity",
+      "id": "rel_hier_FCCIMitigation_FuelCladdingChemicalInteraction",
       "from": "class_FCCIMitigation",
-      "to": "class_Entity",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HighEntropyAlloy_Metal",
+      "id": "rel_hier_HighEntropyAlloy_MetalAlloy",
       "from": "class_HighEntropyAlloy",
-      "to": "class_Metal",
+      "to": "class_MetalAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CoCrFeMnNiAlloy_Metal",
+      "id": "rel_hier_CoCrFeMnNiAlloy_HighEntropyAlloy",
       "from": "class_CoCrFeMnNiAlloy",
-      "to": "class_Metal",
+      "to": "class_HighEntropyAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_DiffusionCoefficient_Entity",
+      "id": "rel_hier_DiffusionCoefficient_Diffusion",
       "from": "class_DiffusionCoefficient",
-      "to": "class_Entity",
+      "to": "class_Diffusion",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_TracerDiffusionCoefficient_Entity",
+      "id": "rel_hier_TracerDiffusionCoefficient_DiffusionCoefficient",
       "from": "class_TracerDiffusionCoefficient",
-      "to": "class_Entity",
+      "to": "class_DiffusionCoefficient",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MediumEntropyAlloy_Metal",
+      "id": "rel_hier_MediumEntropyAlloy_MetalAlloy",
       "from": "class_MediumEntropyAlloy",
-      "to": "class_Metal",
+      "to": "class_MetalAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_UraniumHighEntropyAlloy_Metal",
+      "id": "rel_hier_UraniumHighEntropyAlloy_HighEntropyAlloy",
       "from": "class_UraniumHighEntropyAlloy",
-      "to": "class_Metal",
+      "to": "class_HighEntropyAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_UraniumMediumEntropyAlloy_Metal",
+      "id": "rel_hier_UraniumMediumEntropyAlloy_MediumEntropyAlloy",
       "from": "class_UraniumMediumEntropyAlloy",
-      "to": "class_Metal",
+      "to": "class_MediumEntropyAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_UraniumAlloy_Metal",
+      "id": "rel_hier_UraniumAlloy_MetalAlloy",
       "from": "class_UraniumAlloy",
-      "to": "class_Metal",
+      "to": "class_MetalAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ThermalExpansion_PhysicalProperty → ThermalProperty",
+      "id": "rel_hier_ThermalExpansion_ThermalProperty",
       "from": "class_ThermalExpansion",
-      "to": "class_PhysicalProperty → ThermalProperty",
+      "to": "class_ThermalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NeutronEconomy_Entity",
+      "id": "rel_hier_NeutronEconomy_NuclearProperty",
       "from": "class_NeutronEconomy",
-      "to": "class_Entity",
+      "to": "class_NuclearProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Density_Entity",
+      "id": "rel_hier_Density_PhysicalProperty",
       "from": "class_Density",
-      "to": "class_Entity",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ExcellentNeutronEconomy_Entity",
+      "id": "rel_hier_ExcellentNeutronEconomy_NeutronEconomy",
       "from": "class_ExcellentNeutronEconomy",
-      "to": "class_Entity",
+      "to": "class_NeutronEconomy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HeatCapacity_PhysicalProperty → ThermalProperty",
+      "id": "rel_hier_HeatCapacity_ThermalProperty",
       "from": "class_HeatCapacity",
-      "to": "class_PhysicalProperty → ThermalProperty",
+      "to": "class_ThermalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HighEnrichedUranium_Entity",
+      "id": "rel_hier_HighEnrichedUranium_Element",
       "from": "class_HighEnrichedUranium",
-      "to": "class_Entity",
+      "to": "class_Element",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_LowEnrichedUranium_Entity",
+      "id": "rel_hier_LowEnrichedUranium_Element",
       "from": "class_LowEnrichedUranium",
-      "to": "class_Entity",
+      "to": "class_Element",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ModerateGammaPhaseStability_Entity",
+      "id": "rel_hier_ModerateGammaPhaseStability_PhysicalProperty",
       "from": "class_ModerateGammaPhaseStability",
-      "to": "class_Entity",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ThermalDiffusivity_PhysicalProperty → ThermalProperty",
+      "id": "rel_hier_ThermalDiffusivity_ThermalProperty",
       "from": "class_ThermalDiffusivity",
-      "to": "class_PhysicalProperty → ThermalProperty",
+      "to": "class_ThermalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ReactorPerformance_Entity",
+      "id": "rel_hier_ReactorPerformance_NuclearApplication",
       "from": "class_ReactorPerformance",
-      "to": "class_Entity",
+      "to": "class_NuclearApplication",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NonProliferationObjective_Entity",
+      "id": "rel_hier_NonProliferationObjective_NuclearApplication",
       "from": "class_NonProliferationObjective",
-      "to": "class_Entity",
+      "to": "class_NuclearApplication",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ThermalConductivity_PhysicalProperty → ThermalProperty",
+      "id": "rel_hier_ThermalConductivity_ThermalProperty",
       "from": "class_ThermalConductivity",
-      "to": "class_PhysicalProperty → ThermalProperty",
+      "to": "class_ThermalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_WeightPercent_Entity",
+      "id": "rel_hier_WeightPercent_PhysicalProperty",
       "from": "class_WeightPercent",
-      "to": "class_Entity",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_GasBubbleSuperlattice_Entity",
+      "id": "rel_hier_GasBubbleSuperlattice_Property",
       "from": "class_GasBubbleSuperlattice",
-      "to": "class_Entity",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_UMoAlloy_NuclearMaterial",
+      "id": "rel_hier_UMoAlloy_UraniumAlloy",
       "from": "class_UMoAlloy",
-      "to": "class_NuclearMaterial",
+      "to": "class_UraniumAlloy",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_GrainBoundary_Entity",
+      "id": "rel_hier_GrainBoundary_MicrostructureEvolution",
       "from": "class_GrainBoundary",
-      "to": "class_Entity",
+      "to": "class_MicrostructureEvolution",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_PhaseFieldModel_SimulationMethod",
+      "id": "rel_hier_PhaseFieldModel_Entity",
       "from": "class_PhaseFieldModel",
-      "to": "class_SimulationMethod",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_DenudedZone_MicrostructureFeature",
+      "id": "rel_hier_DenudedZone_MicrostructureEvolution",
       "from": "class_DenudedZone",
-      "to": "class_MicrostructureFeature",
+      "to": "class_MicrostructureEvolution",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Phase_Entity",
+      "id": "rel_hier_Phase_Property",
       "from": "class_Phase",
-      "to": "class_Entity",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_InterstitialAtom_Atom",
+      "id": "rel_hier_InterstitialAtom_Property",
       "from": "class_InterstitialAtom",
-      "to": "class_Atom",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Vacancy_Defect",
+      "id": "rel_hier_Vacancy_Property",
       "from": "class_Vacancy",
-      "to": "class_Defect",
+      "to": "class_Property",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Diffusion_Entity",
+      "id": "rel_hier_Diffusion_MaterialPhenomenon",
       "from": "class_Diffusion",
-      "to": "class_Entity",
+      "to": "class_MaterialPhenomenon",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ShadowEffect_Entity",
+      "id": "rel_hier_ShadowEffect_FissionGasBehavior",
       "from": "class_ShadowEffect",
-      "to": "class_Entity",
+      "to": "class_FissionGasBehavior",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28038,104 +29580,104 @@
     },
     {
       "id": "rel_prop_hasSwellingMechanism",
-      "from": "class_http://example.org/materials/ontology#Material",
-      "to": "class_http://example.org/materials/irradiation#Swelling",
+      "from": "class_Material",
+      "to": "class_Swelling",
       "type": "hasSwellingMechanism",
       "label": "has swelling mechanism",
       "comment": "Swelling mechanism operating in material"
     },
     {
       "id": "rel_prop_governedBy",
-      "from": "class_http://example.org/materials/phenomenon#Phenomenon",
-      "to": "class_http://example.org/materials/swelling#ConstitutiveEquation",
+      "from": "class_Phenomenon",
+      "to": "class_ConstitutiveEquation",
       "type": "governedBy",
       "label": "governed by",
       "comment": "Equation governing a phenomenon"
     },
     {
       "id": "rel_prop_hasParameter",
-      "from": "class_http://example.org/materials/swelling#ConstitutiveEquation",
-      "to": "class_http://example.org/materials/swelling#DiffusionParameter",
+      "from": "class_ConstitutiveEquation",
+      "to": "class_DiffusionParameter",
       "type": "hasParameter",
       "label": "has parameter",
       "comment": "Parameter used in equation"
     },
     {
       "id": "rel_prop_operatesIn",
-      "from": "class_http://example.org/materials/irradiation#Swelling",
-      "to": "class_http://example.org/materials/swelling#LowTemperatureRegime",
+      "from": "class_Swelling",
+      "to": "class_LowTemperatureRegime",
       "type": "operatesIn",
       "label": "operates in",
       "comment": "Temperature regime where mechanism operates"
     },
     {
       "id": "rel_prop_triggersAt",
-      "from": "class_http://example.org/materials/swelling#FissionGasRelease",
-      "to": "class_http://example.org/materials/swelling#BurnupThreshold",
+      "from": "class_FissionGasRelease",
+      "to": "class_BurnupThreshold",
       "type": "triggersAt",
       "label": "triggers at",
       "comment": "Burnup threshold for phenomenon triggering"
     },
     {
       "id": "rel_prop_validFor",
-      "from": "class_http://example.org/materials/swelling#ConstitutiveEquation",
-      "to": "class_http://example.org/materials/ontology#Material",
+      "from": "class_ConstitutiveEquation",
+      "to": "class_Material",
       "type": "validFor",
       "label": "valid for",
       "comment": "Material for which equation is valid"
     },
     {
       "id": "rel_prop_hasFCCI",
-      "from": "class_http://example.org/materials/ontology#NuclearFuel",
-      "to": "class_http://example.org/materials/fcci#FuelCladdingChemicalInteraction",
+      "from": "class_NuclearFuel",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "hasFCCI",
       "label": "has FCCI",
       "comment": "Relates fuel to its fuel-cladding chemical interaction behavior"
     },
     {
       "id": "rel_prop_formsPhase",
-      "from": "class_http://example.org/materials/fcci#FuelCladdingChemicalInteraction",
-      "to": "class_http://example.org/materials/fcci#IntermetallicPhase",
+      "from": "class_FuelCladdingChemicalInteraction",
+      "to": "class_IntermetallicPhase",
       "type": "formsPhase",
       "label": "forms phase",
       "comment": "Phases formed during fuel-cladding chemical interaction"
     },
     {
       "id": "rel_prop_preventsDiffusionOf",
-      "from": "class_http://example.org/materials/fcci#DiffusionBarrier",
-      "to": "class_http://example.org/materials/fcci#LanthanideDiffusion",
+      "from": "class_DiffusionBarrier",
+      "to": "class_LanthanideDiffusion",
       "type": "preventsDiffusionOf",
       "label": "prevents diffusion of",
       "comment": "Barrier effectiveness against specific species diffusion"
     },
     {
       "id": "rel_prop_causesWastage",
-      "from": "class_http://example.org/materials/fcci#FuelCladdingChemicalInteraction",
-      "to": "class_http://example.org/materials/fcci#CladdingWastage",
+      "from": "class_FuelCladdingChemicalInteraction",
+      "to": "class_CladdingWastage",
       "type": "causesWastage",
       "label": "causes wastage",
       "comment": "FCCI resulting in cladding material loss"
     },
     {
       "id": "rel_prop_mitigatesFCCI",
-      "from": "class_http://example.org/materials/fcci#FCCIMitigation",
-      "to": "class_http://example.org/materials/fcci#FuelCladdingChemicalInteraction",
+      "from": "class_FCCIMitigation",
+      "to": "class_FuelCladdingChemicalInteraction",
       "type": "mitigatesFCCI",
       "label": "mitigates FCCI",
       "comment": "Method reduces fuel-cladding chemical interaction"
     },
     {
       "id": "rel_prop_hasDiffusionCoefficient",
-      "from": "class_[{'uri': 'http://example.org/materials/ontology#Material'}]",
-      "to": "class_[{'uri': 'http://example.org/materials/ontology#DiffusionCoefficient'}]",
+      "from": "class_Material",
+      "to": "class_DiffusionCoefficient",
       "type": "hasDiffusionCoefficient",
       "label": "Has Diffusion Coefficient",
       "comment": "Relates a material to its diffusion coefficient"
     },
     {
       "id": "rel_prop_measuredInMaterial",
-      "from": "class_[{'uri': 'http://example.org/materials/ontology#DiffusionCoefficient'}]",
-      "to": "class_[{'uri': 'http://example.org/materials/ontology#Material'}]",
+      "from": "class_DiffusionCoefficient",
+      "to": "class_Material",
       "type": "measuredInMaterial",
       "label": "Measured In Material",
       "comment": "Relates a diffusion coefficient to the material in which it was measured"
