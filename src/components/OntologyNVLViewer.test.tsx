@@ -112,8 +112,8 @@ describe('OntologyNVLViewer', () => {
       // 验证布局选择器
       expect(screen.getByRole('combobox')).toBeInTheDocument();
 
-      // 验证导出按钮
-      expect(screen.getByText('Export JSON')).toBeInTheDocument();
+      // 验证导出按钮（下拉菜单形式）
+      expect(screen.getByLabelText('Export menu')).toBeInTheDocument();
     });
 
     test('应该应用自定义尺寸', () => {
@@ -166,16 +166,20 @@ describe('OntologyNVLViewer', () => {
     });
 
     test('应该从 URL 加载数据', async () => {
-      // Mock fetch 响应
+      // Mock fetch 响应（组件使用 text() + JSON.parse）
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
-        json: async () => mockData
+        statusText: 'OK',
+        text: async () => JSON.stringify(mockData)
       });
 
       render(<OntologyNVLViewer dataUrl="http://example.org/data.json" />);
 
-      // 验证 fetch 被调用
-      expect(global.fetch).toHaveBeenCalledWith('http://example.org/data.json');
+      // 验证 fetch 被调用（含 AbortController signal）
+      expect(global.fetch).toHaveBeenCalledWith(
+        'http://example.org/data.json',
+        expect.objectContaining({ signal: expect.any(AbortSignal) })
+      );
 
       // 等待数据加载完成
       await waitFor(() => {
@@ -193,7 +197,7 @@ describe('OntologyNVLViewer', () => {
       render(<OntologyNVLViewer dataUrl="http://example.org/data.json" />);
 
       // 验证加载指示器
-      expect(screen.getByText('Loading ontology visualization...')).toBeInTheDocument();
+      expect(screen.getByText('Loading ontology data...')).toBeInTheDocument();
     });
 
     test('应该处理加载错误', async () => {
@@ -402,13 +406,15 @@ describe('OntologyNVLViewer', () => {
     test('应该支持导出 JSON', async () => {
       render(<OntologyNVLViewer data={mockData} />);
 
-      await waitFor(() => {
-        expect(screen.getByText('Export JSON')).toBeInTheDocument();
-      });
+      const exportButton = await screen.findByLabelText('Export menu');
+      expect(exportButton).toBeInTheDocument();
 
-      // 点击导出按钮
-      const exportButton = screen.getByText('Export JSON');
+      // 打开导出菜单
       fireEvent.click(exportButton);
+
+      // 点击 JSON 导出选项
+      const jsonExportOption = await screen.findByText('📄 Export as JSON');
+      fireEvent.click(jsonExportOption);
 
       // 验证 URL.createObjectURL 被调用
       expect(global.URL.createObjectURL).toHaveBeenCalled();

@@ -1391,16 +1391,6 @@
       "size": 30
     },
     {
-      "id": "class_Entity",
-      "type": "class",
-      "name": "Entity",
-      "label": "{name}",
-      "comment": "Top-level entity class representing all entities in the ontology",
-      "uri": "http://trustgraph.org/Entity",
-      "color": "#4A90E2",
-      "size": 30
-    },
-    {
       "id": "ind_U10Zr_VacancyDiffusion",
       "type": "individual",
       "name": "U10Zr_VacancyDiffusion",
@@ -23093,6 +23083,56 @@
       "prop_hasConfidence": 0.95
     },
     {
+      "id": "class_Entity",
+      "type": "class",
+      "name": "Entity",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "class_Ceramic",
+      "type": "class",
+      "name": "Ceramic",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "class_SimulationMethod",
+      "type": "class",
+      "name": "SimulationMethod",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "class_MicrostructureFeature",
+      "type": "class",
+      "name": "MicrostructureFeature",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
+      "id": "class_Atom",
+      "type": "class",
+      "name": "Atom",
+      "label": "{name}",
+      "comment": "Auto-generated placeholder for referenced class",
+      "uri": "",
+      "color": "#4A90E2",
+      "size": 30
+    },
+    {
       "id": "class_Process",
       "type": "class",
       "name": "Process",
@@ -28334,9 +28374,9 @@
       "label": "instance of"
     },
     {
-      "id": "rel_hier_SolidSolution_Phase",
+      "id": "rel_hier_SolidSolution_Entity",
       "from": "class_SolidSolution",
-      "to": "class_Phase",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28348,58 +28388,58 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NeutronIrradiationEffect_IrradiationEffect",
+      "id": "rel_hier_NeutronIrradiationEffect_Entity",
       "from": "class_NeutronIrradiationEffect",
-      "to": "class_IrradiationEffect",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_AusteniticSteel_StainlessSteel",
+      "id": "rel_hier_AusteniticSteel_Metal",
       "from": "class_AusteniticSteel",
-      "to": "class_StainlessSteel",
+      "to": "class_Metal",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CoolantFunction_NuclearApplication",
+      "id": "rel_hier_CoolantFunction_Entity",
       "from": "class_CoolantFunction",
-      "to": "class_NuclearApplication",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CreepResistance_MechanicalProperty",
+      "id": "rel_hier_CreepResistance_Entity",
       "from": "class_CreepResistance",
-      "to": "class_MechanicalProperty",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FastBreederReactor_ReactorType",
+      "id": "rel_hier_FastBreederReactor_Entity",
       "from": "class_FastBreederReactor",
-      "to": "class_ReactorType",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_GasCoolant_CoolantMaterial",
+      "id": "rel_hier_GasCoolant_Entity",
       "from": "class_GasCoolant",
-      "to": "class_CoolantMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_HexagonalPolytype_Polytype",
+      "id": "rel_hier_HexagonalPolytype_Entity",
       "from": "class_HexagonalPolytype",
-      "to": "class_Polytype",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_LiquidMetalCoolant_LiquidCoolant",
+      "id": "rel_hier_LiquidMetalCoolant_Metal",
       "from": "class_LiquidMetalCoolant",
-      "to": "class_LiquidCoolant",
+      "to": "class_Metal",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28411,303 +28451,303 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MoltenSaltCoolant_LiquidCoolant",
+      "id": "rel_hier_MoltenSaltCoolant_Entity",
       "from": "class_MoltenSaltCoolant",
-      "to": "class_LiquidCoolant",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearFuelCladding_NuclearApplication",
+      "id": "rel_hier_NuclearFuelCladding_Entity",
       "from": "class_NuclearFuelCladding",
-      "to": "class_NuclearApplication",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_PrimaryCoolant_CoolantMaterial",
+      "id": "rel_hier_PrimaryCoolant_Entity",
       "from": "class_PrimaryCoolant",
-      "to": "class_CoolantMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ReactorType_NuclearApplication",
+      "id": "rel_hier_ReactorType_Entity",
       "from": "class_ReactorType",
-      "to": "class_NuclearApplication",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_SiCFiber_CeramicMaterial",
+      "id": "rel_hier_SiCFiber_CompositeMaterial",
       "from": "class_SiCFiber",
-      "to": "class_CeramicMaterial",
+      "to": "class_CompositeMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_SiCMatrix_CeramicMaterial",
+      "id": "rel_hier_SiCMatrix_CompositeMaterial",
       "from": "class_SiCMatrix",
-      "to": "class_CeramicMaterial",
+      "to": "class_CompositeMaterial",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_StainlessSteel_MetalAlloy",
+      "id": "rel_hier_StainlessSteel_Metal",
       "from": "class_StainlessSteel",
-      "to": "class_MetalAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Zircaloy_ZirconiumAlloy",
-      "from": "class_Zircaloy",
-      "to": "class_ZirconiumAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ZirconiumHydride_ChemicalCompound",
-      "from": "class_ZirconiumHydride",
-      "to": "class_ChemicalCompound",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_BubbleCoalescence_FissionGasBehavior",
-      "from": "class_BubbleCoalescence",
-      "to": "class_FissionGasBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_BubbleFormation_FissionGasBehavior",
-      "from": "class_BubbleFormation",
-      "to": "class_FissionGasBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Corrosion_MaterialPhenomenon",
-      "from": "class_Corrosion",
-      "to": "class_MaterialPhenomenon",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Embrittlement_IrradiationEffect",
-      "from": "class_Embrittlement",
-      "to": "class_IrradiationEffect",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_FractureToughnessReduction_IrradiationEffect",
-      "from": "class_FractureToughnessReduction",
-      "to": "class_IrradiationEffect",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_FuelCompatibility_Property",
-      "from": "class_FuelCompatibility",
-      "to": "class_Property",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HeliumEmbrittlement_Embrittlement",
-      "from": "class_HeliumEmbrittlement",
-      "to": "class_Embrittlement",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HydrogenEmbrittlement_Embrittlement",
-      "from": "class_HydrogenEmbrittlement",
-      "to": "class_Embrittlement",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HydrogenEmbrittlementResistance_MechanicalProperty",
-      "from": "class_HydrogenEmbrittlementResistance",
-      "to": "class_MechanicalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HydrothermalCorrosion_Corrosion",
-      "from": "class_HydrothermalCorrosion",
-      "to": "class_Corrosion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_IrradiationEmbrittlement_IrradiationEffect",
-      "from": "class_IrradiationEmbrittlement",
-      "to": "class_IrradiationEffect",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_IrradiationHardening_IrradiationEffect",
-      "from": "class_IrradiationHardening",
-      "to": "class_IrradiationEffect",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_IrradiationThermalConductivityDegradation_IrradiationEffect",
-      "from": "class_IrradiationThermalConductivityDegradation",
-      "to": "class_IrradiationEffect",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_MetallicPrecipitateFormation_MicrostructureEvolution",
-      "from": "class_MetallicPrecipitateFormation",
-      "to": "class_MicrostructureEvolution",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NanograinFormation_MicrostructureEvolution",
-      "from": "class_NanograinFormation",
-      "to": "class_MicrostructureEvolution",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NeutronCapture_NuclearReaction",
-      "from": "class_NeutronCapture",
-      "to": "class_NuclearReaction",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NodularCorrosion_Corrosion",
-      "from": "class_NodularCorrosion",
-      "to": "class_Corrosion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NuclearReaction_Phenomenon",
-      "from": "class_NuclearReaction",
-      "to": "class_Phenomenon",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Oxidation_Corrosion",
-      "from": "class_Oxidation",
-      "to": "class_Corrosion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_RadiationInducedSegregation_MicrostructureEvolution",
-      "from": "class_RadiationInducedSegregation",
-      "to": "class_MicrostructureEvolution",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_SteamOxidation_Oxidation",
-      "from": "class_SteamOxidation",
-      "to": "class_Oxidation",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ThermalConductivityDegradation_IrradiationThermalConductivityDegradation",
-      "from": "class_ThermalConductivityDegradation",
-      "to": "class_IrradiationThermalConductivityDegradation",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_VoidSwelling_Swelling",
-      "from": "class_VoidSwelling",
-      "to": "class_Swelling",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_CVI_ProcessingTechnique",
-      "from": "class_CVI",
-      "to": "class_ProcessingTechnique",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_GasLeakage_FissionGasBehavior",
-      "from": "class_GasLeakage",
-      "to": "class_FissionGasBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Alloy_Metal",
-      "from": "class_Alloy",
       "to": "class_Metal",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ChemicalProperty_Property",
+      "id": "rel_hier_Zircaloy_Entity",
+      "from": "class_Zircaloy",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ZirconiumHydride_Entity",
+      "from": "class_ZirconiumHydride",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_BubbleCoalescence_Entity",
+      "from": "class_BubbleCoalescence",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_BubbleFormation_Entity",
+      "from": "class_BubbleFormation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Corrosion_Entity",
+      "from": "class_Corrosion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Embrittlement_Entity",
+      "from": "class_Embrittlement",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_FractureToughnessReduction_Entity",
+      "from": "class_FractureToughnessReduction",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_FuelCompatibility_Entity",
+      "from": "class_FuelCompatibility",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HeliumEmbrittlement_Entity",
+      "from": "class_HeliumEmbrittlement",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HydrogenEmbrittlement_Entity",
+      "from": "class_HydrogenEmbrittlement",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HydrogenEmbrittlementResistance_Entity",
+      "from": "class_HydrogenEmbrittlementResistance",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HydrothermalCorrosion_Entity",
+      "from": "class_HydrothermalCorrosion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_IrradiationEmbrittlement_Entity",
+      "from": "class_IrradiationEmbrittlement",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_IrradiationHardening_Entity",
+      "from": "class_IrradiationHardening",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_IrradiationThermalConductivityDegradation_PhysicalProperty",
+      "from": "class_IrradiationThermalConductivityDegradation",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_MetallicPrecipitateFormation_Metal",
+      "from": "class_MetallicPrecipitateFormation",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NanograinFormation_Entity",
+      "from": "class_NanograinFormation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NeutronCapture_Entity",
+      "from": "class_NeutronCapture",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NodularCorrosion_Entity",
+      "from": "class_NodularCorrosion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NuclearReaction_Entity",
+      "from": "class_NuclearReaction",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Oxidation_Entity",
+      "from": "class_Oxidation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_RadiationInducedSegregation_Entity",
+      "from": "class_RadiationInducedSegregation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_SteamOxidation_Entity",
+      "from": "class_SteamOxidation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ThermalConductivityDegradation_PhysicalProperty",
+      "from": "class_ThermalConductivityDegradation",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_VoidSwelling_Entity",
+      "from": "class_VoidSwelling",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_CVI_Entity",
+      "from": "class_CVI",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_GasLeakage_Entity",
+      "from": "class_GasLeakage",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Alloy_Entity",
+      "from": "class_Alloy",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ChemicalProperty_PhysicalProperty",
       "from": "class_ChemicalProperty",
-      "to": "class_Property",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CladdingMaterial_NuclearMaterial",
+      "id": "rel_hier_CladdingMaterial_Entity",
       "from": "class_CladdingMaterial",
-      "to": "class_NuclearMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_LiquidCoolant_CoolantMaterial",
+      "id": "rel_hier_LiquidCoolant_Entity",
       "from": "class_LiquidCoolant",
-      "to": "class_CoolantMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MOXFuel_NuclearFuel",
+      "id": "rel_hier_MOXFuel_Entity",
       "from": "class_MOXFuel",
-      "to": "class_NuclearFuel",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearProperty_Property",
+      "id": "rel_hier_NuclearProperty_Entity",
       "from": "class_NuclearProperty",
-      "to": "class_Property",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Polytype_CrystalStructure",
+      "id": "rel_hier_Polytype_Entity",
       "from": "class_Polytype",
-      "to": "class_CrystalStructure",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ZirconiumAlloy_MetalAlloy",
+      "id": "rel_hier_ZirconiumAlloy_Metal",
       "from": "class_ZirconiumAlloy",
-      "to": "class_MetalAlloy",
+      "to": "class_Metal",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Swelling_IrradiationBehavior",
+      "id": "rel_hier_Swelling_Entity",
       "from": "class_Swelling",
-      "to": "class_IrradiationBehavior",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28719,65 +28759,65 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Element_Material",
+      "id": "rel_hier_Element_Entity",
       "from": "class_Element",
-      "to": "class_Material",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FluorideCompound_ChemicalCompound",
+      "id": "rel_hier_FluorideCompound_Entity",
       "from": "class_FluorideCompound",
-      "to": "class_ChemicalCompound",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearFuel_NuclearMaterial",
+      "id": "rel_hier_NuclearFuel_Entity",
       "from": "class_NuclearFuel",
-      "to": "class_NuclearMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ChemicalReaction_Phenomenon",
+      "id": "rel_hier_ChemicalReaction_PhysicalProperty",
       "from": "class_ChemicalReaction",
-      "to": "class_Phenomenon",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MicrostructureEvolution_IrradiationBehavior",
+      "id": "rel_hier_MicrostructureEvolution_Entity",
       "from": "class_MicrostructureEvolution",
-      "to": "class_IrradiationBehavior",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_StressCorrosionCracking_Corrosion",
+      "id": "rel_hier_StressCorrosionCracking_Entity",
       "from": "class_StressCorrosionCracking",
-      "to": "class_Corrosion",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationBehavior_MaterialPhenomenon",
+      "id": "rel_hier_IrradiationBehavior_Entity",
       "from": "class_IrradiationBehavior",
-      "to": "class_MaterialPhenomenon",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ChemicalCompound_Material",
+      "id": "rel_hier_ChemicalCompound_PhysicalProperty",
       "from": "class_ChemicalCompound",
-      "to": "class_Material",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearMaterial_Material",
+      "id": "rel_hier_NuclearMaterial_Entity",
       "from": "class_NuclearMaterial",
-      "to": "class_Material",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28789,37 +28829,37 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ThermochemicalProperty_Property",
+      "id": "rel_hier_ThermochemicalProperty_Entity",
       "from": "class_ThermochemicalProperty",
-      "to": "class_Property",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MaterialPhenomenon_Phenomenon",
+      "id": "rel_hier_MaterialPhenomenon_Entity",
       "from": "class_MaterialPhenomenon",
-      "to": "class_Phenomenon",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CeramicMaterial_Material",
+      "id": "rel_hier_CeramicMaterial_Ceramic",
       "from": "class_CeramicMaterial",
-      "to": "class_Material",
+      "to": "class_Ceramic",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NeutronActivationProduct_NuclearReaction",
+      "id": "rel_hier_NeutronActivationProduct_Entity",
       "from": "class_NeutronActivationProduct",
-      "to": "class_NuclearReaction",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_NuclearApplication_Application",
+      "id": "rel_hier_NuclearApplication_Entity",
       "from": "class_NuclearApplication",
-      "to": "class_Application",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28831,23 +28871,23 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CrystalStructure_Property",
+      "id": "rel_hier_CrystalStructure_Entity",
       "from": "class_CrystalStructure",
-      "to": "class_Property",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MechanicalProperty_Property",
+      "id": "rel_hier_MechanicalProperty_PhysicalProperty",
       "from": "class_MechanicalProperty",
-      "to": "class_Property",
+      "to": "class_PhysicalProperty",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_FissionGasBehavior_IrradiationBehavior",
+      "id": "rel_hier_FissionGasBehavior_Entity",
       "from": "class_FissionGasBehavior",
-      "to": "class_IrradiationBehavior",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28859,16 +28899,16 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_StructuralMaterial_NuclearMaterial",
+      "id": "rel_hier_StructuralMaterial_Entity",
       "from": "class_StructuralMaterial",
-      "to": "class_NuclearMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_IrradiationEffect_MaterialPhenomenon",
+      "id": "rel_hier_IrradiationEffect_Entity",
       "from": "class_IrradiationEffect",
-      "to": "class_MaterialPhenomenon",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28880,16 +28920,16 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_MetalAlloy_Alloy",
+      "id": "rel_hier_MetalAlloy_Metal",
       "from": "class_MetalAlloy",
-      "to": "class_Alloy",
+      "to": "class_Metal",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Component_Material",
+      "id": "rel_hier_Component_Entity",
       "from": "class_Component",
-      "to": "class_Material",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28901,9 +28941,9 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CoolantMaterial_NuclearMaterial",
+      "id": "rel_hier_CoolantMaterial_Entity",
       "from": "class_CoolantMaterial",
-      "to": "class_NuclearMaterial",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
@@ -28915,387 +28955,387 @@
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_CavitationalVoidSwelling_Swelling",
+      "id": "rel_hier_CavitationalVoidSwelling_Entity",
       "from": "class_CavitationalVoidSwelling",
-      "to": "class_Swelling",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_BubbleGrowthSwelling_Swelling",
-      "from": "class_BubbleGrowthSwelling",
-      "to": "class_Swelling",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_FissionGasRelease_FissionGasBehavior",
-      "from": "class_FissionGasRelease",
-      "to": "class_FissionGasBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_RateTheoryModel_PhaseFieldModel",
-      "from": "class_RateTheoryModel",
-      "to": "class_PhaseFieldModel",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_DiffusionParameter_Diffusion",
-      "from": "class_DiffusionParameter",
-      "to": "class_Diffusion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_VacancyDiffusion_Diffusion",
-      "from": "class_VacancyDiffusion",
-      "to": "class_Diffusion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_InterstitialDiffusion_Diffusion",
-      "from": "class_InterstitialDiffusion",
-      "to": "class_Diffusion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_FissionGasDiffusion_FissionGasBehavior",
-      "from": "class_FissionGasDiffusion",
-      "to": "class_FissionGasBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_CavityNucleation_BubbleFormation",
-      "from": "class_CavityNucleation",
-      "to": "class_BubbleFormation",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_BubbleInterconnection_FissionGasBehavior",
-      "from": "class_BubbleInterconnection",
-      "to": "class_FissionGasBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ConstitutiveEquation_PhaseFieldModel",
-      "from": "class_ConstitutiveEquation",
-      "to": "class_PhaseFieldModel",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_RateEquation_ConstitutiveEquation",
-      "from": "class_RateEquation",
-      "to": "class_ConstitutiveEquation",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_DiffusionEquation_Diffusion",
-      "from": "class_DiffusionEquation",
-      "to": "class_Diffusion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_LowTemperatureRegime_IrradiationBehavior",
-      "from": "class_LowTemperatureRegime",
-      "to": "class_IrradiationBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HighTemperatureRegime_IrradiationBehavior",
-      "from": "class_HighTemperatureRegime",
-      "to": "class_IrradiationBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_BurnupThreshold_IrradiationBehavior",
-      "from": "class_BurnupThreshold",
-      "to": "class_IrradiationBehavior",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_SwellingMilestone_Swelling",
-      "from": "class_SwellingMilestone",
-      "to": "class_Swelling",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_FuelCladdingChemicalInteraction_MaterialPhenomenon",
-      "from": "class_FuelCladdingChemicalInteraction",
-      "to": "class_MaterialPhenomenon",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_LanthanideDiffusion_FuelCladdingChemicalInteraction",
-      "from": "class_LanthanideDiffusion",
-      "to": "class_FuelCladdingChemicalInteraction",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_DiffusionBarrier_FuelCladdingChemicalInteraction",
-      "from": "class_DiffusionBarrier",
-      "to": "class_FuelCladdingChemicalInteraction",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_IntermetallicPhase_FuelCladdingChemicalInteraction",
-      "from": "class_IntermetallicPhase",
-      "to": "class_FuelCladdingChemicalInteraction",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_CladdingWastage_FuelCladdingChemicalInteraction",
-      "from": "class_CladdingWastage",
-      "to": "class_FuelCladdingChemicalInteraction",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ZrRind_DiffusionBarrier",
-      "from": "class_ZrRind",
-      "to": "class_DiffusionBarrier",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_FCCIMitigation_FuelCladdingChemicalInteraction",
-      "from": "class_FCCIMitigation",
-      "to": "class_FuelCladdingChemicalInteraction",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HighEntropyAlloy_MetalAlloy",
-      "from": "class_HighEntropyAlloy",
-      "to": "class_MetalAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_CoCrFeMnNiAlloy_HighEntropyAlloy",
-      "from": "class_CoCrFeMnNiAlloy",
-      "to": "class_HighEntropyAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_DiffusionCoefficient_Diffusion",
-      "from": "class_DiffusionCoefficient",
-      "to": "class_Diffusion",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_TracerDiffusionCoefficient_DiffusionCoefficient",
-      "from": "class_TracerDiffusionCoefficient",
-      "to": "class_DiffusionCoefficient",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_MediumEntropyAlloy_MetalAlloy",
-      "from": "class_MediumEntropyAlloy",
-      "to": "class_MetalAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_UraniumHighEntropyAlloy_HighEntropyAlloy",
-      "from": "class_UraniumHighEntropyAlloy",
-      "to": "class_HighEntropyAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_UraniumMediumEntropyAlloy_MediumEntropyAlloy",
-      "from": "class_UraniumMediumEntropyAlloy",
-      "to": "class_MediumEntropyAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_UraniumAlloy_MetalAlloy",
-      "from": "class_UraniumAlloy",
-      "to": "class_MetalAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ThermalExpansion_ThermalProperty",
-      "from": "class_ThermalExpansion",
-      "to": "class_ThermalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NeutronEconomy_NuclearProperty",
-      "from": "class_NeutronEconomy",
-      "to": "class_NuclearProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_Density_PhysicalProperty",
-      "from": "class_Density",
-      "to": "class_PhysicalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ExcellentNeutronEconomy_NeutronEconomy",
-      "from": "class_ExcellentNeutronEconomy",
-      "to": "class_NeutronEconomy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HeatCapacity_ThermalProperty",
-      "from": "class_HeatCapacity",
-      "to": "class_ThermalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_HighEnrichedUranium_Element",
-      "from": "class_HighEnrichedUranium",
-      "to": "class_Element",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_LowEnrichedUranium_Element",
-      "from": "class_LowEnrichedUranium",
-      "to": "class_Element",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ModerateGammaPhaseStability_PhysicalProperty",
-      "from": "class_ModerateGammaPhaseStability",
-      "to": "class_PhysicalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ThermalDiffusivity_ThermalProperty",
-      "from": "class_ThermalDiffusivity",
-      "to": "class_ThermalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ReactorPerformance_NuclearApplication",
-      "from": "class_ReactorPerformance",
-      "to": "class_NuclearApplication",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_NonProliferationObjective_NuclearApplication",
-      "from": "class_NonProliferationObjective",
-      "to": "class_NuclearApplication",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_ThermalConductivity_ThermalProperty",
-      "from": "class_ThermalConductivity",
-      "to": "class_ThermalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_WeightPercent_PhysicalProperty",
-      "from": "class_WeightPercent",
-      "to": "class_PhysicalProperty",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_GasBubbleSuperlattice_Property",
-      "from": "class_GasBubbleSuperlattice",
-      "to": "class_Property",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_UMoAlloy_UraniumAlloy",
-      "from": "class_UMoAlloy",
-      "to": "class_UraniumAlloy",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_GrainBoundary_MicrostructureEvolution",
-      "from": "class_GrainBoundary",
-      "to": "class_MicrostructureEvolution",
-      "type": "SUBCLASS_OF",
-      "label": "subclass of"
-    },
-    {
-      "id": "rel_hier_PhaseFieldModel_Entity",
-      "from": "class_PhaseFieldModel",
       "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_DenudedZone_MicrostructureEvolution",
+      "id": "rel_hier_BubbleGrowthSwelling_Entity",
+      "from": "class_BubbleGrowthSwelling",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_FissionGasRelease_Entity",
+      "from": "class_FissionGasRelease",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_RateTheoryModel_Entity",
+      "from": "class_RateTheoryModel",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_DiffusionParameter_Entity",
+      "from": "class_DiffusionParameter",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_VacancyDiffusion_Entity",
+      "from": "class_VacancyDiffusion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_InterstitialDiffusion_Entity",
+      "from": "class_InterstitialDiffusion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_FissionGasDiffusion_Entity",
+      "from": "class_FissionGasDiffusion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_CavityNucleation_Entity",
+      "from": "class_CavityNucleation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_BubbleInterconnection_Entity",
+      "from": "class_BubbleInterconnection",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ConstitutiveEquation_Entity",
+      "from": "class_ConstitutiveEquation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_RateEquation_Entity",
+      "from": "class_RateEquation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_DiffusionEquation_Entity",
+      "from": "class_DiffusionEquation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_LowTemperatureRegime_Entity",
+      "from": "class_LowTemperatureRegime",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HighTemperatureRegime_Entity",
+      "from": "class_HighTemperatureRegime",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_BurnupThreshold_Entity",
+      "from": "class_BurnupThreshold",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_SwellingMilestone_Entity",
+      "from": "class_SwellingMilestone",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_FuelCladdingChemicalInteraction_PhysicalProperty",
+      "from": "class_FuelCladdingChemicalInteraction",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_LanthanideDiffusion_Entity",
+      "from": "class_LanthanideDiffusion",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_DiffusionBarrier_Entity",
+      "from": "class_DiffusionBarrier",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_IntermetallicPhase_Entity",
+      "from": "class_IntermetallicPhase",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_CladdingWastage_Entity",
+      "from": "class_CladdingWastage",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ZrRind_Entity",
+      "from": "class_ZrRind",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_FCCIMitigation_Entity",
+      "from": "class_FCCIMitigation",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HighEntropyAlloy_Metal",
+      "from": "class_HighEntropyAlloy",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_CoCrFeMnNiAlloy_Metal",
+      "from": "class_CoCrFeMnNiAlloy",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_DiffusionCoefficient_Entity",
+      "from": "class_DiffusionCoefficient",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_TracerDiffusionCoefficient_Entity",
+      "from": "class_TracerDiffusionCoefficient",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_MediumEntropyAlloy_Metal",
+      "from": "class_MediumEntropyAlloy",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_UraniumHighEntropyAlloy_Metal",
+      "from": "class_UraniumHighEntropyAlloy",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_UraniumMediumEntropyAlloy_Metal",
+      "from": "class_UraniumMediumEntropyAlloy",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_UraniumAlloy_Metal",
+      "from": "class_UraniumAlloy",
+      "to": "class_Metal",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ThermalExpansion_PhysicalProperty",
+      "from": "class_ThermalExpansion",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NeutronEconomy_Entity",
+      "from": "class_NeutronEconomy",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_Density_Entity",
+      "from": "class_Density",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ExcellentNeutronEconomy_Entity",
+      "from": "class_ExcellentNeutronEconomy",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HeatCapacity_PhysicalProperty",
+      "from": "class_HeatCapacity",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_HighEnrichedUranium_Entity",
+      "from": "class_HighEnrichedUranium",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_LowEnrichedUranium_Entity",
+      "from": "class_LowEnrichedUranium",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ModerateGammaPhaseStability_Entity",
+      "from": "class_ModerateGammaPhaseStability",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ThermalDiffusivity_PhysicalProperty",
+      "from": "class_ThermalDiffusivity",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ReactorPerformance_Entity",
+      "from": "class_ReactorPerformance",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_NonProliferationObjective_Entity",
+      "from": "class_NonProliferationObjective",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_ThermalConductivity_PhysicalProperty",
+      "from": "class_ThermalConductivity",
+      "to": "class_PhysicalProperty",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_WeightPercent_Entity",
+      "from": "class_WeightPercent",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_GasBubbleSuperlattice_Entity",
+      "from": "class_GasBubbleSuperlattice",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_UMoAlloy_NuclearMaterial",
+      "from": "class_UMoAlloy",
+      "to": "class_NuclearMaterial",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_GrainBoundary_Entity",
+      "from": "class_GrainBoundary",
+      "to": "class_Entity",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_PhaseFieldModel_SimulationMethod",
+      "from": "class_PhaseFieldModel",
+      "to": "class_SimulationMethod",
+      "type": "SUBCLASS_OF",
+      "label": "subclass of"
+    },
+    {
+      "id": "rel_hier_DenudedZone_MicrostructureFeature",
       "from": "class_DenudedZone",
-      "to": "class_MicrostructureEvolution",
+      "to": "class_MicrostructureFeature",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Phase_Property",
+      "id": "rel_hier_Phase_Entity",
       "from": "class_Phase",
-      "to": "class_Property",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_InterstitialAtom_Property",
+      "id": "rel_hier_InterstitialAtom_Atom",
       "from": "class_InterstitialAtom",
-      "to": "class_Property",
+      "to": "class_Atom",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Vacancy_Property",
+      "id": "rel_hier_Vacancy_Defect",
       "from": "class_Vacancy",
-      "to": "class_Property",
+      "to": "class_Defect",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_Diffusion_MaterialPhenomenon",
+      "id": "rel_hier_Diffusion_Entity",
       "from": "class_Diffusion",
-      "to": "class_MaterialPhenomenon",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
     {
-      "id": "rel_hier_ShadowEffect_FissionGasBehavior",
+      "id": "rel_hier_ShadowEffect_Entity",
       "from": "class_ShadowEffect",
-      "to": "class_FissionGasBehavior",
+      "to": "class_Entity",
       "type": "SUBCLASS_OF",
       "label": "subclass of"
     },
