@@ -383,6 +383,62 @@ describe('OntologyNVLViewer', () => {
       expect(screen.queryByTestId('node-class-1')).not.toBeInTheDocument();
     });
 
+    test('应该在搜索时过滤关系（NFM-50）', async () => {
+      render(<OntologyNVLViewer data={mockData} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('rel-count')).toHaveTextContent('2 relationships');
+      });
+
+      // Search for "Steel" — only individual-1 matches, so only rel-2 (individual-1→class-1)
+      // should survive since both endpoints must be in filteredNodes.
+      // rel-1 (class-1→class-2) drops because class-2 is excluded.
+      const searchInput = screen.getByPlaceholderText('Search nodes...');
+      fireEvent.change(searchInput, { target: { value: 'Steel' } });
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('1 nodes');
+        expect(screen.getByTestId('rel-count')).toHaveTextContent('0 relationships');
+      });
+    });
+
+    test('应该在搜索匹配多个节点时保留共享关系（NFM-50）', async () => {
+      // "class" matches both class-1 (Material) and class-2 (Property)
+      // rel-1 connects class-1 → class-2, so it should survive
+      render(<OntologyNVLViewer data={mockData} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+      });
+
+      const searchInput = screen.getByPlaceholderText('Search nodes...');
+      fireEvent.change(searchInput, { target: { value: 'class' } });
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('2 nodes');
+        // Only rel-1 (class-1→class-2) survives — both endpoints matched
+        expect(screen.getByTestId('rel-count')).toHaveTextContent('1 relationships');
+      });
+    });
+
+    test('应该在清除搜索后恢复全部关系（NFM-50）', async () => {
+      render(<OntologyNVLViewer data={mockData} />);
+
+      const searchInput = screen.getByPlaceholderText('Search nodes...');
+
+      // Type then clear
+      fireEvent.change(searchInput, { target: { value: 'Steel' } });
+      await waitFor(() => {
+        expect(screen.getByTestId('rel-count')).toHaveTextContent('0 relationships');
+      });
+
+      fireEvent.change(searchInput, { target: { value: '' } });
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+        expect(screen.getByTestId('rel-count')).toHaveTextContent('2 relationships');
+      });
+    });
+
     test('应该支持布局切换', async () => {
       render(<OntologyNVLViewer data={mockData} />);
 
