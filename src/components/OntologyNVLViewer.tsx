@@ -52,6 +52,8 @@ interface OntologyNVLViewerProps {
   onNodeDoubleClick?: (node: Node) => void;
   /** 关系点击回调 */
   onRelationshipClick?: (rel: Relationship) => void;
+  /** 嵌入模式：隐藏工具栏和侧边栏，仅展示图可视化 */
+  embedMode?: boolean;
 }
 
 interface NodeDetails {
@@ -73,7 +75,8 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
   width = '100%',
   onNodeClick,
   onNodeDoubleClick,
-  onRelationshipClick
+  onRelationshipClick,
+  embedMode = false
 }) => {
   // 状态
   const [nodes, setNodes] = useState<Node[]>([]);
@@ -301,7 +304,8 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
 
   return (
     <div className="ontology-nvl-viewer" style={{ width, height }}>
-      {/* 工具栏 */}
+      {/* 工具栏 — embed mode hides it */}
+      {!embedMode && (
       <div className="toolbar">
         {/* 搜索框 */}
         <input
@@ -475,8 +479,7 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
           )}
         </div>
       </div>
-
-      {/* 主内容区 */}
+      )}
       <div className="content">
         {/* 加载状态 */}
         {loading && (
@@ -573,11 +576,13 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
           </div>
         )}
 
-        {/* 侧边栏 */}
+        {/* 侧边栏 — embed mode hides it */}
+        {!embedMode && (
         <div className="sidebar">
           {renderStats()}
           {renderNodeDetails()}
         </div>
+        )}
       </div>
     </div>
   );
