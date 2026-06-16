@@ -24,6 +24,7 @@ import {
   exportToMarkdown,
   type ExportOptions
 } from '../utils/exportUtils';
+import { validateNvlContract } from '../utils/contractValidation';
 import './OntologyNVLViewer.css';
 
 // ✅ Task 4: 类型守卫
@@ -83,6 +84,7 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
   const [relationships, setRelationships] = useState<Relationship[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [contractVersion, setContractVersion] = useState<string | null>(null);
   const [layout, setLayout] = useState(initialLayout);
   const [selectedNode, setSelectedNode] = useState<NodeDetails | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -141,22 +143,36 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
           throw new Error('Invalid data: received null or undefined');
         }
 
-        if (!Array.isArray(nvlData.nodes)) {
-          throw new Error('Invalid data format: nodes must be an array');
+        // NFM-227: NVL 数据契约校验。
+        // - 缺失 schema_version → 旧格式，向后兼容加载 + console.warn
+        // - 带版本但校验失败 → 抛出用户友好错误（由错误态 UI 展示，避免静默白屏）
+        const contractResult = validateNvlContract(nvlData);
+        if (contractResult.warning) {
+          console.warn(`[OntologyNVLViewer] ${contractResult.warning}`);
+        }
+        if (!contractResult.valid) {
+          const shown = contractResult.errors.slice(0, 5);
+          const more = contractResult.errors.length > shown.length
+            ? `（共 ${contractResult.errors.length} 项问题，已显示前 ${shown.length} 项）`
+            : '';
+          throw new Error(`NVL 数据契约校验失败：${shown.join('；')}${more}`);
         }
 
-        if (!Array.isArray(nvlData.relationships)) {
+        const parsed = nvlData as { nodes: Node[]; relationships?: Relationship[] };
+        // relationships 缺失时降级为空数组（保持既有行为）
+        if (!Array.isArray(parsed.relationships)) {
           console.warn('relationships is not an array, using empty array');
-          nvlData.relationships = [];
+          parsed.relationships = [];
         }
 
         // ✅ P0 修复 2: 检查空数据
-        if (nvlData.nodes.length === 0) {
+        if (parsed.nodes.length === 0) {
           console.warn('No nodes in data');
         }
 
-        setNodes(nvlData.nodes);
-        setRelationships(nvlData.relationships);
+        setContractVersion(contractResult.schemaVersion ?? null);
+        setNodes(parsed.nodes);
+        setRelationships(parsed.relationships);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load data');
         console.error('Error loading NVL data:', err);
@@ -308,6 +324,9 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
         <div>Individuals: {individualCount}</div>
         <div>Hierarchy Relations: {hierarchyCount}</div>
         <div>Property Relations: {propertyCount}</div>
+        <div className="contract-version">
+          Contract: {contractVersion ?? 'legacy (no schema_version)'}
+        </div>
       </div>
     );
   };

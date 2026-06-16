@@ -557,4 +557,88 @@ describe('OntologyNVLViewer', () => {
       });
     });
   });
+
+  // ==================== 测试用例 4: NVL 数据契约校验 (NFM-227) ====================
+  describe('契约校验 (NFM-227)', () => {
+    const versionedContract = {
+      schema_version: '1.0',
+      generated_at: '2026-06-17T00:00:00+00:00',
+      source_ontology: 'data/material_ontology_enhanced.json',
+      source_digest: '0d986d21a5a2b230',
+      stats: { nodes: 3, relationships: 2, classes: 2, individuals: 1 },
+      nodes: mockNodes,
+      relationships: mockRelationships
+    };
+
+    test('应该加载带版本契约的数据并显示契约版本', async () => {
+      render(<OntologyNVLViewer data={versionedContract} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('nvl-wrapper')).toBeInTheDocument();
+      });
+      expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+
+      // 统计面板显示契约版本（provenance 可见）
+      await waitFor(() => {
+        expect(screen.getByText(/Contract:/)).toBeInTheDocument();
+      });
+      expect(screen.getByText(/Contract:/)).toHaveTextContent('1.0');
+    });
+
+    test('缺失 schema_version 时应向后兼容加载并 console.warn', async () => {
+      const warnSpy = jest.spyOn(console, 'warn');
+      // mockData 无 schema_version（旧格式）
+      render(<OntologyNVLViewer data={mockData} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('nvl-wrapper')).toBeInTheDocument();
+      });
+      expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+
+      // 触发了向后兼容 warn
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('schema_version'));
+      // 统计面板标记为 legacy
+      await waitFor(() => {
+        expect(screen.getByText(/Contract:/)).toHaveTextContent('legacy');
+      });
+      warnSpy.mockRestore();
+    });
+
+    test('带版本契约但节点 type 非法时应展示用户友好错误（不白屏）', async () => {
+      // 故意构造非法数据以测试校验失败路径，类型不匹配属预期，用 any 绕过
+      const invalid: any = {
+        ...versionedContract,
+        nodes: [
+          { id: 'bad-1', type: 'bogus' }, // 非法 type
+          { id: 'bad-2' } // 缺 type
+        ],
+        stats: { nodes: 2, relationships: 0, classes: 0, individuals: 0 }
+      };
+
+      render(<OntologyNVLViewer data={invalid} />);
+
+      await waitFor(() => {
+        expect(screen.getByText(/Error:/)).toBeInTheDocument();
+      });
+      // 友好错误包含契约校验信息
+      expect(screen.getByText(/契约校验失败/)).toBeInTheDocument();
+      // 不应渲染图（避免假象）
+      expect(screen.queryByTestId('nvl-wrapper')).not.toBeInTheDocument();
+    });
+
+    test('带版本契约但缺少溯源字段时应报错', async () => {
+      const missingProvenance = {
+        schema_version: '1.0',
+        nodes: mockNodes,
+        relationships: mockRelationships
+      };
+
+      render(<OntologyNVLViewer data={missingProvenance} />);
+
+      await waitFor(() => {
+        expect(screen.getByText(/Error:/)).toBeInTheDocument();
+      });
+      expect(screen.getByText(/source_digest|generated_at|source_ontology/)).toBeInTheDocument();
+    });
+  });
 });
