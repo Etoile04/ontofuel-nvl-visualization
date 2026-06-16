@@ -802,7 +802,7 @@ describe('exportUtils', () => {
         {
           id: 'node-1',
           name: 'Tag',
-          type: '<class>',
+          type: 'class',
           label: '<HTML>'
         }
       ];
