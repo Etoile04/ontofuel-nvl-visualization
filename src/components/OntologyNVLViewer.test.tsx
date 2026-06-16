@@ -8,6 +8,8 @@
  */
 
 import React from 'react';
+import fs from 'fs';
+import path from 'path';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import OntologyNVLViewer from './OntologyNVLViewer';
 import type { Node, Relationship } from '../types/nvl';
@@ -671,6 +673,118 @@ describe('OntologyNVLViewer', () => {
 
       expect(container.querySelector('.toolbar')).toBeInTheDocument();
       expect(screen.getByPlaceholderText('Search nodes...')).toBeInTheDocument();
+    });
+  });
+
+  // ==================== embed 模式最小搜索 (NFM-237 MUST #2) ====================
+  describe('embed 模式最小搜索 (NFM-237 MUST #2)', () => {
+    test('embed 模式渲染一个最小搜索框（即便完整工具栏已隐藏）', () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+      // 完整工具栏搜索框被隐藏
+      expect(screen.queryByPlaceholderText('Search nodes...')).not.toBeInTheDocument();
+      // 但保留一个最小嵌入搜索框
+      expect(screen.getByPlaceholderText('搜索节点…')).toBeInTheDocument();
+    });
+
+    test('embed 搜索框复用既有 NFM-50 过滤逻辑：输入后节点数缩减', async () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+      expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+
+      fireEvent.change(screen.getByPlaceholderText('搜索节点…'), {
+        target: { value: 'steel' }
+      });
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('1 nodes');
+      });
+    });
+
+    test('embed 搜索框清除按钮重置过滤', async () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+      fireEvent.change(screen.getByPlaceholderText('搜索节点…'), {
+        target: { value: 'steel' }
+      });
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('1 nodes');
+      });
+
+      fireEvent.click(screen.getByLabelText('清除搜索'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+      });
+    });
+
+    test('非 embed 模式不渲染 embed 搜索框（对照基线，零破坏）', () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={false} />);
+      expect(screen.queryByPlaceholderText('搜索节点…')).not.toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search nodes...')).toBeInTheDocument();
+    });
+  });
+
+  // ==================== iframe 高度契约 (NFM-237 MUST #1) ====================
+  describe('iframe 高度契约 (NFM-237 MUST #1)', () => {
+    const cssPath = path.resolve(__dirname, './OntologyNVLViewer.css');
+    const css = fs.readFileSync(cssPath, 'utf8');
+
+    test('.ontology-nvl-viewer 以 min-height:400px 作为高度下限（适应宿主容器）', () => {
+      // min-height 必须落在 .ontology-nvl-viewer 规则块内
+      expect(css).toMatch(/\.ontology-nvl-viewer\s*\{[^}]*min-height:\s*400px/i);
+    });
+
+    test('组件默认（无 height prop）渲染时不强制 100vh 视口高', () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} />);
+      const viewer = container.querySelector('.ontology-nvl-viewer') as HTMLElement;
+      expect(viewer.style.height).not.toBe('100vh');
+    });
+  });
+
+  // ==================== 节点级深链 ?node (NFM-237 MUST #3) ====================
+  describe('节点级深链 ?node (NFM-237 MUST #3)', () => {
+    test('initialNodeId 在数据加载后自动选中对应节点（渲染详情面板）', async () => {
+      const { container } = render(
+        <OntologyNVLViewer data={mockData} initialNodeId="class-1" />
+      );
+
+      await waitFor(() => {
+        const panel = container.querySelector('.node-details-panel');
+        expect(panel).toBeInTheDocument();
+        expect(panel?.querySelector('h3')).toHaveTextContent('Material');
+      });
+    });
+
+    test('initialNodeId 选中后节点类型信息也展示', async () => {
+      const { container } = render(
+        <OntologyNVLViewer data={mockData} initialNodeId="individual-1" />
+      );
+
+      await waitFor(() => {
+        const panel = container.querySelector('.node-details-panel');
+        expect(panel).toBeInTheDocument();
+        // 范围限定在详情面板内，避免与图中的同名节点标签冲突
+        expect(panel?.querySelector('h3')).toHaveTextContent('Steel');
+        expect(panel?.querySelector('.node-type')).toHaveTextContent(/individual/i);
+      });
+    });
+
+    test('initialNodeId 不匹配任何节点时不崩溃、不显示详情面板', async () => {
+      const { container } = render(
+        <OntologyNVLViewer data={mockData} initialNodeId="does-not-exist" />
+      );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+      });
+      expect(container.querySelector('.node-details-panel')).not.toBeInTheDocument();
+    });
+
+    test('无 initialNodeId 时行为不变（零破坏）', async () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+      });
+      expect(container.querySelector('.node-details-panel')).not.toBeInTheDocument();
     });
   });
 });

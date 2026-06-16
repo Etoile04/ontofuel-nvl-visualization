@@ -5,6 +5,10 @@
 .ontology-nvl-viewer {
   display: flex;
   flex-direction: column;
+  /* NFM-237 MUST #1: 适应宿主容器高度（hero/card/modal/iframe），而非强制视口高。
+     内联 height=100% 由父级链（html/body/#root height:100%）解析；
+     min-height 保证极短容器下视图仍可用。 */
+  min-height: 400px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
@@ -66,6 +70,59 @@
   flex: 1;
   position: relative;
   background: #fafafa;
+}
+
+/* embed 模式最小搜索 (NFM-237 MUST #2) — 浮于图上的轻量搜索框 */
+.embed-search-bar {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.embed-search-input {
+  width: 200px;
+  max-width: 60vw;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.embed-search-input:focus {
+  outline: none;
+  border-color: #4A90E2;
+}
+
+.embed-search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: #f0f0f0;
+  color: #555;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.embed-search-clear:hover {
+  background: #e0e0e0;
+  color: #333;
 }
 
 .nvl-container canvas {

@@ -14,9 +14,10 @@ build step is required — point an `<iframe>` at the deployed viewer.
 
 | Param       | Required | Meaning                                                                 |
 | ----------- | -------- | ----------------------------------------------------------------------- |
-| `embed`     | no       | `embed=true` hides the toolbar / export menu (chromeless embed).        |
+| `embed`     | no       | `embed=true` hides the toolbar / export menu (chromeless embed). A minimal floating search box is preserved (§5). |
 | `data`      | no       | Absolute or relative URL to the NVL JSON corpus to render.              |
 | `corpus`    | no       | **Reserved.** NFMD backend corpus id; resolver not yet wired (§4).      |
+| `node`      | no       | `node=<id>` opens the viewer pre-selected on a specific node (§5).      |
 
 ### Data-source resolution priority
 
@@ -44,8 +45,10 @@ existing behaviour is unchanged.
 ></iframe>
 ```
 
-- `embed=true` → toolbar + export menu hidden; the graph fills the frame.
+- `embed=true` → toolbar + export menu hidden; the graph fills the frame. A
+  minimal floating search box stays available so large graphs remain navigable.
 - `data=` → points at the corpus JSON you want to render.
+- `node=` (optional) → e.g. `&node=Material` opens pre-selected on that node.
 
 ## 3. Static asset hosting & CORS contract
 
@@ -93,16 +96,46 @@ Cross-team protocol changes must be escalated to CTO/CEO.
 > guide implements the static-embed path and reserves the API hook; the final
 > form is deferred to the NFMD architecture research (NFM-229 D6).
 
-## 5. iframe sizing & deep-linking
+## 5. iframe sizing, embed search & deep-linking
 
-- **Sizing:** the viewer fills its container (`width: 100%`, `height: 100vh`
-  internally). Give the iframe an explicit height — `min-height: 600px`
-  recommended, or drive it from the host layout. Avoid fixed small heights that
-  clip the graph.
-- **Deep-linking:** the current surface deep-links via `?data=` (corpus
-  selection) and `?embed=` (chrome). Node-level deep-linking (e.g.
-  `?node=<id>` to open on a specific entity) is a candidate follow-up pending
-  the UXDesigner embed review ([NFM-232](/NFM/issues/NFM-232)).
+### Sizing — height contract (NFM-237 MUST #1)
+
+The viewer adapts to its **host container**, not the viewport:
+
+- `.ontology-nvl-viewer` renders at `height: 100%` with a **`min-height: 400px`**
+  floor (CSS), so it fills whatever box the host gives it (hero / card / modal /
+  iframe) and never collapses below a usable size.
+- The height resolves through a `height: 100%` chain: the viewer root, the App
+  wrapper, `#root`, `body`, and `html` are all `height: 100%`. **The host must
+  therefore give the iframe (or embedding container) an explicit height**, e.g.
+  `style="height: 100%; min-height: 600px"`, or a fixed/constrained height from
+  the host layout. A heightless container leaves the viewer at its 400px floor.
+
+> Previous behaviour forced `height: 100vh` internally, which overfilled cards
+> and modals. That was removed in NFM-237; default (non-embed) full-viewport
+> behaviour is preserved via the `100%` chain.
+
+### Embed search (NFM-237 MUST #2)
+
+In `embed=true` mode the full toolbar is hidden, but a **minimal floating search
+box** (top-left overlay) is retained. It reuses the same node filtering as the
+full toolbar (match on node name / label / type) — essential for the 700+ node
+corpus. Typing filters the graph live; the `×` button clears the search.
+
+### Deep-linking (NFM-237 MUST #3)
+
+The surface now deep-links at three levels:
+
+- `?data=<URL>` — corpus selection (§1).
+- `?embed=true` — chromeless embed (§1).
+- `?node=<id>` — **node-level**: on load the viewer locates and selects the node
+  with that id (rendering its details). Clicking any node **syncs** `?node=<id>`
+  back into the URL via `history.replaceState`, preserving any existing
+  `embed`/`data`/`corpus` params — so the address bar always reflects the
+  focused entity and is shareable. Implemented in `src/utils/nodeDeepLink.ts`.
+
+If `?node=<id>` does not match any node in the loaded corpus, the viewer loads
+normally without error (no selection).
 
 ## 6. Operational notes
 

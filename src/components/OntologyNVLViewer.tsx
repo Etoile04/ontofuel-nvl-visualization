@@ -55,6 +55,8 @@ interface OntologyNVLViewerProps {
   onRelationshipClick?: (rel: Relationship) => void;
   /** 嵌入模式：隐藏工具栏和侧边栏，仅展示图可视化 */
   embedMode?: boolean;
+  /** 节点级深链 ?node=<id>：加载后自动选中/定位该节点（NFM-237 MUST #3） */
+  initialNodeId?: string;
 }
 
 interface NodeDetails {
@@ -63,6 +65,28 @@ interface NodeDetails {
   type: string;
   class?: string;
   properties: Record<string, any>;
+}
+
+/**
+ * 从 NVL 节点构造详情对象（点击选中 与 ?node 深链初选 共用，避免重复）。
+ * 返回新对象，不修改入参（immutable）。
+ */
+function buildNodeDetails(node: Node): NodeDetails {
+  const details: NodeDetails = {
+    id: node.id,
+    name: node.name || node.id,
+    type: node.type || 'unknown',
+    class: node.class,
+    properties: {}
+  };
+
+  Object.keys(node).forEach(key => {
+    if (!['id', 'name', 'type', 'class'].includes(key)) {
+      details.properties[key] = (node as any)[key];
+    }
+  });
+
+  return details;
 }
 
 /**
@@ -77,7 +101,8 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
   onNodeClick,
   onNodeDoubleClick,
   onRelationshipClick,
-  embedMode = false
+  embedMode = false,
+  initialNodeId
 }) => {
   // 状态
   const [nodes, setNodes] = useState<Node[]>([]);
@@ -207,29 +232,23 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
     );
   }, [searchTerm, relationships, filteredNodes]);
 
+  // 节点级深链 ?node=<id>：数据加载后自动选中/定位（NFM-237 MUST #3）
+  useEffect(() => {
+    if (!initialNodeId || nodes.length === 0) {
+      return;
+    }
+    const match = nodes.find(n => n.id === initialNodeId);
+    if (!match) {
+      return;
+    }
+    setSelectedNode(buildNodeDetails(match));
+  }, [initialNodeId, nodes]);
+
   // 鼠标事件回调
   const mouseEventCallbacks: MouseEventCallbacks = {
     onNodeClick: (node: Node, hitElements: any, event: MouseEvent) => {
-      console.log('Node clicked:', node);
-      
-      // 提取节点详情
-      const details: NodeDetails = {
-        id: node.id,
-        name: node.name || node.id,
-        type: node.type || 'unknown',
-        class: node.class,
-        properties: {}
-      };
+      setSelectedNode(buildNodeDetails(node));
 
-      // 提取所有属性
-      Object.keys(node).forEach(key => {
-        if (!['id', 'name', 'type', 'class'].includes(key)) {
-          details.properties[key] = (node as any)[key];
-        }
-      });
-
-      setSelectedNode(details);
-      
       if (onNodeClick) {
         onNodeClick(node);
       }
@@ -510,6 +529,31 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
       </div>
       )}
       <div className="content">
+        {/* embed 模式最小搜索 (NFM-237 MUST #2)：复用既有 searchTerm/filteredNodes，
+            工具栏隐藏时仍保留一个最小搜索框，避免 700+ 节点图不可用。 */}
+        {embedMode && (
+          <div className="embed-search-bar">
+            <input
+              type="search"
+              placeholder="搜索节点…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="embed-search-input"
+              aria-label="搜索节点"
+            />
+            {searchTerm && (
+              <button
+                type="button"
+                className="embed-search-clear"
+                onClick={() => setSearchTerm('')}
+                aria-label="清除搜索"
+              >
+                ×
+              </button>
+            )}
+          </div>
+        )}
+
         {/* 加载状态 */}
         {loading && (
           <div className="loading" role="status" aria-live="polite">
