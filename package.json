@@ -11,6 +11,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^30.0.0",
@@ -23,7 +24,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:ci": "CI=true react-scripts test --coverage --watchAll=false",
+    "test:e2e": "playwright test",
+    "regen:fixture": "bash scripts/regen_fixture.sh"
   },
   "browserslist": {
     "production": [
