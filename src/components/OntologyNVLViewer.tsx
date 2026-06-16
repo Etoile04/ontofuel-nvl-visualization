@@ -232,6 +232,14 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
     );
   }, [searchTerm, relationships, filteredNodes]);
 
+  // 选中节点：写入详情（侧边栏）+ 标记 selected 让 NVL 可视化高亮。
+  // NFM-238 H1: embed 模式隐藏侧边栏（renderNodeDetails 的唯一宿主），selected 标志
+  // 是深链 ?node 与点击在 embed 下唯一的可见反馈。
+  const selectNode = useCallback((node: Node) => {
+    setSelectedNode(buildNodeDetails(node));
+    setNodes(prev => prev.map(n => ({ ...n, selected: n.id === node.id })));
+  }, []);
+
   // 节点级深链 ?node=<id>：数据加载后自动选中/定位（NFM-237 MUST #3）
   useEffect(() => {
     if (!initialNodeId || nodes.length === 0) {
@@ -241,13 +249,13 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
     if (!match) {
       return;
     }
-    setSelectedNode(buildNodeDetails(match));
-  }, [initialNodeId, nodes]);
+    selectNode(match);
+  }, [initialNodeId, nodes, selectNode]);
 
   // 鼠标事件回调
   const mouseEventCallbacks: MouseEventCallbacks = {
     onNodeClick: (node: Node, hitElements: any, event: MouseEvent) => {
-      setSelectedNode(buildNodeDetails(node));
+      selectNode(node);
 
       if (onNodeClick) {
         onNodeClick(node);

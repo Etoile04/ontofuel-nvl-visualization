@@ -24,6 +24,7 @@ jest.mock('@neo4j-nvl/react', () => ({
         <div
           key={node.id}
           data-testid={`node-${node.id}`}
+          data-selected={node.selected ? 'true' : undefined}
           onClick={() => mouseEventCallbacks?.onNodeClick?.(node)}
           onDoubleClick={() => mouseEventCallbacks?.onNodeDoubleClick?.(node)}
         >
@@ -785,6 +786,30 @@ describe('OntologyNVLViewer', () => {
         expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
       });
       expect(container.querySelector('.node-details-panel')).not.toBeInTheDocument();
+    });
+
+    // ---- NFM-238 H1: embed 模式下深链/点击的可见反馈（selected 标志）----
+    test('initialNodeId 在 embed 模式下标记目标节点 selected（H1 可见反馈）', async () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={true} initialNodeId="class-1" />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-class-1')).toHaveAttribute('data-selected', 'true');
+      });
+      // 其他节点未被选中
+      expect(screen.getByTestId('node-class-2')).not.toHaveAttribute('data-selected', 'true');
+    });
+
+    test('embed 模式点击节点标记 selected（H1 可见反馈）', async () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-class-1')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByTestId('node-class-1'));
+
+      expect(screen.getByTestId('node-class-1')).toHaveAttribute('data-selected', 'true');
+      expect(screen.getByTestId('node-class-2')).not.toHaveAttribute('data-selected', 'true');
     });
   });
 });
