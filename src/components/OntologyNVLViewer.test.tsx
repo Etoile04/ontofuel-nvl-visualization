@@ -641,4 +641,36 @@ describe('OntologyNVLViewer', () => {
       expect(screen.getByText(/source_digest|generated_at|source_ontology/)).toBeInTheDocument();
     });
   });
+
+  // ==================== embed 模式 (NFM-49 / NFM-228 AC#2) ====================
+  describe('embed 模式 (NFM-49)', () => {
+    test('embedMode 隐藏整个工具栏', () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+
+      expect(container.querySelector('.toolbar')).not.toBeInTheDocument();
+      // 工具栏内的具体控件也都不渲染
+      expect(screen.queryByPlaceholderText('Search nodes...')).not.toBeInTheDocument();
+      expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Export menu')).not.toBeInTheDocument();
+    });
+
+    test('embedMode 隐藏侧边栏', () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+
+      expect(container.querySelector('.sidebar')).not.toBeInTheDocument();
+    });
+
+    test('embedMode 仍渲染图容器（仅隐藏 chrome，不隐藏图本身）', () => {
+      render(<OntologyNVLViewer data={mockData} embedMode={true} />);
+
+      expect(screen.getByTestId('nvl-wrapper')).toBeInTheDocument();
+    });
+
+    test('非 embed 模式渲染工具栏（对照基线，证明 embed 真正切换而非总是缺失）', () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} />);
+
+      expect(container.querySelector('.toolbar')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search nodes...')).toBeInTheDocument();
+    });
+  });
 });
