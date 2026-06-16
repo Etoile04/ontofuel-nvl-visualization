@@ -557,4 +557,75 @@ describe('OntologyNVLViewer', () => {
       });
     });
   });
+
+  // ==================== 测试用例: 嵌入模式 (NFM-49, AC#2 / Task 3) ====================
+  describe('嵌入模式 (NFM-49)', () => {
+    test('embedMode 隐藏工具栏（搜索框 / 布局 / 导出）', async () => {
+      render(<OntologyNVLViewer data={mockData} embedMode />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('nvl-wrapper')).toBeInTheDocument();
+      });
+
+      // 整个工具栏块被 {!embedMode && ...} 门控，三件工具栏元素应全部缺席
+      expect(screen.queryByPlaceholderText('Search nodes...')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Export menu')).not.toBeInTheDocument();
+      expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+    });
+
+    test('embedMode 隐藏侧边栏', () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} embedMode />);
+      expect(container.querySelector('.sidebar')).not.toBeInTheDocument();
+    });
+
+    test('embedMode 仍然渲染图容器与节点', async () => {
+      render(<OntologyNVLViewer data={mockData} embedMode />);
+      await waitFor(() => {
+        expect(screen.getByTestId('nvl-wrapper')).toBeInTheDocument();
+      });
+      expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+    });
+
+    test('非 embed 模式渲染工具栏与侧边栏（对照）', async () => {
+      const { container } = render(<OntologyNVLViewer data={mockData} />);
+      await waitFor(() => {
+        expect(screen.getByTestId('nvl-wrapper')).toBeInTheDocument();
+      });
+      expect(screen.getByPlaceholderText('Search nodes...')).toBeInTheDocument();
+      expect(container.querySelector('.sidebar')).toBeInTheDocument();
+    });
+  });
+
+  // ==================== 搜索大小写不敏感 (NFM-50 / Task 5) ====================
+  describe('搜索大小写不敏感 (NFM-50)', () => {
+    test('小写搜索词匹配大写节点名（Steel ← steel）', async () => {
+      render(<OntologyNVLViewer data={mockData} />);
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+      });
+
+      const searchInput = screen.getByPlaceholderText('Search nodes...');
+      fireEvent.change(searchInput, { target: { value: 'steel' } });
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('1 nodes');
+      });
+      expect(screen.getByTestId('node-individual-1')).toBeInTheDocument();
+    });
+
+    test('大写搜索词匹配小写节点 type（class ← CLASS）', async () => {
+      render(<OntologyNVLViewer data={mockData} />);
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('3 nodes');
+      });
+
+      const searchInput = screen.getByPlaceholderText('Search nodes...');
+      // type='class' 命中 class-1 与 class-2；大小写不敏感
+      fireEvent.change(searchInput, { target: { value: 'CLASS' } });
+
+      await waitFor(() => {
+        expect(screen.getByTestId('node-count')).toHaveTextContent('2 nodes');
+      });
+    });
+  });
 });
