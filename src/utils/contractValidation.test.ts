@@ -3,6 +3,10 @@
  * Covers versionless backward-compat, versioned conformance, and failure modes.
  */
 import { validateNvlContract } from './contractValidation';
+// NFM-228: the committed canonical E2E fixture (see schemas/nvl.schema.json for
+// the contract definition doc). Runtime validation still uses the zero-dependency
+// validateNvlContract — no ajv is loaded.
+import fixture from '../../e2e/fixtures/nvl_ontology_data.json';
 
 const validVersioned = {
   schema_version: '1.0',
@@ -90,5 +94,14 @@ describe('validateNvlContract (NFM-227)', () => {
   test('versionless 但 nodes 非数组：valid=false', () => {
     const r = validateNvlContract({ nodes: 'nope' });
     expect(r.valid).toBe(false);
+  });
+
+  // NFM-228: the committed E2E fixture must conform to the contract. Guards against
+  // ontology/converter drift silently breaking the rendered visualization. Reuses
+  // validateNvlContract (the sole contract truth, no ajv).
+  test('已提交的 E2E NVL fixture 通过契约校验 (NFM-228)', () => {
+    const result = validateNvlContract(fixture);
+    expect(result.valid).toBe(true);
+    expect(result.versioned).toBe(true);
   });
 });
