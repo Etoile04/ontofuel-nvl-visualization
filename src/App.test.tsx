@@ -11,7 +11,7 @@ import { render, cleanup } from '@testing-library/react';
 import App from './App';
 
 // jest.mock factories may only reference `mock`-prefixed out-of-scope vars.
-const mockViewer = jest.fn(() => <div data-testid="viewer-mock" />);
+const mockViewer = jest.fn((_props: unknown) => <div data-testid="viewer-mock" />);
 
 jest.mock('./components/OntologyNVLViewer', () => ({
   __esModule: true,
@@ -48,12 +48,12 @@ describe('App embed wiring (NFM-49)', () => {
     setLocationSearch('');
     render(<App />);
     expect(mockViewer).toHaveBeenCalledTimes(1);
-    expect(mockViewer.mock.calls[0][0].embedMode).toBe(false);
+    expect((mockViewer.mock.calls[0][0] as { embedMode: boolean }).embedMode).toBe(false);
   });
 
   test('passes embedMode=true when ?embed=true is present', () => {
     setLocationSearch('?embed=true');
     render(<App />);
-    expect(mockViewer.mock.calls[0][0].embedMode).toBe(true);
+    expect((mockViewer.mock.calls[0][0] as { embedMode: boolean }).embedMode).toBe(true);
   });
 });

@@ -18,6 +18,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "serve": "^14.2.6",
     "typescript": "^5.0.0"
   },
   "scripts": {
@@ -27,6 +28,7 @@
     "eject": "react-scripts eject",
     "test:ci": "CI=true react-scripts test --coverage --watchAll=false",
     "test:e2e": "playwright test",
+    "build:e2e": "react-scripts build && node scripts/copy_fixture.js",
     "regen:fixture": "bash scripts/regen_fixture.sh"
   },
   "browserslist": {
