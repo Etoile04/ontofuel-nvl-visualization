@@ -237,7 +237,12 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
   // 是深链 ?node 与点击在 embed 下唯一的可见反馈。
   const selectNode = useCallback((node: Node) => {
     setSelectedNode(buildNodeDetails(node));
-    setNodes(prev => prev.map(n => ({ ...n, selected: n.id === node.id })));
+    // 仅当选中态确实变化时才重映射；返回同一引用让 React 跳过重渲染，
+    // 避免深链 effect（deps 含 nodes）→ setNodes → nodes 新引用 → effect 的无限循环。
+    setNodes(prev => {
+      const alreadySelected = prev.every(n => (n.id === node.id) === Boolean(n.selected));
+      return alreadySelected ? prev : prev.map(n => ({ ...n, selected: n.id === node.id }));
+    });
   }, []);
 
   // 节点级深链 ?node=<id>：数据加载后自动选中/定位（NFM-237 MUST #3）
