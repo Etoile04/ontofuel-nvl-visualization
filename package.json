@@ -17,6 +17,8 @@
     "@types/jest": "^30.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "ajv": "^8.17.0",
+    "ajv-keywords": "^5.1.0",
     "react-scripts": "5.0.1",
     "serve": "^14.2.6",
     "typescript": "^5.0.0"
