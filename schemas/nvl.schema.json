@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ontofuel.dev/schemas/nvl.schema.json",
+  "title": "OntoFuel NVL data contract (stub — NFM-228 Task 2 / H1a)",
+  "description": "Minimal contract spec capturing what the runtime validator (src/utils/contractValidation.ts, validateNvlContract) enforces for a VERSIONED contract (schema_version present). This is a documentation/swap stub: NFM-227 will replace it in place with the full Draft 2020-12 conformance schema consumed by the Python-side gate (tests/test_nvl_contract.py). The committed E2E fixture (e2e/fixtures/nvl_ontology_data.json, schema_version 1.0) MUST conform to this. NOTE: the JS runtime deliberately does NOT use ajv (bundle budget) — validateNvlContract is the programmatic source of truth; this schema documents the same contract for cross-language conformance.",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "source_ontology", "source_digest", "stats", "nodes"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "type": "string", "minLength": 1, "description": "Contract version, e.g. '1.0'. Absent => versionless/backward-compatible (validateNvlContract only requires nodes[] then)." },
+    "generated_at": { "type": "string", "minLength": 1 },
+    "source_ontology": { "type": "string", "minLength": 1 },
+    "source_digest": { "type": "string", "minLength": 1 },
+    "stats": {
+      "type": "object",
+      "required": ["nodes", "relationships", "classes", "individuals"],
+      "additionalProperties": true,
+      "properties": {
+        "nodes": { "type": "number", "minimum": 0 },
+        "relationships": { "type": "number", "minimum": 0 },
+        "classes": { "type": "number", "minimum": 0 },
+        "individuals": { "type": "number", "minimum": 0 }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "enum": ["class", "individual"] }
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "type"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "from": { "type": "string", "minLength": 1, "description": "MUST reference an existing node id" },
+          "to": { "type": "string", "minLength": 1, "description": "MUST reference an existing node id" },
+          "type": { "type": "string", "minLength": 1, "description": "INSTANCE_OF | SUBCLASS_OF | domain verb" }
+        }
+      }
+    }
+  }
+}
