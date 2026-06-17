@@ -23,3 +23,10 @@ yarn-error.log*
 # IDE
 .vscode/
 .idea/
+
+# E2E / Playwright (NFM-228)
+/e2e/output/
+/e2e/fixtures/generated/
+/playwright-report/
+/test-results/
+/playwright/.cache/
