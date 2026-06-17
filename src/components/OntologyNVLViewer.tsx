@@ -24,6 +24,7 @@ import {
   exportToMarkdown,
   type ExportOptions
 } from '../utils/exportUtils';
+import { validateNvlContract } from '../utils/contractValidation';
 import './OntologyNVLViewer.css';
 
 // ✅ Task 4: 类型守卫
@@ -54,6 +55,8 @@ interface OntologyNVLViewerProps {
   onRelationshipClick?: (rel: Relationship) => void;
   /** 嵌入模式：隐藏工具栏和侧边栏，仅展示图可视化 */
   embedMode?: boolean;
+  /** 节点级深链 ?node=<id>：加载后自动选中/定位该节点（NFM-237 MUST #3） */
+  initialNodeId?: string;
 }
 
 interface NodeDetails {
@@ -62,6 +65,28 @@ interface NodeDetails {
   type: string;
   class?: string;
   properties: Record<string, any>;
+}
+
+/**
+ * 从 NVL 节点构造详情对象（点击选中 与 ?node 深链初选 共用，避免重复）。
+ * 返回新对象，不修改入参（immutable）。
+ */
+function buildNodeDetails(node: Node): NodeDetails {
+  const details: NodeDetails = {
+    id: node.id,
+    name: node.name || node.id,
+    type: node.type || 'unknown',
+    class: node.class,
+    properties: {}
+  };
+
+  Object.keys(node).forEach(key => {
+    if (!['id', 'name', 'type', 'class'].includes(key)) {
+      details.properties[key] = (node as any)[key];
+    }
+  });
+
+  return details;
 }
 
 /**
@@ -76,13 +101,15 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
   onNodeClick,
   onNodeDoubleClick,
   onRelationshipClick,
-  embedMode = false
+  embedMode = false,
+  initialNodeId
 }) => {
   // 状态
   const [nodes, setNodes] = useState<Node[]>([]);
   const [relationships, setRelationships] = useState<Relationship[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [contractVersion, setContractVersion] = useState<string | null>(null);
   const [layout, setLayout] = useState(initialLayout);
   const [selectedNode, setSelectedNode] = useState<NodeDetails | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -141,22 +168,36 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
           throw new Error('Invalid data: received null or undefined');
         }
 
-        if (!Array.isArray(nvlData.nodes)) {
-          throw new Error('Invalid data format: nodes must be an array');
+        // NFM-227: NVL 数据契约校验。
+        // - 缺失 schema_version → 旧格式，向后兼容加载 + console.warn
+        // - 带版本但校验失败 → 抛出用户友好错误（由错误态 UI 展示，避免静默白屏）
+        const contractResult = validateNvlContract(nvlData);
+        if (contractResult.warning) {
+          console.warn(`[OntologyNVLViewer] ${contractResult.warning}`);
+        }
+        if (!contractResult.valid) {
+          const shown = contractResult.errors.slice(0, 5);
+          const more = contractResult.errors.length > shown.length
+            ? `（共 ${contractResult.errors.length} 项问题，已显示前 ${shown.length} 项）`
+            : '';
+          throw new Error(`NVL 数据契约校验失败：${shown.join('；')}${more}`);
         }
 
-        if (!Array.isArray(nvlData.relationships)) {
+        const parsed = nvlData as { nodes: Node[]; relationships?: Relationship[] };
+        // relationships 缺失时降级为空数组（保持既有行为）
+        if (!Array.isArray(parsed.relationships)) {
           console.warn('relationships is not an array, using empty array');
-          nvlData.relationships = [];
+          parsed.relationships = [];
         }
 
         // ✅ P0 修复 2: 检查空数据
-        if (nvlData.nodes.length === 0) {
+        if (parsed.nodes.length === 0) {
           console.warn('No nodes in data');
         }
 
-        setNodes(nvlData.nodes);
-        setRelationships(nvlData.relationships);
+        setContractVersion(contractResult.schemaVersion ?? null);
+        setNodes(parsed.nodes);
+        setRelationships(parsed.relationships);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load data');
         console.error('Error loading NVL data:', err);
@@ -191,29 +232,36 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
     );
   }, [searchTerm, relationships, filteredNodes]);
 
+  // 选中节点：写入详情（侧边栏）+ 标记 selected 让 NVL 可视化高亮。
+  // NFM-238 H1: embed 模式隐藏侧边栏（renderNodeDetails 的唯一宿主），selected 标志
+  // 是深链 ?node 与点击在 embed 下唯一的可见反馈。
+  const selectNode = useCallback((node: Node) => {
+    setSelectedNode(buildNodeDetails(node));
+    // 仅当选中态确实变化时才重映射；返回同一引用让 React 跳过重渲染，
+    // 避免深链 effect（deps 含 nodes）→ setNodes → nodes 新引用 → effect 的无限循环。
+    setNodes(prev => {
+      const alreadySelected = prev.every(n => (n.id === node.id) === Boolean(n.selected));
+      return alreadySelected ? prev : prev.map(n => ({ ...n, selected: n.id === node.id }));
+    });
+  }, []);
+
+  // 节点级深链 ?node=<id>：数据加载后自动选中/定位（NFM-237 MUST #3）
+  useEffect(() => {
+    if (!initialNodeId || nodes.length === 0) {
+      return;
+    }
+    const match = nodes.find(n => n.id === initialNodeId);
+    if (!match) {
+      return;
+    }
+    selectNode(match);
+  }, [initialNodeId, nodes, selectNode]);
+
   // 鼠标事件回调
   const mouseEventCallbacks: MouseEventCallbacks = {
     onNodeClick: (node: Node, hitElements: any, event: MouseEvent) => {
-      console.log('Node clicked:', node);
-      
-      // 提取节点详情
-      const details: NodeDetails = {
-        id: node.id,
-        name: node.name || node.id,
-        type: node.type || 'unknown',
-        class: node.class,
-        properties: {}
-      };
+      selectNode(node);
 
-      // 提取所有属性
-      Object.keys(node).forEach(key => {
-        if (!['id', 'name', 'type', 'class'].includes(key)) {
-          details.properties[key] = (node as any)[key];
-        }
-      });
-
-      setSelectedNode(details);
-      
       if (onNodeClick) {
         onNodeClick(node);
       }
@@ -308,6 +356,9 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
         <div>Individuals: {individualCount}</div>
         <div>Hierarchy Relations: {hierarchyCount}</div>
         <div>Property Relations: {propertyCount}</div>
+        <div className="contract-version">
+          Contract: {contractVersion ?? 'legacy (no schema_version)'}
+        </div>
       </div>
     );
   };
@@ -491,6 +542,31 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
       </div>
       )}
       <div className="content">
+        {/* embed 模式最小搜索 (NFM-237 MUST #2)：复用既有 searchTerm/filteredNodes，
+            工具栏隐藏时仍保留一个最小搜索框，避免 700+ 节点图不可用。 */}
+        {embedMode && (
+          <div className="embed-search-bar">
+            <input
+              type="search"
+              placeholder="搜索节点…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="embed-search-input"
+              aria-label="搜索节点"
+            />
+            {searchTerm && (
+              <button
+                type="button"
+                className="embed-search-clear"
+                onClick={() => setSearchTerm('')}
+                aria-label="清除搜索"
+              >
+                ×
+              </button>
+            )}
+          </div>
+        )}
+
         {/* 加载状态 */}
         {loading && (
           <div className="loading" role="status" aria-live="polite">

@@ -1,12 +1,6 @@
 /**
  * resolveDataUrl.test.ts
- * Tests for runtime dataUrl resolution (NFM-231 / NFM-229 D1).
- *
- * Priority chain under test (AC#1):
- *   ?data=<URL>  >  ?corpus=<id> (reserved)  >  REACT_APP_DATA_URL env
- *   >  props  >  default '/data/nvl_ontology_data.json'
- *
- * Written first (RED), implementation follows (GREEN).
+ * Tests for runtime data-source URL resolution (NFM-229 / NFM-226 ADR §2 D4).
  */
 
 import {
@@ -15,117 +9,94 @@ import {
   DEFAULT_DATA_URL,
 } from './resolveDataUrl';
 
-const p = (qs: string): URLSearchParams => new URLSearchParams(qs);
-
-describe('resolveDataUrl', () => {
-  describe('?data=<URL> — highest priority', () => {
-    test('uses ?data value when present', () => {
-      const r = resolveDataUrl(p('data=https://host/foo.json'), {});
-      expect(r.url).toBe('https://host/foo.json');
-      expect(r.source).toBe('query-data');
-    });
-
-    test('?data takes priority over ?corpus', () => {
-      const r = resolveDataUrl(p('data=https://x/d.json&corpus=abc'), {});
-      expect(r.url).toBe('https://x/d.json');
-      expect(r.source).toBe('query-data');
-    });
-
-    test('?data takes priority over env', () => {
-      const r = resolveDataUrl(p('data=https://x/d.json'), {
-        REACT_APP_DATA_URL: 'https://env/d.json',
-      });
-      expect(r.source).toBe('query-data');
-    });
-
-    test('?data takes priority over props', () => {
-      const r = resolveDataUrl(p('data=https://x/d.json'), {}, 'https://props/d.json');
-      expect(r.source).toBe('query-data');
-    });
-
-    test('empty ?data= falls through to next layer (not treated as set)', () => {
-      const r = resolveDataUrl(p('data='), {});
-      expect(r.source).toBe('default');
-    });
+describe('resolveDataUrl priority chain', () => {
+  test('?data= takes highest priority over corpus, env, and props', () => {
+    const params = new URLSearchParams('?data=https://x.test/a.json&corpus=c1');
+    const result = resolveDataUrl(
+      params,
+      { REACT_APP_DATA_URL: 'https://env.test/e.json' },
+      'https://prop.test/p.json'
+    );
+    expect(result.url).toBe('https://x.test/a.json');
+    expect(result.source).toBe('query-data');
   });
 
-  describe('?corpus=<id> — reserved / placeholder', () => {
-    test('falls back to default URL and warns (backend not wired)', () => {
-      const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-      const r = resolveDataUrl(p('corpus=nvl-2026'), {});
-      expect(r.source).toBe('query-corpus');
-      expect(r.url).toBe(DEFAULT_DATA_URL);
-      expect(warn).toHaveBeenCalled();
-      expect(String(warn.mock.calls[0][0])).toMatch(/NFMD backend resolver not wired/i);
-      warn.mockRestore();
-    });
-
-    test('?corpus takes priority over env', () => {
-      const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-      const r = resolveDataUrl(p('corpus=abc'), { REACT_APP_DATA_URL: 'https://env/d.json' });
-      expect(r.source).toBe('query-corpus');
-      warn.mockRestore();
-    });
-
-    test('?corpus takes priority over props', () => {
-      const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-      const r = resolveDataUrl(p('corpus=abc'), {}, 'https://props/d.json');
-      expect(r.source).toBe('query-corpus');
-      warn.mockRestore();
-    });
+  test('falls back to default when nothing is set (zero-break)', () => {
+    const result = resolveDataUrl(new URLSearchParams(''), {}, undefined);
+    expect(result.url).toBe(DEFAULT_DATA_URL);
+    expect(result.source).toBe('default');
   });
 
-  describe('REACT_APP_DATA_URL env', () => {
-    test('uses env when no query param is set', () => {
-      const r = resolveDataUrl(p(''), { REACT_APP_DATA_URL: 'https://env/d.json' });
-      expect(r.url).toBe('https://env/d.json');
-      expect(r.source).toBe('env');
-    });
-
-    test('env takes priority over props', () => {
-      const r = resolveDataUrl(p(''), { REACT_APP_DATA_URL: 'https://env/d.json' }, 'https://props/d.json');
-      expect(r.source).toBe('env');
-    });
+  test('default URL is the documented /data/nvl_ontology_data.json', () => {
+    expect(DEFAULT_DATA_URL).toBe('/data/nvl_ontology_data.json');
   });
 
-  describe('props', () => {
-    test('uses props when no query and no env', () => {
-      const r = resolveDataUrl(p(''), {}, 'https://props/d.json');
-      expect(r.url).toBe('https://props/d.json');
-      expect(r.source).toBe('props');
-    });
-
-    test('empty-string props fall through to default', () => {
-      const r = resolveDataUrl(p(''), {}, '');
-      expect(r.source).toBe('default');
-    });
+  test('REACT_APP_DATA_URL env wins over props and default', () => {
+    const result = resolveDataUrl(
+      new URLSearchParams(''),
+      { REACT_APP_DATA_URL: 'https://env.test/e.json' },
+      'https://prop.test/p.json'
+    );
+    expect(result.url).toBe('https://env.test/e.json');
+    expect(result.source).toBe('env');
   });
 
-  describe('default fallback — zero breakage', () => {
-    test('falls back to the legacy hardcoded default when nothing is set', () => {
-      const r = resolveDataUrl(p(''), {});
-      expect(r.url).toBe('/data/nvl_ontology_data.json');
-      expect(r.source).toBe('default');
-    });
+  test('propsUrl wins over default', () => {
+    const result = resolveDataUrl(
+      new URLSearchParams(''),
+      {},
+      'https://prop.test/p.json'
+    );
+    expect(result.url).toBe('https://prop.test/p.json');
+    expect(result.source).toBe('props');
+  });
 
-    test('DEFAULT_DATA_URL equals the legacy hardcoded value', () => {
-      expect(DEFAULT_DATA_URL).toBe('/data/nvl_ontology_data.json');
-    });
+  test('null params does not throw and falls back through tiers', () => {
+    const result = resolveDataUrl(null, {}, undefined);
+    expect(result.url).toBe(DEFAULT_DATA_URL);
+    expect(result.source).toBe('default');
+  });
+
+  test('?data= with empty corpus/env still resolves to the query url', () => {
+    const result = resolveDataUrl(
+      new URLSearchParams('?data=/data/custom.json'),
+      {},
+      undefined
+    );
+    expect(result.url).toBe('/data/custom.json');
+    expect(result.source).toBe('query-data');
   });
 });
 
-describe('resolveCorpusId', () => {
-  test('returns the default URL while the backend resolver is unwired', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    expect(resolveCorpusId('nvl-2026')).toBe(DEFAULT_DATA_URL);
-    warn.mockRestore();
+describe('?corpus= reserved resolver (NFMD backend not wired)', () => {
+  test('corpus stub warns and falls through to next tier (env)', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const result = resolveDataUrl(
+      new URLSearchParams('?corpus=my-corpus'),
+      { REACT_APP_DATA_URL: 'https://env.test/e.json' }
+    );
+    expect(result.source).toBe('env');
+    expect(result.url).toBe('https://env.test/e.json');
+    expect(warnSpy).toHaveBeenCalled();
+    warnSpy.mockRestore();
   });
 
-  test('warns once that the NFMD backend resolver is not wired', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    resolveCorpusId('nvl-2026');
-    expect(warn).toHaveBeenCalledTimes(1);
-    expect(String(warn.mock.calls[0][0])).toMatch(/NFMD backend resolver not wired/i);
-    warn.mockRestore();
+  test('resolveCorpusId returns null and warns (backend pending)', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    expect(resolveCorpusId('anything')).toBeNull();
+    expect(warnSpy).toHaveBeenCalled();
+    warnSpy.mockRestore();
+  });
+
+  test('corpus with no other source falls through to default', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const result = resolveDataUrl(
+      new URLSearchParams('?corpus=only-corpus'),
+      {},
+      undefined
+    );
+    expect(result.source).toBe('default');
+    expect(result.url).toBe(DEFAULT_DATA_URL);
+    warnSpy.mockRestore();
   });
 });

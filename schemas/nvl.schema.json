@@ -1,51 +1,105 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ontofuel.dev/schemas/nvl.schema.json",
-  "title": "OntoFuel NVL data contract (stub — NFM-228 Task 2 / H1a)",
-  "description": "Minimal contract spec capturing what the runtime validator (src/utils/contractValidation.ts, validateNvlContract) enforces for a VERSIONED contract (schema_version present). This is a documentation/swap stub: NFM-227 will replace it in place with the full Draft 2020-12 conformance schema consumed by the Python-side gate (tests/test_nvl_contract.py). The committed E2E fixture (e2e/fixtures/nvl_ontology_data.json, schema_version 1.0) MUST conform to this. NOTE: the JS runtime deliberately does NOT use ajv (bundle budget) — validateNvlContract is the programmatic source of truth; this schema documents the same contract for cross-language conformance.",
+  "$id": "https://ontofuel.dev/schemas/nvl_contract.schema.json",
+  "title": "OntoFuel NVL Ontology Data Contract",
+  "description": "Versioned, provenance-bearing contract for OntoFuel Neo4j-NVL ontology visualization data (NFM-227 / NFM-226 ADR D2). The nodes/relationships element structure is unchanged from the legacy {nodes, relationships} shape; this schema only adds version + provenance + stats envelope and pins the element field constraints.",
   "type": "object",
-  "required": ["schema_version", "generated_at", "source_ontology", "source_digest", "stats", "nodes"],
+  "required": [
+    "schema_version",
+    "generated_at",
+    "source_ontology",
+    "source_digest",
+    "stats",
+    "nodes",
+    "relationships"
+  ],
   "additionalProperties": true,
   "properties": {
-    "schema_version": { "type": "string", "minLength": 1, "description": "Contract version, e.g. '1.0'. Absent => versionless/backward-compatible (validateNvlContract only requires nodes[] then)." },
-    "generated_at": { "type": "string", "minLength": 1 },
-    "source_ontology": { "type": "string", "minLength": 1 },
-    "source_digest": { "type": "string", "minLength": 1 },
+    "schema_version": {
+      "type": "string",
+      "description": "Contract semantic version. Initial value '1.0'. Allows major.minor or full major.minor.patch.",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
+      "examples": ["1.0", "1.0.0"]
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO-8601 timestamp (UTC) when the NVL artifact was generated.",
+      "format": "date-time"
+    },
+    "source_ontology": {
+      "type": "string",
+      "description": "Path or identifier of the canonical ontology JSON the artifact was derived from.",
+      "minLength": 1
+    },
+    "source_digest": {
+      "type": "string",
+      "description": "Short sha256 digest (first 16 hex chars) of the canonical ontology serialization, for provenance / drift detection.",
+      "pattern": "^[a-f0-9]{16}$"
+    },
     "stats": {
       "type": "object",
+      "description": "NVL-derived counts. classes/individuals count NVL nodes of each type (classes includes converter-generated placeholder class nodes, so may exceed the source class count).",
       "required": ["nodes", "relationships", "classes", "individuals"],
       "additionalProperties": true,
       "properties": {
-        "nodes": { "type": "number", "minimum": 0 },
-        "relationships": { "type": "number", "minimum": 0 },
-        "classes": { "type": "number", "minimum": 0 },
-        "individuals": { "type": "number", "minimum": 0 }
+        "nodes": { "type": "integer", "minimum": 0 },
+        "relationships": { "type": "integer", "minimum": 0 },
+        "classes": { "type": "integer", "minimum": 0 },
+        "individuals": { "type": "integer", "minimum": 0 }
       }
     },
     "nodes": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["id", "type"],
-        "additionalProperties": true,
-        "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "type": { "enum": ["class", "individual"] }
-        }
-      }
+      "description": "Graph nodes. Element shape unchanged from legacy NVL; type is controlled to class|individual.",
+      "items": { "$ref": "#/$defs/node" }
     },
     "relationships": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["id", "from", "to", "type"],
-        "additionalProperties": true,
-        "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "from": { "type": "string", "minLength": 1, "description": "MUST reference an existing node id" },
-          "to": { "type": "string", "minLength": 1, "description": "MUST reference an existing node id" },
-          "type": { "type": "string", "minLength": 1, "description": "INSTANCE_OF | SUBCLASS_OF | domain verb" }
-        }
+      "description": "Graph relationships. Element shape unchanged from legacy NVL.",
+      "items": { "$ref": "#/$defs/relationship" }
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["id", "type"],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable node id, referenced by relationship.from/to."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["class", "individual"],
+          "description": "Controlled node type."
+        },
+        "name": { "type": "string", "description": "Display name." },
+        "label": { "type": "string", "description": "Label template or text." },
+        "comment": { "type": "string", "description": "rdfs:comment." },
+        "uri": { "type": "string", "description": "Ontology URI / IRI." },
+        "class": { "type": "string", "description": "For individuals: the class this individual instantiates." },
+        "color": { "type": "string", "description": "Render color (hex)." },
+        "size": { "type": "number", "description": "Render size." }
+      }
+    },
+    "relationship": {
+      "$comment": "type is intentionally permissive (string, minLength 1): it MUST accept INSTANCE_OF, SUBCLASS_OF, and any domain verb (object property name). Enumerating verbs would falsely reject valid future properties.",
+      "type": "object",
+      "required": ["id", "from", "to", "type"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "from": { "type": "string", "minLength": 1, "description": "Source node id." },
+        "to": { "type": "string", "minLength": 1, "description": "Target node id." },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relationship type: INSTANCE_OF | SUBCLASS_OF | domain verb (object property name)."
+        },
+        "label": { "type": "string" },
+        "comment": { "type": "string" }
       }
     }
   }

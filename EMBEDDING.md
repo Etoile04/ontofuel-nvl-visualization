@@ -1,171 +1,145 @@
-# Embedding the OntoFuel NVL Viewer
+# Embedding Guide — OntoFuel NVL Viewer as NFMD Integration Surface
 
-This document is the **NFMD integration spec surface** for the React NVL
-visualization app (`visualization-app/`). It defines how the NFMD website (or
-any third-party host) embeds the ontology viewer, how the data source is
-configured at runtime, the CORS contract for cross-origin data, and the
-reserved-but-not-yet-wired corpus resolver.
+> Spec surface for embedding the OntoFuel ontology viewer into the NFMD website
+> (or any host). Tracked by [NFM-229](/NFM/issues/NFM-229) / NFM-226 ADR §2 D4.
+>
+> This is the **canonical integration path**: the React NVL viewer is the single
+> supported frontend. The legacy Python `start_viewer` is deprecated — see
+> [DEPRECATED.md](../src/ontofuel/visualization/DEPRECATED.md) in the extractor repo.
 
-> Related: NFM-226 (viz integration ADR), NFM-229 D3 (this contract),
-> NFM-231 (implementation). Legacy Python `start_viewer` is deprecated — see
-> `src/ontofuel/visualization/DEPRECATED.md` in the main repo.
+## 1. Embed surface (URL contract)
 
----
+The viewer is configured entirely through URL query params, so no host-side
+build step is required — point an `<iframe>` at the deployed viewer.
 
-## 1. Build & static hosting
+| Param       | Required | Meaning                                                                 |
+| ----------- | -------- | ----------------------------------------------------------------------- |
+| `embed`     | no       | `embed=true` hides the toolbar / export menu (chromeless embed). A minimal floating search box is preserved (§5). |
+| `data`      | no       | Absolute or relative URL to the NVL JSON corpus to render.              |
+| `corpus`    | no       | **Reserved.** NFMD backend corpus id; resolver not yet wired (§4).      |
+| `node`      | no       | `node=<id>` opens the viewer pre-selected on a specific node (§5).      |
 
-The app is a Create React App. Produce static assets once and host them
-anywhere that serves static files:
+### Data-source resolution priority
 
-```bash
-cd visualization-app
-npm install
-npm run build        # emits visualization-app/build/
-```
+When multiple sources are present, the viewer resolves in this order
+(implemented in `src/utils/resolveDataUrl.ts`):
 
-Serve the resulting `build/` directory as static assets (nginx, S3 + CloudFront,
-GitHub Pages, Netlify, Vercel static, a CDN, or an object store). The build is
-fully client-side — there is **no runtime server requirement** for the viewer
-itself.
+1. `?data=<URL>` — explicit URL param (highest priority)
+2. `?corpus=<id>` — reserved NFMD backend resolution (§4; currently a no-op stub)
+3. `REACT_APP_DATA_URL` — build-time environment variable
+4. `dataUrl` prop on `<OntologyNVLViewer>` (for direct, non-iframe consumers)
+5. Default `/data/nvl_ontology_data.json` (zero-break fallback)
 
-For a path-prefixed host, set the CRA `homepage` field in `package.json`
-(e.g. `"homepage": "/viewer"`) before building so asset URLs resolve.
+With **no** param or env var set, the viewer loads the default corpus —
+existing behaviour is unchanged.
 
-## 2. Embed surface (URL parameters)
-
-All configuration is via query-string parameters on the viewer URL, so an
-embedder controls behavior purely through the `src` of an `<iframe>` (or the
-navigated URL). No rebuild is needed to change the data source.
-
-| Param          | Purpose                                           | Status      |
-| -------------- | ------------------------------------------------- | ----------- |
-| `?embed=true`  | Hide the toolbar / side panel (chromeless mode)   | Stable      |
-| `?data=<URL>`  | Load NVL JSON from any URL (highest priority)     | Stable      |
-| `?corpus=<id>` | Resolve a corpus id to a data URL via NFMD backend | **Reserved** |
-
-### `?embed=true`
-
-Enables **embed mode**: the in-app toolbar and auxiliary panels are hidden so
-the graph fills the frame. Use this for site embedding. Without it, the full
-interactive UI is shown (useful for a standalone "open in viewer" link).
-
-### `?data=<URL>` — runtime data source
-
-Points the viewer at any NVL JSON document. This is the primary knob for
-serving a specific ontology snapshot, a per-user extract, or a versioned
-release:
-
-```
-https://viewer.example.com/?embed=true&data=https://data.example.com/nvl/2026-06.json
-```
-
-The data URL resolution is centralized in
-[`src/utils/resolveDataUrl.ts`](src/utils/resolveDataUrl.ts) and follows a
-strict priority chain (highest → lowest):
-
-1. `?data=<URL>` — explicit, overrides everything
-2. `?corpus=<id>` — reserved (see below), currently a stub
-3. `REACT_APP_DATA_URL` — build-time env override
-4. caller-supplied prop
-5. **default** `/data/nvl_ontology_data.json` (legacy value, unchanged)
-
-**Default zero-breakage:** with no parameters and no env, the viewer loads the
-exact same default file it always did.
-
-### `?corpus=<id>` — reserved (NFMD backend, TBD)
-
-Intended to let an embedder request a dataset by logical id
-(e.g. `?corpus=reactor-fuel-2026`) and have the NFMD backend resolve it to a
-canonical data URL. **This is reserved but not yet wired.** The current stub
-([`resolveCorpusId`](src/utils/resolveDataUrl.ts)) emits a `console.warn`
-(`NFMD backend resolver not wired`) and falls back to the default data URL so
-the viewer still renders.
-
-The final backend protocol depends on the NFMD / nucpot architecture research
-(see §6 Future). Until then, **use `?data=<URL>`** for any non-default dataset.
-
-## 3. CORS contract (cross-origin data)
-
-When `?data=<URL>` points to a **different origin** than the page hosting the
-viewer, the browser's same-origin policy applies to the `fetch`. The data host
-**must** return CORS headers permitting the embed origin:
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-Access-Control-Allow-Origin: https://nfmd.example.com
-Vary: Origin
-```
-
-Rules of thumb:
-
-- **Same-origin data** (viewer and JSON served from the same host): no CORS
-  headers needed.
-- **Single known embedder**: allowlist that exact origin
-  (`Access-Control-Allow-Origin: https://nfmd.example.com`).
-- **Public/open data**: `Access-Control-Allow-Origin: *` is acceptable for
-  read-only public NVL JSON (no credentials involved).
-- The request is a simple `GET` of JSON — no preflight is triggered as long as
-  no custom headers are sent. Keep the data endpoint free of auth cookies if
-  you intend to use `*`.
-
-If the fetch fails due to CORS, the viewer surfaces a friendly load error
-(see `OntologyNVLViewer`'s error state) rather than silently failing.
-
-## 4. iframe embedding
-
-Embed the viewer in an `<iframe>` pointing at the built static app with the
-desired query parameters:
+## 2. Minimal embed snippet
 
 ```html
 <iframe
-  src="https://viewer.example.com/?embed=true&data=https://data.example.com/nvl/latest.json"
-  title="OntoFuel NVL Viewer"
-  width="100%"
-  height="600"
-  style="border:0; width:100%; height:600px;"
+  src="https://<viewer-host>/?embed=true&data=https://<corpus-host>/nvl_ontology_data.json"
+  title="OntoFuel ontology viewer"
+  style="width: 100%; height: 100%; min-height: 600px; border: 0;"
   loading="lazy"
-  allow="clipboard-write"
+  allowfullscreen
 ></iframe>
 ```
 
-Recommendations:
+- `embed=true` → toolbar + export menu hidden; the graph fills the frame. A
+  minimal floating search box stays available so large graphs remain navigable.
+- `data=` → points at the corpus JSON you want to render.
+- `node=` (optional) → e.g. `&node=Material` opens pre-selected on that node.
 
-- **Sizing:** give the frame an explicit height (e.g. `600px`+). The viewer
-  fills `100%` of its container; avoid unbounded `height:100%` inside a
-  zero-height parent. For responsive layouts, wrap in an aspect-ratio
-  container and let the iframe fill it.
-- **Deep links:** every interactive state that is URL-encoded (data source,
-  embed mode) is shareable — the same `src` reproduces the view. Persist
-  view-specific state (selection, layout) in the URL as those features land.
-- **Sandbox:** if you sandbox the iframe, keep `allow-scripts` and
-  `allow-same-origin` enabled (the viewer needs to run JS and fetch its data).
-  Do **not** add `allow-top-navigation` — the viewer never navigates the parent.
-- **Accessibility:** always set a descriptive `title`.
+## 3. Static asset hosting & CORS contract
 
-## 5. Docker embed entry (production)
+**Viewer assets.** Build the viewer (`npm run build`) and serve the resulting
+`build/` directory as static files from any static host / CDN / Docker image.
+The iframe `src` points at that static origin.
 
-For a self-contained deployment, the main repo ships a Docker setup that
-builds this app and serves it as static assets behind a container (the
-canonical production embedding path). See the main repo's `docker/` directory
-and the CLI note below.
+**Corpus JSON hosting (CORS).** The corpus referenced by `?data=<URL>` is
+fetched client-side by the viewer, so the host serving that JSON **must** allow
+the viewer's origin:
 
-> The Python CLI command `ontofuel viz` (legacy `start_viewer`) is
-> **deprecated** as of OntoFuel v1.2. It still starts the legacy Python D3
-> viewer for backward compatibility but prints a deprecation notice pointing
-> here. Prefer the Docker embed entry or a static host for production.
+```
+# On the corpus host's response headers:
+Access-Control-Allow-Origin: https://<viewer-host>
+# (or the embedding page origin, if the data URL is same-origin with the host)
+Access-Control-Allow-Methods: GET
+```
 
-## 6. Future / reserved
+- **Same-origin (simplest):** host the corpus JSON on the **same origin** as the
+  viewer (e.g. viewer serves `/data/*.json` itself) → no CORS headers needed.
+- **Cross-origin:** set `Access-Control-Allow-Origin` on the corpus host to
+  permit the viewer origin. Without it the browser blocks the fetch and the
+  viewer shows a load error.
+- The viewer performs a `fetch(dataUrl)` with no credentials; ensure the corpus
+  endpoint is publicly readable (or covered by the CORS policy above).
 
-- **`?corpus=<id>` resolver.** The final NFMD backend protocol for resolving a
-  corpus id to a data URL is pending the NFMD / nucpot architecture research
-  (NFM-229 D6). The parameter and the `resolveCorpusId()` seam are reserved so
-  the contract is stable; only the resolver implementation changes later.
-- **Static embed vs. backend API.** This version ships the **static-embed
-  path** (`?data=<URL>` + static hosting). Whether NFMD additionally exposes a
-  backend data API is an open architectural decision for the CTO, informed by
-  the NFMD research; it does not block this contract.
-- **Versioned NVL contract.** The viewer performs a lightweight client-side
-  contract check (NFM-227); full JSON Schema conformance is enforced on the
-  Python side. Versioned data files (`schema_version`) are preferred for new
-  deployments.
+## 4. Reserved: `?corpus=<id>` → NFMD backend (not yet wired)
+
+`?corpus=<id>` is **reserved** for resolving a corpus identifier to a URL via
+the NFMD backend. The resolver (`resolveCorpusId` in `resolveDataUrl.ts`) is a
+deliberate stub that:
+
+- emits a `console.warn` explaining the backend is not wired, and
+- returns `null`, so resolution falls through to the lower-priority tiers
+  (env → props → default).
+
+The concrete backend protocol (how `<id>` maps to a corpus URL / API call) is
+**out of scope for this repo** and awaits the NFMD/nucpot architecture research
+conclusion. Once that contract is finalised, wire `resolveCorpusId` to it.
+Cross-team protocol changes must be escalated to CTO/CEO.
+
+> **Open decision (escalated to CTO, non-blocking for this surface):** whether
+> the final NFMD integration ships corpus as **static assets embedded alongside
+> the viewer** (current path) or via a **backend API that emits NVL**. This
+> guide implements the static-embed path and reserves the API hook; the final
+> form is deferred to the NFMD architecture research (NFM-229 D6).
+
+## 5. iframe sizing, embed search & deep-linking
+
+### Sizing — height contract (NFM-237 MUST #1)
+
+The viewer adapts to its **host container**, not the viewport:
+
+- `.ontology-nvl-viewer` renders at `height: 100%` with a **`min-height: 400px`**
+  floor (CSS), so it fills whatever box the host gives it (hero / card / modal /
+  iframe) and never collapses below a usable size.
+- The height resolves through a `height: 100%` chain: the viewer root, the App
+  wrapper, `#root`, `body`, and `html` are all `height: 100%`. **The host must
+  therefore give the iframe (or embedding container) an explicit height**, e.g.
+  `style="height: 100%; min-height: 600px"`, or a fixed/constrained height from
+  the host layout. A heightless container leaves the viewer at its 400px floor.
+
+> Previous behaviour forced `height: 100vh` internally, which overfilled cards
+> and modals. That was removed in NFM-237; default (non-embed) full-viewport
+> behaviour is preserved via the `100%` chain.
+
+### Embed search (NFM-237 MUST #2)
+
+In `embed=true` mode the full toolbar is hidden, but a **minimal floating search
+box** (top-left overlay) is retained. It reuses the same node filtering as the
+full toolbar (match on node name / label / type) — essential for the 700+ node
+corpus. Typing filters the graph live; the `×` button clears the search.
+
+### Deep-linking (NFM-237 MUST #3)
+
+The surface now deep-links at three levels:
+
+- `?data=<URL>` — corpus selection (§1).
+- `?embed=true` — chromeless embed (§1).
+- `?node=<id>` — **node-level**: on load the viewer locates and selects the node
+  with that id (rendering its details). Clicking any node **syncs** `?node=<id>`
+  back into the URL via `history.replaceState`, preserving any existing
+  `embed`/`data`/`corpus` params — so the address bar always reflects the
+  focused entity and is shareable. Implemented in `src/utils/nodeDeepLink.ts`.
+
+If `?node=<id>` does not match any node in the loaded corpus, the viewer loads
+normally without error (no selection).
+
+## 6. Operational notes
+
+- Build command: `npm run build` (CRA) → `build/`.
+- Tests: `npm test` (includes `src/utils/resolveDataUrl.test.ts` covering the
+  full priority chain + corpus stub).
+- Default corpus path the viewer ships with: `/data/nvl_ontology_data.json`.

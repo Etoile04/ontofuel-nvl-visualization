@@ -1,99 +1,88 @@
 /**
- * Runtime dataUrl resolution (NFM-231 / NFM-229 ADR D1, D4).
+ * resolveDataUrl.ts
  *
- * Extracts the data-source selection out of `App.tsx` into a pure, React-free
- * function so it can be unit-tested and reused by the NFMD embed surface.
+ * Runtime resolution of the NVL data source URL.
  *
- * Priority chain (AC#1, strict, highest → lowest):
- *   1. `?data=<URL>`        — explicit, overrides everything
- *   2. `?corpus=<id>`       — RESERVED: NFMD backend resolver is not wired yet;
- *                             resolves to the default URL + console.warn stub
- *   3. `REACT_APP_DATA_URL` — build-time env override
- *   4. `propsUrl`           — caller-supplied default
- *   5. `DEFAULT_DATA_URL`   — `/data/nvl_ontology_data.json` (legacy value)
+ * Priority (highest → lowest), per NFM-229 / NFM-226 ADR §2 D4:
+ *   1. ?data=<URL>        — explicit URL query param
+ *   2. ?corpus=<id>       — reserved; resolves via NFMD backend (stub, not wired yet)
+ *   3. REACT_APP_DATA_URL — build-time environment variable
+ *   4. propsUrl           — dataUrl prop passed directly to <OntologyNVLViewer>
+ *   5. DEFAULT_DATA_URL   — /data/nvl_ontology_data.json
  *
- * Default behavior is byte-for-byte unchanged from the prior hardcoded
- * `dataUrl="/data/nvl_ontology_data.json"` (zero breakage).
+ * Default behaviour is unchanged: with no query param, env var, or prop,
+ * this resolves to the same default App.tsx previously hardcoded (zero-break).
  */
 
-/** Environment shape consumed by the resolver (CRA exposes `REACT_APP_*`). */
-export interface ResolveDataUrlEnv {
-  REACT_APP_DATA_URL?: string;
-}
+export const DEFAULT_DATA_URL = '/data/nvl_ontology_data.json';
 
-/** Which priority layer supplied the resolved URL. */
-export type ResolveDataUrlSource =
+export type DataSource =
   | 'query-data'
   | 'query-corpus'
   | 'env'
   | 'props'
   | 'default';
 
-/** Result of resolving the runtime data URL. */
-export interface ResolveDataUrlResult {
+export interface ResolvedDataSource {
   url: string;
-  source: ResolveDataUrlSource;
+  source: DataSource;
 }
 
-/** Legacy hardcoded default — preserved verbatim for zero-breakage. */
-export const DEFAULT_DATA_URL = '/data/nvl_ontology_data.json';
+/**
+ * Reserved corpus resolver placeholder.
+ *
+ * `?corpus=<id>` is intended to resolve to a corpus served by the NFMD
+ * backend. That backend protocol is not yet defined (pending NFMD/nucpot
+ * architecture research — see NFM-229 D6). This stub signals clearly that
+ * the resolver is not wired and returns null so callers fall through to
+ * the next priority tier.
+ *
+ * Wire this up once the NFMD backend contract is finalised.
+ */
+export function resolveCorpusId(corpusId: string): string | null {
+  // eslint-disable-next-line no-console
+  console.warn(
+    `[OntoFuel] ?corpus=${corpusId} resolver is not wired yet ` +
+      '(NFMD backend contract pending — see NFM-229 D6). ' +
+      'Falling back to lower-priority data source.'
+  );
+  return null;
+}
 
 /**
- * Resolve the runtime data URL from query params, env, and an optional prop.
+ * Resolve the NVL data source URL at runtime.
  *
- * @param params    - Parsed URL search params (e.g. `new URLSearchParams(window.location.search)`)
- * @param env       - Build/runtime env (e.g. `process.env`), only `REACT_APP_*` is honored
- * @param propsUrl  - Optional caller-supplied default URL (lowest-priority override)
- * @returns `{ url, source }` describing the chosen URL and which layer supplied it
+ * @param params   URL search params (e.g. `new URLSearchParams(window.location.search)`)
+ * @param env      environment record (e.g. `process.env`); reads `REACT_APP_DATA_URL`
+ * @param propsUrl optional dataUrl prop passed directly to the viewer
  */
 export function resolveDataUrl(
-  params: URLSearchParams,
-  env: ResolveDataUrlEnv,
-  propsUrl?: string,
-): ResolveDataUrlResult {
-  // 1. ?data=<URL> — highest priority, explicit override
-  const dataParam = params.get('data');
-  if (dataParam) {
-    return { url: dataParam, source: 'query-data' };
+  params: URLSearchParams | null,
+  env?: Record<string, string | undefined>,
+  propsUrl?: string
+): ResolvedDataSource {
+  const queryData = params?.get('data') ?? undefined;
+  if (queryData) {
+    return { url: queryData, source: 'query-data' };
   }
 
-  // 2. ?corpus=<id> — reserved; backend resolver not wired (stub + warn)
-  const corpusId = params.get('corpus');
+  const corpusId = params?.get('corpus') ?? undefined;
   if (corpusId) {
-    return { url: resolveCorpusId(corpusId), source: 'query-corpus' };
+    const resolved = resolveCorpusId(corpusId);
+    if (resolved) {
+      return { url: resolved, source: 'query-corpus' };
+    }
+    // corpus resolver not wired → fall through to lower-priority tiers
   }
 
-  // 3. REACT_APP_DATA_URL env
-  const envUrl = env.REACT_APP_DATA_URL;
+  const envUrl = env?.REACT_APP_DATA_URL;
   if (envUrl) {
     return { url: envUrl, source: 'env' };
   }
 
-  // 4. props (caller default)
   if (propsUrl) {
     return { url: propsUrl, source: 'props' };
   }
 
-  // 5. default — legacy hardcoded value
   return { url: DEFAULT_DATA_URL, source: 'default' };
-}
-
-/**
- * Resolve a `?corpus=<id>` to a data URL.
- *
- * Stub: the NFMD / nucpot backend corpus protocol is not wired yet (see
- * NFM-229 D6 — final form pending NFMD architecture research). Until then it
- * returns the default data URL so the viewer still renders, and warns so the
- * reserved parameter is visible during integration.
- *
- * @param id - Corpus identifier from `?corpus=<id>`
- * @returns Default data URL for now (placeholder)
- */
-export function resolveCorpusId(id: string): string {
-  // eslint-disable-next-line no-console
-  console.warn(
-    `?corpus=${id}: NFMD backend resolver not wired — using default data URL. ` +
-      'Reserved for NFMD/nucpot integration (NFM-229 D6).',
-  );
-  return DEFAULT_DATA_URL;
 }

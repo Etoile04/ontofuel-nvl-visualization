@@ -12,6 +12,12 @@
         padding: 0;
         box-sizing: border-box;
       }
+      /* NFM-237 MUST #1: height:100% 链 — viewer 适应 iframe/宿主容器高度 */
+      html,
+      body,
+      #root {
+        height: 100%;
+      }
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
           'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

@@ -1,46 +1,46 @@
 #!/usr/bin/env bash
-# Regenerate the canonical NVL E2E fixture from the extractor ontology (NFM-228 Task 1).
+# NFM-228: regenerate the canonical NVL E2E fixture from the extractor ontology and
+# verify it matches the committed copy. CI drift guard — exits non-zero if the
+# ontology or converter changed since the fixture was committed.
 #
-# The committed fixture (e2e/fixtures/nvl_ontology_data.json) is the source of truth
-# for E2E render-count assertions (matrix M1). Regenerate it locally when the
-# canonical ontology (data/material_ontology_enhanced.json in the extractor repo)
-# changes, then commit the result so CI and M1 assertions stay in sync.
-#
-# CI consumes the committed fixture directly (cross-repo regen is impractical in the
-# visualization-app CI runner); this script is a local developer tool.
-#
-# Usage (canonical dev layout workspace-extractor/visualization-app):
-#   npm run regen:fixture
-# Usage (worktree or custom layout):
-#   EXTRACTOR_ROOT=/path/to/workspace-extractor npm run regen:fixture
-#
-# Requires the extractor's scripts/sync_viz_pipeline.py on PYTHONPATH.
+# Usage: ./scripts/regen_fixture.sh
+# Env:   EXTRACTOR_ROOT (default: parent of this repo), ONTOLOGY (default:
+#        $EXTRACTOR_ROOT/data/material_ontology_enhanced.json)
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VIZ_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-FIXTURE="$VIZ_ROOT/e2e/fixtures/nvl_ontology_data.json"
-
-# Default: sibling extractor checkout (canonical layout). Override for worktrees.
-EXTRACTOR_ROOT="${EXTRACTOR_ROOT:-$VIZ_ROOT/..}"
+VIZ_ROOT="$(dirname "$SCRIPT_DIR")"
+EXTRACTOR_ROOT="${EXTRACTOR_ROOT:-$(dirname "$VIZ_ROOT")}"
 ONTOLOGY="${ONTOLOGY:-$EXTRACTOR_ROOT/data/material_ontology_enhanced.json}"
+FIXTURE="$VIZ_ROOT/e2e/fixtures/nvl_ontology_data.json"
+TMP="$(mktemp -t nvl_fixture_XXXXXX.json)"
+trap 'rm -f "$TMP"' EXIT
 
-if [ ! -f "$EXTRACTOR_ROOT/scripts/sync_viz_pipeline.py" ]; then
-  echo "ERROR: extractor repo not found at $EXTRACTOR_ROOT" >&2
-  echo "Set EXTRACTOR_ROOT to the workspace-extractor checkout." >&2
-  exit 1
+if [ ! -f "$ONTOLOGY" ]; then
+  echo "✗ ontology not found: $ONTOLOGY" >&2
+  exit 2
 fi
 
-echo "Regenerating NVL fixture from $ONTOLOGY -> $FIXTURE"
+echo "→ regenerating NVL from $ONTOLOGY"
 python3 "$EXTRACTOR_ROOT/scripts/sync_viz_pipeline.py" \
   --ontology "$ONTOLOGY" \
-  --nvl-output "$FIXTURE"
+  --nvl-output "$TMP" >/dev/null
 
-# Sanity check: non-empty nodes/relationships and report counts (M1 baseline).
-python3 - "$FIXTURE" <<'PY'
+python3 - "$FIXTURE" "$TMP" <<'PY'
 import json, sys
-d = json.load(open(sys.argv[1]))
-n, r = len(d.get('nodes', [])), len(d.get('relationships', []))
-assert n > 0 and r > 0, f"empty fixture: nodes={n} rels={r}"
-print(f"fixture OK: {n} nodes, {r} relationships, schema_version={d.get('schema_version')}")
+committed, regen = sys.argv[1], sys.argv[2]
+a = json.load(open(committed))
+b = json.load(open(regen))
+# generated_at is non-deterministic; ignore it when checking for drift.
+a.pop('generated_at', None)
+b.pop('generated_at', None)
+if a == b:
+    print("✓ NFM-228 fixture in sync with ontology (ignoring generated_at)")
+    sys.exit(0)
+print("✗ NFM-228 fixture drift: ontology/converter changed since fixture was committed")
+print("  Regenerate locally:")
+print("    python3 ../scripts/sync_viz_pipeline.py \\")
+print("      --ontology data/material_ontology_enhanced.json \\")
+print("      --nvl-output e2e/fixtures/nvl_ontology_data.json")
+sys.exit(1)
 PY
