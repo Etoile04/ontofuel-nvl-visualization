@@ -181,6 +181,16 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
     });
   }, [searchTerm, nodes]);
 
+  // Filter relationships to only include those where both endpoints are in filteredNodes
+  const filteredRelationships = useMemo(() => {
+    if (!searchTerm) return relationships;
+
+    const nodeIds = new Set(filteredNodes.map(node => node.id));
+    return relationships.filter(
+      rel => nodeIds.has(rel.from) && nodeIds.has(rel.to)
+    );
+  }, [searchTerm, relationships, filteredNodes]);
+
   // 鼠标事件回调
   const mouseEventCallbacks: MouseEventCallbacks = {
     onNodeClick: (node: Node, hitElements: any, event: MouseEvent) => {
@@ -517,7 +527,7 @@ const OntologyNVLViewer: React.FC<OntologyNVLViewerProps> = ({
           <div className="nvl-container">
             <InteractiveNvlWrapper
               nodes={filteredNodes}
-              rels={relationships}
+              rels={filteredRelationships}
               mouseEventCallbacks={mouseEventCallbacks}
               {...nvlOptions}
             />
