@@ -1,0 +1,53 @@
+name: e2e-nightly-nginx
+
+# NFM-228 M-R1 (QA verdict): Track A nightly. The D1 B+ merge gate uses a static
+# `serve` of the CRA bundle and therefore cannot reproduce the nginx iframe face.
+# This nightly builds the real Docker image and asserts the nginx-specific
+# behavior that NFM-49 iframe embedding depends on:
+#   - X-Frame-Options: ALLOWALL   (nginx.conf L8)
+#   - Access-Control-Allow-Origin (nginx.conf L9, L23)
+#   - SPA try_files fallback      (nginx.conf L28)
+#   - /data/nvl_ontology_data.json served (REACT_APP_DATA_URL path, Dockerfile L13)
+# Best-effort: skipped automatically where Docker is unavailable.
+
+on:
+  schedule:
+    - cron: '17 6 * * *' # 06:17 UTC daily (off-peak minute)
+  workflow_dispatch:
+
+jobs:
+  nginx-face:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t ontofuel-viz:e2e .
+      - name: Run container on :8080
+        run: |
+          docker run -d --name viz -p 8080:80 ontofuel-viz:e2e
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8080/ >/dev/null 2>&1; then echo "nginx up"; exit 0; fi
+            sleep 1
+          done
+          echo "nginx did not come up" >&2; exit 1
+      - name: Assert nginx iframe face (M-R1)
+        run: |
+          set -e
+          echo "--- X-Frame-Options ALLOWALL (root) ---"
+          curl -sI http://localhost:8080/ | grep -iE '^X-Frame-Options: ALLOWALL'
+          echo "--- Access-Control-Allow-Origin (root + /data/) ---"
+          curl -sI http://localhost:8080/                       | grep -iE '^Access-Control-Allow-Origin: \*'
+          curl -sI http://localhost:8080/data/nvl_ontology_data.json | grep -iE '^Access-Control-Allow-Origin: \*'
+          echo "--- SPA try_files fallback (/some/unknown/route -> 200 + index.html) ---"
+          code=$(curl -s -o /tmp/body -w '%{http_code}' http://localhost:8080/some/unknown/route)
+          test "$code" = '200'
+          grep -q 'id="root"' /tmp/body
+          echo "--- REACT_APP_DATA_URL data path serves non-empty ontology ---"
+          curl -sf http://localhost:8080/data/nvl_ontology_data.json | grep -q '"nodes"'
+          echo "M-R1 assertions passed"
+      - name: Dump nginx logs
+        if: always()
+        run: docker logs viz || true
+      - name: Remove container
+        if: always()
+        run: docker rm -f viz || true
